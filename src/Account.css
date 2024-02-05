@@ -1,0 +1,130 @@
+.Account-full {
+  background-color: #dae0e6;
+  /*min-height: 100vh; /*idk pero hace que la pantalla coga el color*/
+  /*height:100vmax;*/
+  height: 100vh;
+  display: flex; /*still dont know fully*/
+  flex-direction: column; /*items seran side by side*/
+  align-items: center;
+  /*justify-content: center; /*mismo centro*/
+  /*font-size: calc(10px + 2vmin);*/
+  color: black; /*color de texto*/
+  font-weight: bold;
+  margin-top: 85px;
+}
+
+.bubble-profile {
+  background-color: white;
+  width: 350px;
+
+  padding-right: 10px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.bubble-top {
+  /*padding-left: 10px;*/
+  padding-right: 10px;
+  /*hacer que toque el tope*/
+  width: 350px;
+  height: 41px;
+  background-color: #ffd703;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.bubble-top-text {
+  font-size: 26px;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  margin-top: -35px;
+  margin-left: 10px;
+  padding-top: 5px;
+}
+
+.bubble-top-button {
+  font-size: 20px;
+  color: rgb(102, 102, 102);
+  text-align: right;
+  margin-left: 80%;
+  text-decoration: none;
+  padding-top: 10%;
+  margin-top: 10px;
+}
+
+
+.Account-info-text {
+  font-size: 20px;
+  /*font-weight: bold;*/
+  /*color: black;*/
+  text-align: left;
+  flex-direction: row;
+  display: flex;
+  margin-left: 5px;
+  margin-bottom: -20px;
+  margin-top: -10px;
+}
+
+.bubble-My-Courses {
+  background-color: white;
+  width: 350px;
+  height: 240px;
+  /* padding-left: 10px;*/
+  padding-right: 10px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.Account-info-text-course {
+  font-size: 20px;
+  font-weight: 550;
+  color: black;
+  text-align: left;
+  flex-direction: column;
+  display: flex;
+  margin-left: 5px;
+  margin-bottom: -15px;
+}
+
+.Account-info-title {
+  font-weight: bold;
+  /*font-size: 20px;*/
+  margin-right: 10px;
+}
+.user {
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
+
+.text-box {
+  background-color: #dae0e6;
+  margin-top: 15px;
+}
+
+.select-box {
+  background-color: #dae0e6;
+  color: black;
+  height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.edit-btns {
+  font-size: 22px;
+  color: black;
+  background-color: #ffd703;
+  margin-top: 10px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px;
+}
+
+.bubble-My-Courses,
+.bubble-profile {
+  height: auto;
+  min-height: 300px;
+  max-height: 390px;
+}

@@ -1,0 +1,27 @@
+.banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    /* padding: 10px; */
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(100%);
+  }
+  
+  .banner.show {
+    transform: translateY(0);
+  }
+  
+  .banner.hide {
+    transform: translateY(100%);
+  }
+  
+  .banner img {
+    width: 100%; /* Cambia este valor según quieras ajustar el tamaño de la imagen */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+  }
+  

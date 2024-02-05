@@ -1,0 +1,30 @@
+.about {
+  padding: 0px;
+  margin-top: 47px;
+}
+
+.about h1 {
+  padding: 10px;
+  font-size: 24px;
+  margin-top: 0;
+  text-align: left;
+}
+
+.about p {
+  padding: 10px;
+  font-size: 16px;
+  /*line-height: 20px; */
+  text-align: left;
+  margin-top: -30px;
+}
+
+.about img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hr-about {
+  border: none;
+  border-top: 10px solid #ffd703; /* linea que cruza */
+  margin-top: -4.5px;
+}

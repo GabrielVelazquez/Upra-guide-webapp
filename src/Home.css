@@ -1,0 +1,84 @@
+.home {
+  padding: 0px;
+  margin-top: 60px;
+}
+
+.home img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-container,
+.image-container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Huge-image-container {
+  margin-top: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  flex: 1; /* espacio entre imagenes sea el mismo */
+  text-align: center; /* texto este alineado en el centro con la imagen */
+  margin: 10px; /* margin (espacio) entre cada imagen */
+  padding: 5px;
+}
+
+.image img {
+  width: 71px;
+  height: 71px;
+}
+
+.pressable-image {
+  cursor: pointer; /* para hacer las imagenes pressable, pointer a mano */
+  width: 60px;
+  max-width: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  /*background-color: aqua; /*debbuging*/
+}
+
+.image-tile{
+ /* cursor: pointer; /* para hacer las imagenes pressable, pointer a mano */
+  width: 60px;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.Huge-Image {
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+  margin-top: 6%;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.home-services {
+  display: flex; /*left */
+  align-items: flex-start;
+  margin-left: 10px;
+  margin-bottom: -10px;
+  margin-top: -10px;
+}
+
+.link-text {
+  text-decoration: none;
+}
+
+/* linea de division */
+hr {
+  border: none;
+  border-top: 10px solid #ffd703; /* linea que cruza */
+  margin: 20px 0; /* espacio que hay entre las cosas y la linea */
+  margin-top: -4.5px;
+}

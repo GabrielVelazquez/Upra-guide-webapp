@@ -1,0 +1,204 @@
+.map-size {
+  position: inherit;
+  height: 71vh;
+  width: 100%;
+ /* margin-top: 83px;*/
+  z-index: 1; /* menor atras y mayor alfrente*/
+  overflow-y: hidden;
+  overscroll-behavior: none;
+}
+
+/*---------------------------search bar----------------------------*/
+
+.search-bar{ /*container del search bar "atras"*/
+  /*background-color: rgb(233, 1, 187); /*un truquito lol*/
+  background-color: #DAE0E6;
+  margin-top: 90px; 
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius:5px;
+  border: 2px solid #c0c5ca;
+  margin-right: .5%;
+  margin-left: .5%;
+}
+
+.search-bar input{
+
+  color: #575a5d;
+  font-weight:700;
+  background-color: #DAE0E6;
+  width: 100%;
+  border:2px;
+  outline:none; /*que no se vea la linea azul*/
+/*min-width:95%;
+min-width:98.50%;*/
+}
+
+.search-button{
+  background-color: #DAE0E6; /*es la caja, era amarilla*/
+  height:35px;
+  /*min-width: 20%;
+  max-width: 10%;*/
+  max-width: 30%;
+  min-width: 5%;
+  cursor: pointer;
+  border: none;
+  font-size: 10px;
+  border-radius: 6px;
+  font-size: 15px;
+ margin-right: 10px;
+
+}
+
+.search-icon{
+  margin-top: 5px;
+  height: 25px;
+  width: 25px;
+}
+/*---------------------------search bar ends----------------------------*/
+/*----------------------------selection----------------------------*/
+/* Style for the map container */
+.map-container {
+  position: relative;
+}
+
+/* Style for the container of the category select */
+.category-select {
+  position: absolute;
+  top: 10px; /* Adjust this value as needed */
+  right: 10px; /* Adjust this value as needed */
+  z-index: 2; /* Ensure it's above the map */
+  background-color: aqua;  /* debugging */
+  height: 0px;/* como esta arriba del boton al ser 0 no tapa el boton de search*/
+}
+
+/* Style for the label */
+.category-select label {
+  margin-right: 5px;
+}
+
+/* Style for the select element */
+.category-select select {
+  padding: 8px; /* Adjust padding as needed */
+  font-size: 16px;
+  font-weight: 400;
+  /*border: 1px solid #ccc; /* Border color */
+  border-radius: 1px; /* Border radius */
+  background-color: #fff; /* Background color */
+  outline: none;
+  color: #333; /* Text color */
+  appearance: none; /* Remove default styles on Firefox */
+  -webkit-appearance: none; /* Remove default styles on Chrome and Safari */
+  margin-top: 45px;
+  box-shadow: 0px 2px 2px rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+/* Style for the arrow icon (▼) 
+.category-select select::after {
+  content: '▼'; /* Unicode character for a down arrow * /
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; / * Ensure the icon doesn't interfere with clicking the dropdown * /
+}
+*/
+/*----------------------------selection ends----------------------------*/
+.hide-outline {
+  outline: none;
+}
+
+.modal-box{
+  background-color:#DAE0E6;
+z-index: 3;
+  margin-top: 140px;
+  overflow-y:auto;/* !!overflow-y a 'auto' or 'scroll' para scrolling!! */
+  overflow-x:hidden;
+  height: 525px;
+  max-height:525px;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  outline: none;
+}
+
+.modal-box-top {
+  position: fixed;
+    width: 100%;
+    height: 50px;
+    background-color: #1A344A ;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 3;
+   }
+
+.location-img {
+  width: 100%;
+  height: 500%;
+  margin-top: 50px;
+  /*height: 800px; */ /*para testing de scrolling*/
+
+  /* visibility: hidden; /*para testing*/
+}
+
+.location-title{
+  color: rgb(255, 255, 255);
+  margin-top: 10px;
+  font-Weight:500;
+  font-size:30px;
+  text-align: center;
+}
+
+.hr-modal {
+  border: none;
+  border-top: 10px solid #ffd703; /* linea que cruza */
+  margin: 20px 0; /* espacio que hay entre las cosas y la linea */
+  margin-top:-5px;
+}
+
+.location-info-text{
+  position: relative;
+   color: rgb(0, 0, 0);
+   font-weight: 600px;
+   font-size: 20px;
+   overflow-wrap: break-word; /*para que texto no se salga de pagina*/
+   width: 95%;
+   /*height:100px;*/
+   text-align: left; /* empiece en inzquierda */
+   margin-left: 10px;
+ }
+ 
+ .modal-exit{
+  font-size: 20px ;
+  color: rgb(228, 0, 0);
+  text-decoration: none;
+  text-align:center;
+  margin-bottom: 10px;
+}
+
+   @media (min-width: 820px) {
+    .map-size{
+      height: 90vh;
+    }
+   }
+/*
+   @media (min-width: 1024px) {
+    .modal-box {
+      min-height: 100vh;
+      max-height: 100vh;
+    }
+  }
+
+  @media (min-width: 820px) {
+    .modal-box {
+      min-height: 100vh;
+    }
+  }
+*/
+
+/*height: 525px;
+  max-height:525px;
+  */
+   

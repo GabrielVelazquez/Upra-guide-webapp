@@ -1,0 +1,53 @@
+.input-container {
+  font-weight: bold;
+  text-align: left;
+  margin-left: 15px;
+  width: 200px; /* Set the desired width */
+  margin: 20px;
+  flex-direction: column;
+  position: relative;
+}
+
+label {
+  flex-direction: column;
+}
+
+input {
+  background-color: #dae0e6;
+}
+
+.input-box {
+  height: 15px;
+  width: 85%;
+}
+
+.login-link {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.sign-up-button {
+  margin-top: 20px;
+  background-color: #ffd703;
+  width: 95%;
+  height: 35px;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  outline: transparent;
+  border-radius: 4px;
+}
+
+.select-dept {
+  background-color: #dae0e6;
+  color: black;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 0;
+}
+
+.sign-up {
+  margin-top: 100px;
+  z-index: -1;
+}

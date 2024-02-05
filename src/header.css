@@ -1,0 +1,124 @@
+.Upra-header {
+  background-color: #ffd703;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  padding: 10px;
+  height: 65px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  /*z-index: 2;*/
+  z-index: 3;
+
+}
+
+.logo-header {
+  width: 130px;
+  height: 50px;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* -100 esta a posicion negativa para que no se vea */
+  height: 100%;
+  width: 50%; /* tama~no del menu */
+  background-color: #dae0e6;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 2; /* layer de frente */
+  transition: right 0.3s; /* slide */
+}
+
+.menu.open {
+  right: 0; /* Slide abrir */
+}
+
+.open-icon {
+  cursor: pointer;
+  /* align-self: flex-start; */
+  margin-bottom: 10px;
+  /*width: 50%;
+  height: auto;*/
+  width: 50px;
+  height: 50px;
+  left: 10%;
+  margin-right: 5%; /*para usabilidad podemos moverlo a izquierza*/
+}
+
+.close-icon {
+  cursor: pointer;
+  
+  /* align-self: flex-start; */
+  margin-bottom: 10px;
+  /*width: 50%;
+  height: auto;*/
+  width: 70px;
+  height: 70px;
+margin-left: -15px;
+  /*margin-left: 60%; */
+/*para usabilidad podemos moverlo a izquierza*/
+}
+
+.menu-item {
+  margin: 10px 0;
+}
+
+.menu-text, .menu-text2 {
+  align-self: flex-start;
+  color: black;
+  /*font-weight: bold;*/
+  font-weight: 600;
+  font-size: 25px; /*Era 30px pero dijeron que era muy grande? dedos pueden ser un problema*/
+  text-decoration: none;
+}
+
+/*  cuando era text, ahora es una imagen
+.hamburger-button {
+  color: black;
+  font-size: 50px;
+  cursor: pointer;
+  background-color: transparent;
+  border: solid transparent;
+ text-decoration: none;
+}
+*/
+
+.hr-burgermenu {
+  border: none;
+  border-top: 4px solid #b6bec6; /* linea que cruza */
+  margin: 5px 0; /* espacio que hay entre las cosas y la linea */
+}
+
+.menu-DD {
+  /*background-color: aqua;*/ /*para visualizar*/
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.dropdown-arrow {
+  margin-left: 5px;
+  transition: transform 0.3s ease; /* se ve smooth */
+  /*background-color: aqua;*/
+  height: 50px;
+  width: 43px;
+  margin-left: -0px;
+}
+
+.openv {
+  transform: rotateX(
+    180deg
+  ); /*la animacion que sube o baja cuando se activa el dropdown. es 180*/
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
