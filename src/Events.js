@@ -33,7 +33,7 @@ const Events = () => {
     };
 
     fetchData();
-  }, ); /*[firestore]*/
+  }, [firestore]); /* warning de vsc arruina esto*/
 
 
   return (

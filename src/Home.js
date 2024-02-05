@@ -1,6 +1,6 @@
 import { React, useEffect } from "react";
 import "./Home.css";
-import { BrowserRouter as Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { auth } from "./firebase.config";
 import map_icon from "./icons/Map_icon.png";
 import events_icon from "./icons/Events_icon.png";
@@ -11,6 +11,8 @@ import upra_icon from "./icons/Upra_img.jpg";
 import portal_icon from "./icons/Portal_img.png";
 import cursos_icon from "./icons/CursosUpra_img.jpg";
 const Home = () => {
+  //const location = useLocation();
+  //const { state } = location;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
