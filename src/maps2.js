@@ -1,6 +1,7 @@
+//hides with working category, doesnt show idoor markers yet
 import React, { useState, useRef, useEffect } from "react";
 import Modal from 'react-modal';
-import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
+import { APIProvider, Map, AdvancedMarker, Pin  } from "@vis.gl/react-google-maps";
 import { Link } from 'react-router-dom';
 import './maps2.css';
 import { firestore } from './firebase.config';
@@ -13,9 +14,14 @@ Modal.setAppElement('#root'); //  root para accesar el modal
     const fetchData = async () => {
       try {
         const locationCollection = collection(firestore, 'location');
-        const snapshot = await getDocs(locationCollection);
+        const interiorCollection = collection(firestore, 'interior');
 
-        const markersArray = snapshot.docs.map((doc) => {
+        const [locationSnapshot, interiorSnapshot] = await Promise.all([
+          getDocs(locationCollection),
+          getDocs(interiorCollection),
+        ]);
+  
+        const locationMarkersArray = locationSnapshot.docs.map((doc) => {
           const markerData = doc.data();
           return [
             markerData.name, //0
@@ -28,11 +34,21 @@ Modal.setAppElement('#root'); //  root para accesar el modal
           ];
         });
 
-        //setMarkers(markersArray);
-        return markersArray;
-        //console.log('fetched markers');
+        const interiorMarkersArray = interiorSnapshot.docs.map((doc) => {
+          const markerData = doc.data();
+          return [
+            markerData.name, //0
+            markerData.lat, //1
+            markerData.lng, //2
+            markerData.interiorArea,//3
+          ];
+        });
+
+        const combinedMarkersArray = [...locationMarkersArray, ...interiorMarkersArray];
+        return combinedMarkersArray;
       } catch (error) {
         console.error('Error fetching markers: ', error); //si falla muestra error en consola
+        //return {markersArray: [], exitMarkersArray: []};
         return[];
       }
     };
@@ -40,26 +56,42 @@ Modal.setAppElement('#root'); //  root para accesar el modal
     export default function Intro() { //manda el read request
       const defaultPosition = { lat: 18.468435565260574, lng: -66.74114959255792 }; //mapa localizado en centro de upra
       const [centerPosition, setCenterPosition] = useState(defaultPosition);
+
       const [selectedMarker, setSelectedMarker] = useState(null); //select a un marker
+
       const [searchValue, setSearchValue] = useState("");// nuevo estado para el valor de búsqueda
       const searchInputRef = useRef(null);// referencia al input de busqueda
       const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(null);
-      const [markers, setMarkers] = useState([]);
-      const [dataFetched, setDataFetched] = useState(false);
       
-      useEffect(() => {
-        if (!dataFetched) {
-          fetchData().then((markersArray)=> {
-            setMarkers(markersArray);
-            setDataFetched(true);
-            console.log('fetched markers');
-          });
-        }
+      const [markers, setMarkers] = useState([]);
+      const [dataFetched, setDataFetched] = useState(false); //recogio data de firestore
+      const [interiorMarkers, setInteriorMarkers ]=useState([]);
 
-    //fetchData();
-  }, [dataFetched]); /*[firestore]*/
+      const [showInteriorSelect, setShowInteriorSelect] = useState(false); //muestra/esconde dropdown de sorting
+      const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
+      
+// filtra markers segun el checkbox 
+const getFilteredMarkers = () => {
+  if (showInteriorMarkers) { //interiormarkercat???????????
+    return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
+  } else {
+    return filteredMarkersCat.filter((marker) => marker.length !== 4); // Display los location markers when checkbox is unchecked
+  }
+};
 
-  
+
+useEffect(() => {
+  if (!dataFetched) {
+    fetchData().then((markersArray) => {
+      setMarkers(markersArray);
+      // Separate interior markers from the combined array
+      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 4);
+      setInteriorMarkers(interiorMarkersArray);
+      setDataFetched(true);
+      console.log('fetched markers');
+    });
+  }
+}, [dataFetched]);
 
   //Presionar Marker
   const handleMarkerClick = (marker) => { 
@@ -94,6 +126,13 @@ const handleSearch = () => {
     setSelectedMarkerIndex(markers.indexOf(markers));
   }
 
+  if (selectedInteriorCategory) {
+    // If a category is selected, filter markers by category
+    filteredMarkersForSearch = markers.filter((marker) => marker[4] === selectedInteriorCategory);
+    setSelectedMarkerIndex(markers.indexOf(markers));
+  }
+
+
   const foundMarker = filteredMarkersForSearch.find((marker) => {
     const markerNameLower = marker[0].toLowerCase();
     return markerNameLower.includes(searchLowerCase);
@@ -109,38 +148,77 @@ const handleSearch = () => {
   }
 };
 
-//Sort por category
+//-----------------------------------Sort por location------------------------------------
   const [selectedCategory, setSelectedCategory] = useState("");
   const handleCategoryChange = (event) => {
     const newCategory = event.target.value || ""; 
     setSelectedCategory(newCategory);
-
   };
-  
-
-  const filteredMarkers = selectedCategory
+  const filteredMarkersCat = selectedCategory
     ? markers.filter((marker) => marker[6] === selectedCategory)
     : markers;
 
 
+//-----------------------------------Sort por interior------------------------------------
+  const [selectedInteriorCategory, setSelectedInteriorCategory] = useState("");
+const handleInteriorCategoryChange = (event) => {
+  const newInteriorCategory = event.target.value || "";
+  setSelectedInteriorCategory(newInteriorCategory);
+};
+
+const filteredInteriorMarkersCat = selectedInteriorCategory
+  ? markers.filter((marker) => marker[4] === selectedInteriorCategory)
+  : markers;
+
+  //-----------------------------------V enter en search V-----------------------------------
      const handleKeyPress = (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
         handleSearch();
       }
-      
-      
     };
 
-  return (
-    <APIProvider apiKey={"AIzaSyBOXmN9YX_vYDh6-MVPMFptNz2nLczHnmc"}>
+//-----------------------------------CHECKBOX------------------------------------
+// Update handleCheckboxChange to toggle the flag
+const handleCheckboxChange = (event) => {
+  setShowInteriorMarkers(event.target.checked);
+  const checkbox =event.target;
+  const isChecked =checkbox.checked;
 
+  if (isChecked) { //si activo
+    console.log('Viewing Interiors');
+    setShowInteriorSelect(true); //se ve el dropdown de interiores
+//se puede hacer mas al ser activado aqui abajo
+  } else {
+    console.log('Viewing Locations');
+    setShowInteriorSelect(false); //se esconde el drop down de interiores
+    // mas acciones
+  }
+
+};
+
+ 
+//--------------------------------MAP API-----------------------------------
+  return (
+  <APIProvider apiKey={"AIzaSyBOXmN9YX_vYDh6-MVPMFptNz2nLczHnmc"}>
 {/*category drop down WIP*/}
 <div className="map-container"> {/*Truco para que el boton quede frente al mapa*/}
-<div className="category-select">
-          {/*<label htmlFor="category">Select Category:</label>*/}
-          <select id="categoria" onChange={handleCategoryChange} value={selectedCategory}> {/*una categoria*/}
-            <option value="">All Categories</option>
+{/*--------------------------------ACTUAL DROPDOWNBOXES------------------------------------*/}
+   {showInteriorSelect ? (
+        <div className="interior-select">
+          <select id="interiorArea" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
+            <option value="">All Interiors</option>
+            {[...new Set(interiorMarkers.map((marker) => marker[3]))].map((interiorArea) => (
+              <option key={interiorArea} value={interiorArea}>
+                {interiorArea}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <div className="category-select"> 
+          <select id="categoria" onChange={handleCategoryChange} value={selectedCategory}>
+            <option value="">All Locations</option>
             {[...new Set(markers.map((marker) => marker[6]))].map((categoria) => (
               <option key={categoria} value={categoria}>
                 {categoria}
@@ -148,8 +226,20 @@ const handleSearch = () => {
             ))}
           </select>
         </div>
-{/*category drop down WIP*/}
+      )}
+      {/*category drop down WIP*/}
 
+{/*CHECKBOX*/}
+
+{/* --------------------------------ACTUAL SWITCH BOX------------------------------------*/}
+<div className="custom-checkbox">
+        <input id="status" type="checkbox" name="status" onChange={handleCheckboxChange} />
+        <label htmlFor="status">
+          <div className="status-switch" data-unchecked="Locations" data-checked="Interiors"></div>
+        </label>
+      </div>     
+
+{/* --------------------------------SEARCH BOX------------------------------------*/}
       <div className="search-bar">
       <input
   type="text"
@@ -159,21 +249,20 @@ const handleSearch = () => {
   ref={searchInputRef}
   onKeyPress={handleKeyPress}
 />
-
         <button className="search-button" onClick={handleSearch}><img className="search-icon" src="https://cdn-icons-png.flaticon.com/256/3917/3917754.png" alt="Search" /></button>
       </div>
       
-                  {/*original drop down arriba del mapa*/}
-
-        <div className="map-size">
+{/* --------------------------------ACTUAL MAP------------------------------------*/}
+<div className="map-size">
         <Map zoom={17} center={centerPosition} mapId={"e22287fd572a8772"} tilt={0}>
-          {filteredMarkers.map((currMarker, index) => (
+          {getFilteredMarkers().map((currMarker, index) => (
             <React.Fragment key={index}>
               <AdvancedMarker
                 position={{ lat: parseFloat(currMarker[1]), lng: parseFloat(currMarker[2]) }}
                 onClick={() => handleMarkerClick(currMarker, index)}
               >
-                <Pin  className="hide-outline"
+                <Pin
+                  className="hide-outline"
                   background={index === selectedMarkerIndex ? "#3297FD" : "#FFD703"}
                   borderColor={"black"}
                   glyphColor={"#DAE0E6"}
@@ -182,9 +271,11 @@ const handleSearch = () => {
             </React.Fragment>
           ))}
         </Map>
-      </div>
-      </div>
 
+  </div>
+  </div>
+
+{/*-----------------------------------------------------MODAL------------------------------------------------------------*/}
       <Modal className="modal-box"
         isOpen={selectedMarker !== null}
         onRequestClose={closePopup}
@@ -212,11 +303,3 @@ const handleSearch = () => {
     </APIProvider>
   );
 }
-
-  /* const markers = [
-    ["Learning Common", 18.46985831778697, -66.74048648451151, "level 1", "este es LC", "https://tintadigital.upra.edu/wp-content/uploads/2018/10/jhgvgh-1.jpg"],
-    ["Centro de estudiantes", 18.469747959138807, -66.7411613958695, "level 1", "Area publica para estudiantes. Amplia para actividades y conferencias. Edificio norte de la universidad, lado derecho del primer piso del lobby."],
-    ["Cdata", 18.46896789694791, -66.74205185923252, "level 2", "este de cdata xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxfxxxxxxxxxxxxxxxxxxxxxWxxWSxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxeeeeeeeeeeeeeeeee UWUWUWUWUWUWUWUWUW OWOWOWOWOWOWOWOW", "https://2.bp.blogspot.com/-hK7y-wGoIuk/Uzc_0yj4eFI/AAAAAAAAIdY/6P_axnWY10s/s3200/ShowcaseUPRA.jpg"],
-    ["Biblioteca", 18.47014497045244, -66.74073189884444, "level 1", "este es la", "https://scontent.fsju2-1.fna.fbcdn.net/v/t1.18169-9/1234128_1766246350270982_7157008094877001913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=f9FzPrAO8NwAX_fsc4E&_nc_oc=AQmU4pszJAsjQK_OsXu7Fj9qciKx21bxT4Msur-CfQoLYU4htnojZgUk2awvJAJqJoqwYSvWSYZdYV7JZW9L7FJG&_nc_ht=scontent.fsju2-1.fna&oh=00_AfA_NhrkYzzEyll7EcTPgB9JekNzyW5JRmUCHZbwp9JE7w&oe=658BAC55"],
-  ];
-  */
