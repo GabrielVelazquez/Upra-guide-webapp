@@ -1,0 +1,21 @@
+.mappedincss iframe {
+    border: 1px solid;
+    /*background: red;*/
+    /*color:red;*/
+    /*overflow: hidden;*/
+    margin-top: 85px;
+    border: transparent;
+}
+
+/* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+    .mappedincss iframe {
+        height: 572px; 
+    }
+}
+/*  768px (desktop) probado en laptop*/
+@media (min-width: 768px) {
+    .mappedincss iframe {
+        height: 618px; 
+    }
+}

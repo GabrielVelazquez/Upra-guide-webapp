@@ -14,6 +14,7 @@ import About from "./About";
 import Account from "./Account";
 import Maps2 from "./maps2";
 import Banner from "./Banner";
+import Mappedin from "./mappedin";
 
 //INSTRUCCIONES
 //npm create-react-app my-app (para instalar hay que crear, despues se borra)
@@ -40,6 +41,8 @@ function App() {
           <Route exact path="/About" element={<About />} />
           <Route exact path="/Account" element={<Account />} />
           <Route exact path="/maps2" element={<Maps2 />} />
+
+          <Route exact path="/mappedin" element={<Mappedin/>} />
           {/* <Route exact path="/Schedule" element={<Schedule />} /> */}
         </Routes>
         <Banner/>
