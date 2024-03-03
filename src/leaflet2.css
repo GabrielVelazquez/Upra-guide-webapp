@@ -1,0 +1,46 @@
+.leaflet2{
+    text-align: center;
+    padding:10px;
+}
+
+
+.mapcont{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    font-family: sans-serif;
+    color: #333;
+    background-color: #ff0000;
+}
+
+/* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+    .mapcont {
+       padding:0px;
+       margin-top: 0px;
+    }
+}
+
+/*  768px (desktop) probado en laptop*/
+@media (min-width: 768px) {
+    .mapcont {
+        padding-top:0px;  /*WIP*/
+        margin: top 10px;
+    }
+}
+
+.leaflet-container {
+    height: 90vh;
+    width: 100%;
+    margin-top: 85px;
+    z-index: 2;
+  }
+
+  /*
+.title-indoor{
+    z-index: 3;
+    color: rgb(4, 4, 4);
+}*/

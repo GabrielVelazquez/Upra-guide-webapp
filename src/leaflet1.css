@@ -1,0 +1,31 @@
+.leafletcss1{
+    height: 100vh;
+    width: 100%;
+color:red;
+background-color: aqua;
+overflow-y: hidden;
+overflow-x: hidden;
+
+/*display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+*/
+}
+
+/* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+    .mapcont {
+       padding:0px;
+       margin-top: 0px;
+    }
+}
+
+/*  768px (desktop) probado en laptop*/
+@media (min-width: 768px) {
+    .mapcont {
+        padding-top:0px;  /*WIP*/
+        margin: top 10px;
+        display: flex;
+    }
+}

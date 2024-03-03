@@ -1,6 +1,7 @@
 .home {
   padding: 0px;
   margin-top: 60px;
+  /* background-color:#dfe6ed; */
 }
 
 .home img {
@@ -16,10 +17,18 @@
 }
 
 .Huge-image-container {
-  margin-top: 47px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.Huge-Image {
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+  overflow: hidden;
+  margin-top: 25px;
 }
 
 .image {
@@ -52,15 +61,6 @@
   margin-left: 10px;
   text-decoration: none;
   font-size: 12px;
-}
-
-.Huge-Image {
-  max-width: 100%;
-  height: auto;
-  width: auto\9;
-  margin-top: 6%;
-  overflow: hidden;
-  margin-top: 60px;
 }
 
 .home-services {

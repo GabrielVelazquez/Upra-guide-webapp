@@ -15,7 +15,8 @@ import Account from "./Account";
 import Maps2 from "./maps2";
 import Banner from "./Banner";
 import Mappedin from "./mappedin";
-
+import BuildingMap from "./leaflet1";
+import Leaflet2 from "./leaflet2";
 //INSTRUCCIONES
 //npm create-react-app my-app (para instalar hay que crear, despues se borra)
 // "npm start" para correr la pagina
@@ -43,9 +44,12 @@ function App() {
           <Route exact path="/maps2" element={<Maps2 />} />
 
           <Route exact path="/mappedin" element={<Mappedin/>} />
+          <Route exact path="/leaflet1" element={<BuildingMap/>} />
+          <Route exact path="/leaflet2" element={<Leaflet2/>} />
+
           {/* <Route exact path="/Schedule" element={<Schedule />} /> */}
         </Routes>
-        <Banner/>
+       {/*<Banner/> */}
       </div>
     </Router>
   );
