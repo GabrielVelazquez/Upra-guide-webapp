@@ -1,6 +1,7 @@
 .leafletcss1{
-    height: 100vh;
-    width: 100%;
+    /* height: 100vh;
+    width: 100%; 
+    */
 color:red;
 background-color: aqua;
 overflow-y: hidden;
@@ -25,7 +26,7 @@ flex-direction: column;
 @media (min-width: 768px) {
     .mapcont {
         padding-top:0px;  /*WIP*/
-        margin: top 10px;
-        display: flex;
+        margin-top:10px;
+      
     }
 }
