@@ -13,16 +13,15 @@ import Events from "./Events";
 import About from "./About";
 import Account from "./Account";
 import Maps2 from "./maps2";
-import Banner from "./Banner";
+//import Banner from "./Banner";
 import Mappedin from "./mappedin";
-import BuildingMap from "./leaflet1";
-import Leaflet2 from "./leaflet2";
-//INSTRUCCIONES
-//npm create-react-app my-app (para instalar hay que crear, despues se borra)
-// "npm start" para correr la pagina
-// press (ctrl + c) para cerrar el server
-//Si no tienes terminal, haz rightclick en package.json y dale a open para hacer los comandos correctos
-//npm install react-router-dom  (esto es para poder navegar atravez de paginas)
+
+//---------------------Interior maps-------------------------
+import LearningCommons from "./Leaflet/LeafletJS/leafletLC";
+import AC1  from "./Leaflet/LeafletJS/leafletAC";
+//---------------------Interior maps-------------------------
+
+import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
 
 function App() {
   return (
@@ -43,8 +42,12 @@ function App() {
           <Route exact path="/Account" element={<Account />} />
           <Route exact path="/maps2" element={<Maps2 />} />
 
+          {/*------------SALONES DE LEAFLET---------------*/}
+          <Route exact path="/leafletLC" element={<LearningCommons/>} /> 
+          <Route exact path="/leafletAC" element={<AC1/>} /> {/*AC nivel 1*/}
+
+          {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
-          <Route exact path="/leaflet1" element={<BuildingMap/>} />
           <Route exact path="/leaflet2" element={<Leaflet2/>} />
 
           {/* <Route exact path="/Schedule" element={<Schedule />} /> */}
@@ -56,3 +59,10 @@ function App() {
 }
 
 export default App;
+
+//INSTRUCCIONES
+//npm create-react-app my-app (para instalar hay que crear, despues se borra)
+// "npm start" para correr la pagina
+// press (ctrl + c) para cerrar el server
+//Si no tienes terminal, haz rightclick en package.json y dale a open para hacer los comandos correctos
+//npm install react-router-dom  (esto es para poder navegar atravez de paginas)

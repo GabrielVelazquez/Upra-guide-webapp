@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents } from 'react-leaflet';  // usemap events IMAGE COORDINATES
 import L from 'leaflet'; //IMAGE COORDINATES
-import imagenmapa from './images/Learning_common_leaflet_PN.png';
-import "./leaflet1.css";
+import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
+import "../LeafletCSS/leafletLC.css";
 
-const BuildingMap = () => {
+const LearningCommons = () => {
   const bounds = [[0, 0], [1592, 807]];
 
    // Coordenadas del polígono (ejemplo)
@@ -77,4 +77,4 @@ const BuildingMap = () => {
   );
 };
 
-export default BuildingMap;
+export default LearningCommons;
