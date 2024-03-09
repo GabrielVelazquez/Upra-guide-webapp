@@ -3,9 +3,10 @@
     width: 100%; 
     */
 color:red;
-background-color: aqua;
+background-color: transparent;
 overflow-y: hidden;
 overflow-x: hidden;
+scroll-behavior: none;
 
 /*display: flex;
 align-items: center;
@@ -14,7 +15,24 @@ flex-direction: column;
 */
 }
 
-/* 768px (mobile) probado en iphone 15 pro */
+
+.title-lc{
+    color: black;
+    font:larger;
+}
+
+
+/*DO NOT TOUCH*/
+.leaflet-container {
+    height: 87.9vh;
+    width: 100%;
+    margin-top: 85px;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+
+  /* 768px (mobile) probado en iphone 15 pro */
 @media (max-width: 767px) {
     .mapcont {
        padding:0px;
@@ -30,10 +48,3 @@ flex-direction: column;
       
     }
 }
-
-.leaflet-container {
-    height: 90vh;
-    width: 100%;
-    margin-top: 85px;
-    z-index: 2;
-  }

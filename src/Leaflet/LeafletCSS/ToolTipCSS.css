@@ -1,0 +1,67 @@
+/* Customizing Leaflet Tooltip Styles */
+.leaflet-tooltip {
+    /*display: none;*/ /*ARREGLAR POR QUE NON TRANSPARENT HACE OVERRIDE AL TRANSPARENT*/
+    background-color: transparent;
+    border: transparent;
+    padding: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    box-shadow: none;
+}
+
+/*  ORIGINAL
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    */
+
+  
+  /* Tooltip Arrow Styles */
+  .leaflet-tooltip-top::before,
+  .leaflet-tooltip-bottom::before,
+  .leaflet-tooltip-left::before,
+  .leaflet-tooltip-right::before {
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .leaflet-tooltip-top::before {
+    border-bottom-color: #fff;
+    border-width: 8px 8px 0;
+    top: -8px;
+    left: 50%;
+    margin-left: -8px;
+  }
+  
+  .leaflet-tooltip-bottom::before {
+    border-top-color: #fff;
+    border-width: 0 8px 8px;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -8px;
+  }
+  
+  .leaflet-tooltip-left::before {
+    border-right-color: #fff;
+    border-width: 8px 0 8px 8px;
+    top: 50%;
+    right: -8px;
+    margin-top: -8px;
+  }
+  
+  .leaflet-tooltip-right::before {
+    border-left-color: #fff;
+    border-width: 8px 8px 8px 0;
+    top: 50%;
+    left: -8px;
+    margin-top: -8px;
+  }
+  

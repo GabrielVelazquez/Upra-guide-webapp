@@ -41,7 +41,7 @@ const AC1 = () => {
    //--------------------END CLICK PARA COORDENADAS SOLO PARA DEVELOPING
 
   return (
-    <div className='title-ac'>
+    <div className='leafletAC'>
       <MapContainer center={[64.754823, 404.927032]} zoom={1} >
           {/* overlay de la imagen */}
         <ImageOverlay
@@ -50,9 +50,9 @@ const AC1 = () => {
           shouldUpdate={mapClicked}
         />
 
+      <h1 className='title-ac' >Salones Nivel AC 100</h1>
         {/*--------------------------------Polígono overlay para AC108------------------*/}
         <Polygon positions={AC108} color="yellow" eventHandlers={{ click: handlePolygonAC108Click }} />
-        <h1  >Salones Nivel AC 100</h1>
          {/*--------------------------------Path line overlay para AC108-----------------*/}
         {pathLineCoordsAC108.length > 0 && <Polyline positions={[[74.012928, 445.048771], [74.109489, 777.583097]]} color="red" /> }
         {/*RUTA ALTERNA*/}
