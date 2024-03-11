@@ -3,8 +3,9 @@
     /*display: none;*/ /*ARREGLAR POR QUE NON TRANSPARENT HACE OVERRIDE AL TRANSPARENT*/
     background-color: transparent;
     border: transparent;
-    padding: 6px;
-    font-size: 15px;
+    padding: 1px;
+    margin-top: -15px;
+    font-size: 13px;
     font-weight: bold;
     color: #000000;
     box-shadow: none;
