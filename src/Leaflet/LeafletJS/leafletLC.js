@@ -4,7 +4,7 @@ import {customMarker, customExtintor, customPullStation, customMeetingPoint} fro
 import L from 'leaflet';
 import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
 //import waypoint from '../../images/Leaflet_marker_upra.png';
-import "../LeafletCSS/leafletLC.css";
+import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 
 const LearningCommons = () => {

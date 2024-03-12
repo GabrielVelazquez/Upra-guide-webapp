@@ -1,36 +1,133 @@
 import React, { useState } from 'react';
-import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents } from 'react-leaflet';  // usemap events IMAGE COORDINATES
-import L from 'leaflet'; //IMAGE COORDINATES
-import imagenmapa from '../../images/AC_nivel1_leaflet_PN.png';
-import "../LeafletCSS/leafletAC.css";
+import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
+import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
+import L from 'leaflet';
+import imagenmapa from '../../images/AC_100_leaflet_PN.png';
+//import waypoint from '../../images/Leaflet_marker_upra.png';
+import "../LeafletCSS/leafletMap.css";
+import "../LeafletCSS/ToolTipCSS.css";
 
-const AC1 = () => {
+const LearningCommons = () => {
   const bounds = [[0, 0], [1592, 807]];
 
-   // Coordenadas del polígono (ejemplo)
-  const AC108 = [
-    [84.45737, 406.578073], [84.45737, 482.68133],
-    [76.998357, 481.978298], [76.998357, 405.347766],
+//Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
+  const ExtintorLocations = [
+   // [],
+
   ];
 
-  //definir nombre de rutas de salida
-  const [pathLineCoordsAC108, setPathLineCoordsAC108] = useState([]);
+  const PullStationLocations = [
+   // [],
 
-//definir poligonos para areas
-  const handlePolygonAC108Click = () => {
-    setPathLineCoordsAC108(AC108);
+  ];
+
+  const MeetingPointLocations = [
+    //[],
+  ];
+
+  //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
+  const polygons = [
+    {
+      name: 'AC101',
+      positions: [
+        [48.197676, 119.750977], [48.197676, 190.063477],
+        [9.387633, 190.151367], [9.387633, 119.750977],
+      ],
+      markerPosition: [30.546697, 154.940186],
+    },
+
+
+
+
+
+    {
+      name: 'AC108',
+      positions: [
+        [84.304962, 400.144043], [84.304962, 470.478516],
+        [77.461998, 470.478516], [77.461998, 400.144043],
+      ],
+      markerPosition: [81.573683, 434.970703],
+    },
+   
+  ];
+
+//COORDENADAS DE RUTAS DE SALIDAS y nombre de salon (para el case)-------------------------------------------------------------------------
+  const getPolylinePositions = (name) => {
+    switch (name) {
+      case 'AC101':
+        return [[48.265841, 124.233398],[55.906543, 124.233398],[55.906543, 98.789063],[17.028871, 98.789063],[17.028871, 5.097656],[71.330647, 5.097656]];
+
+
+
+
+      case 'AC108':
+        return [[76.923586, 407.283203], [74.148744,407.283203],[74.148744, 797.695313]];
+
+        default:
+        return [];
+    }
   };
 
-  const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
+  //COORDENADAS DE RUTAS DE SALIDAS Alternas------------------------------------------------------------------------
+  const getAltPolylinePositions = (name) => {
+    switch (name) {
+      case 'AC101':
+        return [[48.265841, 126.233398],[55.832537, 126.233398],[55.906543, 380.390625],[74.148744, 380.390625],[74.034196, 798.222656]];
+      case 'AC108':
+        return [[76.923586, 405.283203], [74.148744,405.283203],[74.148744, 380.390625],[55.906543, 380.390625],[55.906543, 98.789063],[17.028871, 98.789063],[17.028871, 5.097656],[71.330647, 5.097656]];
 
-  //--------------------CLICK PARA COORDENADAS SOLO PARA DEVELOPING //IMAGE COORDINATES
+        default:
+        return [];
+    }
+  };
+
+  //CONSTANTE DE MARKERS Y RUTAS DE SALIDAS (definir)----------------------------------------------------------------------------------------------
+  const [markerPosition, setMarkerPosition] = useState(null); //marker invisible por default
+  const [pathLineCoords, setPathLineCoords] = useState([]); //path polyline ruta de salida
+  const [AltpathLineCoords, setAltPathLineCoords] = useState([]); //path polyline ruta de salida
+
+  //MOSTRAR RUTA CUANDO SE SELECCIONA-----------------------------------------------------------------------------------------------------
+  const handlePolygonClick = (index) => {
+    const polygon = polygons[index];
+  
+if (polygon) {
+        console.log("Polygon name:", polygon.name); //para debugging
+      const polylinePositions = getPolylinePositions(polygon.name);//principal
+        console.log("Polyline positions:", polylinePositions); //para debugging
+      const AltpolylinePositions = getAltPolylinePositions(polygon.name);//alterna
+        console.log("Polyline positions:", AltpolylinePositions); //para debugging
+
+       setPathLineCoords(polylinePositions); //mustra ruta de salida
+       setAltPathLineCoords(AltpolylinePositions); //mustra ruta de salida alterna
+       setMarkerPosition(polygon.markerPosition);  //muestra marker
+    } else {
+      console.log("Polygon is undefined at index:", index); //para debugging
+   }
+  };
+ 
+//MUESTRA POLIGONO OVERLAY PARA LOCATION----------------------------------------------------------------------------------------------------
+  const renderPolygons = () => {
+    return polygons.map((polygon, index) => (
+      <Polygon key={index} positions={polygon.positions} color="yellow" eventHandlers={{ click: () => handlePolygonClick(index) }}> {/*Yellow o #FFD703 (upraYellow)*/}
+        {markerPosition && <Marker position={markerPosition} icon={customMarker}></Marker>}
+        <Tooltip direction="bottom" offset={[0, 1]} opacity={1} permanent iconSize="fixed">
+          <div>
+            <span> ● {polygon.name}</span> 
+          </div>
+        </Tooltip>
+      </Polygon>
+    ));
+  };
+  
+  //CLICK PARA COORDENADAS SOLO PARA DEVELOPING //IMAGE COORDINATES--------------------------------------------------------------------
+  const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
       click: (e) => {
         popup
           .setLatLng(e.latlng)
-          .setContent("You clicked the map at " + e.latlng.toString())
+          .setContent("Clicked at " + e.latlng.toString())
           .openOn(map);
           // solo para re render el mapa despues de click
         setMapClicked(!mapClicked);
@@ -38,29 +135,46 @@ const AC1 = () => {
     });
     return null;
   };
-   //--------------------END CLICK PARA COORDENADAS SOLO PARA DEVELOPING
+   //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING-----------------------------------------------------------------------------------
+return (
+  
+  <div className='leafletcss1'>   
+    <MapContainer center={[64.754823, 400.429688]} zoom={1}>
+      <h1 className='title-lc'>Salones Nivel AC 100</h1>
+        <ImageOverlay url={imagenmapa} bounds={bounds} />
 
-  return (
-    <div className='leafletAC'>
-      <MapContainer center={[64.754823, 404.927032]} zoom={1} >
-          {/* overlay de la imagen */}
-        <ImageOverlay
-          url={imagenmapa}
-          bounds={bounds}
-          shouldUpdate={mapClicked}
-        />
+          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 
-      <h1 className='title-ac' >Salones Nivel AC 100</h1>
-        {/*--------------------------------Polígono overlay para AC108------------------*/}
-        <Polygon positions={AC108} color="yellow" eventHandlers={{ click: handlePolygonAC108Click }} />
-         {/*--------------------------------Path line overlay para AC108-----------------*/}
-        {pathLineCoordsAC108.length > 0 && <Polyline positions={[[74.012928, 445.048771], [74.109489, 777.583097]]} color="red" /> }
-        {/*RUTA ALTERNA*/}
-        {pathLineCoordsAC108.length > 0 && <Polyline positions={[[74.012143, 382.128158], [74.205444, 442.228956]]} color="BLUE" /> } 
-        <MapClickHandler />{/*IMAGE COORDINATES*/}
-      </MapContainer>
-    </div>
+          <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
+          <Polyline positions={AltpathLineCoords} color="red" dashArray="10, 10"/>{/*dashArray style para lineas entre cortadas (alt)*/}
+
+{/*Hace render a los markers icons (ExtintorLocations)*/}
+          {ExtintorLocations.map((position, index) => ( 
+           <Marker key={index} position={position} icon={customExtintor}></Marker> 
+          )
+         )
+        }
+{/*Hace render a los markers icons (Pull statuions)*/}
+           {PullStationLocations.map((position, index) => ( 
+           <Marker key={index} position={position} icon={customPullStation}></Marker> 
+           )
+          )  
+        }
+
+{/*Hace render a los markers icons (Pull statuions)*/}
+{MeetingPointLocations.map((position, index) => ( 
+           <Marker key={index} position={position} icon={customMeetingPoint}></Marker> 
+           )
+          )  
+        }
+
+{/*DEV ONLY IMAGE COORDINATES*/}
+<MapClickHandler />  {/*IMAGE COORDINATES*/}
+{/*DEV ONLY IMAGE COORDINATES*/}
+
+  </MapContainer>
+</div>
   );
 };
 
-export default AC1 ;
+export default LearningCommons;
