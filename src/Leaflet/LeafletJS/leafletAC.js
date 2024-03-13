@@ -8,7 +8,7 @@ import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 
 const LearningCommons = () => {
-  const bounds = [[0, 0], [1592, 807]];
+  const bounds= [[-90, -90], [1800, 880]]; //= [[0, 0], [1592, 807]];
 
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -138,11 +138,10 @@ if (polygon) {
    //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING-----------------------------------------------------------------------------------
 return (
   
-  <div className='leafletcss1'>   
-    <MapContainer center={[64.754823, 400.429688]} zoom={1}>
-      <h1 className='title-lc'>Salones Nivel AC 100</h1>
+  <div>   
+     <h1 className='title-lc'>Salones Nivel AC 100</h1>
+    <MapContainer center={[18.089666, 406.40625]} zoom={1}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
-
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}

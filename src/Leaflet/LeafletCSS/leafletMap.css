@@ -1,49 +1,51 @@
 .leafletcss1{
      /*height: 100vh;*/
-
 color:red;
 background-color: transparent;
 overflow-y: hidden;
-overflow-x: hidden;
+overflow-x: hidden; 
 scroll-behavior: none;
+}
 
 /*display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-*/
+* /
 }
-
+*/
 
 .title-lc{
     color: black;
     font:larger;
+    background-color: #dddddd;
+    margin-top:85px;
+    margin-bottom: 0px;
 }
 
-
-/*DO NOT TOUCH*/
+/*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
 .leaflet-container {
-    height: 87.9vh;
+    height: 81.9vh; /*phone puede ser hasta 90 0 100*/
     width: 100%;
-    margin-top: 85px;
     z-index: 2;
     overflow: hidden;
+
   }
 
-
-  /* 768px (mobile) probado en iphone 15 pro */
-@media (max-width: 767px) {
-    .mapcont {
-       padding:0px;
-       margin-top: 0px;
-    }
+.leaflet-image-layer
+{
+    z-index: 1; 
+    transform: translate3d(8899px, 180px, 0px);
+     width: 1555px; 
+     height: 400px;
 }
 
-/*  768px (desktop) probado en laptop*/
-@media (min-width: 768px) {
-    .mapcont {
-        padding-top:0px;  /*WIP*/
-        margin-top:10px;
-      
-    }
+
+ /*  Original
+ .leaflet-image-layer
+{
+    z-index: 1; 
+    transform: translate3d(889px, 180px, 0px);
+     width: 1422px; height: 400px;
 }
+*/

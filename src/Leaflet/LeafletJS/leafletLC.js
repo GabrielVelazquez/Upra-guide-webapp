@@ -8,7 +8,8 @@ import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 
 const LearningCommons = () => {
-  const bounds = [[0, 0], [1592, 807]];
+  const bounds = [[-90, -90], [1800, 880]];
+ //= [[0, 0], [1592, 807]];
 
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -34,11 +35,11 @@ const LearningCommons = () => {
   const polygons = [
     {
       name: 'Conference Room',
-      positions: [
-        [77.920958, 163.035113], [77.716721, 268.45804],
-        [40.497613, 268.062391], [40.622979, 163.035113],
-      ],
-      markerPosition: [65, 215],
+
+      positions: [[59.46165, 110.126953],[59.46165, 231.943359],
+      [-66.883523, 231.943359],[-66.883523, 109.6875]],
+
+      markerPosition: [-13.804582, 169.453125],
     },
     {
       name: 'Study Room 1',
@@ -221,8 +222,9 @@ if (polygon) {
 return (
   
   <div className='leafletcss1'>   
-    <MapContainer center={[64.754823, 400.429688]} zoom={1}>
-      <h1 className='title-lc'>Learning Commons</h1>
+     <h1 className='title-lc'>Learning Commons</h1>
+    <MapContainer center={[15.166345, 389.53125]} zoom={1}>
+     
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
