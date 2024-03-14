@@ -49,3 +49,10 @@ flex-direction: column;
      width: 1422px; height: 400px;
 }
 */
+
+/* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+    .MapContainer {
+        zoom: -1;
+    }
+}
