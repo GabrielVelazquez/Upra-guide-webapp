@@ -122,7 +122,8 @@ if (polygon) {
   //CLICK PARA COORDENADAS SOLO PARA DEVELOPING //IMAGE COORDINATES--------------------------------------------------------------------
   const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
   const popup = L.popup();
-  const MapClickHandler = () => {
+
+  /* const MapClickHandler = () => {
     const map = useMapEvents({
       click: (e) => {
         popup
@@ -134,6 +135,43 @@ if (polygon) {
       },
     });
     return null;
+  };
+  */
+
+  const MapClickHandler = () => {
+    const map = useMapEvents({
+      click: (e) => {
+        popup
+          .setLatLng(e.latlng)
+          .setContent("Clicked at " + e.latlng.toString())
+          .openOn(map);
+        // solo para re render el mapa despues de click
+        //setMapClicked(!mapClicked);//reset de coordenadas ESTE FUE MI ERROR
+        
+        // Add event listener to copy coordinates when popup is opened
+        const popupContent = document.querySelector('.leaflet-popup-content');
+        if (popupContent) {
+          const button = document.createElement('button');
+          button.textContent = 'Copy Coords';
+          button.addEventListener('click', () => {
+            copyCoordinates(e.latlng);
+          });
+          popupContent.appendChild(button);
+        }
+      },
+    });
+  //copia las coordenadas
+  const copyCoordinates = (latlng) => {
+    const shorterLat = latlng.lat.toFixed(6);
+    const shorterLng = latlng.lng.toFixed(6);
+    const coordinates = shorterLat + ", " + shorterLng;
+    navigator.clipboard.writeText(coordinates)
+    //debugging
+      .then(() => console.log("Coordenadas copiadas: " + coordinates))
+      .catch((error) => console.error("Failed to copy coordinates: ", error));
+  };
+
+  return null;
   };
    //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING-----------------------------------------------------------------------------------
 return (
