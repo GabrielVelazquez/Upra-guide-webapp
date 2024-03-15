@@ -19,6 +19,7 @@ import Mappedin from "./mappedin";
 //---------------------Interior maps-------------------------
 import LearningCommons from "./Leaflet/LeafletJS/leafletLC";
 import AC1  from "./Leaflet/LeafletJS/leafletAC";
+import AC2  from "./Leaflet/LeafletJS/leafletAC2";
 //---------------------Interior maps-------------------------
 
 import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
@@ -45,6 +46,7 @@ function App() {
           {/*------------SALONES DE LEAFLET---------------*/}
           <Route exact path="/leafletLC" element={<LearningCommons/>} /> 
           <Route exact path="/leafletAC" element={<AC1/>} /> {/*AC nivel 1*/}
+          <Route exact path="/leafletAC2" element={<AC2/>} /> {/*AC nivel 2*/}
 
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
