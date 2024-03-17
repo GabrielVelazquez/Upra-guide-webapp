@@ -122,3 +122,16 @@ margin-left: -15px;
   align-items: center;
   cursor: pointer;
 }
+
+/*DEBUGGING DEVELOP ONLY ##################################### */
+.HUB_Button{
+  font-weight:bolder;
+  font-size:x-large;
+  color: rgb(255, 50, 252);
+  text-decoration: none;
+  background-color:#ffd703;
+cursor: pointer;
+height:55px;
+width:120px;
+border-color:rgb(255, 50, 252);
+}

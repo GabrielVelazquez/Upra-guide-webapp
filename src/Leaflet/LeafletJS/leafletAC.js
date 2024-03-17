@@ -253,7 +253,7 @@ if (polygon) {
   };
   
   //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
-  const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
+ // const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
@@ -294,8 +294,9 @@ if (polygon) {
 return (
   
   <div className='leafletcss1'>   
-    <MapContainer center={[64.754823, 400.429688]} zoom={1}>
-      <h1 className='title-lc'>Salones Nivel AC 100</h1>
+  <h1 className='title-lc'>Salones Nivel AC 100</h1>
+    <MapContainer center={[15.166345, 389.53125]} zoom={1}>
+      
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}

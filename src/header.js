@@ -112,7 +112,15 @@ const Header = () => {
         <img src={logo} className="logo-header" alt="Upra Guide" />
       </Link>
 
-
+ {/*DEVELOPING ONLY########################################################*/}
+      <div >
+      <Link to="/HUB">
+      <button className="HUB_Button" >
+        MAP HUB
+        </button>
+        </Link>
+        </div>
+{/*DEVELOPING ONLY########################################################*/}
 
       <div className={`menu ${menuOpen ? "open" : ""}`}>
         {/*borde del menu burger top*/}

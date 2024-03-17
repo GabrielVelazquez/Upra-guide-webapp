@@ -1,7 +1,7 @@
 // App.js
 //import React from 'react';
 import "./App.css";
-//import HUB from "./HUB";
+import HUB from "./HUB";
 import Home from "./Home";
 import AdminHome from "./admin-home";
 import SignUp from "./SignUp";
@@ -34,6 +34,8 @@ function App() {
           {/* <Route exact path="/Hub" element={<HUB />} />{" "} */}
           {/*tengo "/" para que sea el default por el momento */}
          {/* <Route exact path="/home" element={<Home />} /> */} 
+         
+          {/*------------Navigation---------------*/}
           <Route exact path="/" element={<Home />} />
           <Route exact path="/admin-home" element={<AdminHome />} />
           <Route exact path="/signup" element={<SignUp />} />
@@ -53,6 +55,9 @@ function App() {
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
           <Route exact path="/leaflet2" element={<Leaflet2/>} />
+
+          {/*------------HUB---------------*/}import HUB from "./HUB";
+          <Route exact path="/HUB" element={<HUB/>} /> 
 
           {/* <Route exact path="/Schedule" element={<Schedule />} /> */}
         </Routes>
