@@ -30,6 +30,10 @@ const HUB = () => {
             <button className="pretty-button">DEPT. CCOM/GTEC ✅</button>
           </Link>
 
+          <Link to="/leafletCentroEst">
+            <button className="pretty-button">Centro de Estudiantes ⚠️</button>
+          </Link>
+
         </div>
 
       </header>

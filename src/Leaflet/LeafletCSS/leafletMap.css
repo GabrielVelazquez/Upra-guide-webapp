@@ -23,6 +23,12 @@ flex-direction: column;
     margin-bottom: 0px;
 }
 
+.level{
+    font-size: large;
+    color: #F1393A;
+    font-weight: bold;
+   
+}
 /*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
 .leaflet-container {
     height: 81.9vh; /*phone puede ser hasta 90 0 100*/
