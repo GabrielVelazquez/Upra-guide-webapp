@@ -14,22 +14,27 @@ const customMarker = new L.Icon({//waypoint
   const customExtintor = new L.Icon({//extintor
     iconUrl: extintor,
     iconSize: [30,30],
-    iconAnchor: [24, 24],
+    //iconAnchor: [24, 24], //originak
+    iconAnchor: [0,0], //si es 0,0 siempre es accurate
     popupAnchor: [0, -50],
   });
 
   const customPullStation = new L.Icon({//pull station de fuego
     iconUrl: pull,
     iconSize: [30,30],
-    iconAnchor: [24, 24],
+    //iconAnchor: [24, 24],
+    iconAnchor: [0,0], //si es 0,0 siempre es accurate
     popupAnchor: [0, -50],
   });
 
   const customMeetingPoint = new L.Icon({//pull station de fuego
     iconUrl: meet,
     iconSize: [30,30],
-    iconAnchor: [24, 24],
+    //iconAnchor: [24, 24],
+    iconAnchor: [0,0], //si es 0,0 siempre es accurate
     popupAnchor: [0, -50],
   });
+
+  
 
   export {customMarker, customExtintor, customPullStation, customMeetingPoint};
