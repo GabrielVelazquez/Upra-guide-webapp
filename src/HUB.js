@@ -34,6 +34,13 @@ const HUB = () => {
             <button className="pretty-button">Centro de Estudiantes ⚠️</button>
           </Link>
 
+          <Link to="/leafletCTI">
+            <button className="pretty-button">CTI ✅</button>
+          </Link>
+
+          <Link to="/leafletBIOL">
+            <button className="pretty-button">BIOL ✅</button>
+          </Link>
         </div>
 
       </header>
