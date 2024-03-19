@@ -20,10 +20,10 @@ const HUB = () => {
           </Link>
 
           <Link to="/leafletAC">
-            <button className="pretty-button">AC 100 ⚠️</button>
+            <button className="pretty-button">AC 100 ✅</button>
           </Link>
           <Link to="/leafletAC2">
-            <button className="pretty-button">AC 200 ⚠️</button>
+            <button className="pretty-button">AC 200 ✅</button>
           </Link>
 
           <Link to="/leafletCCOM">
