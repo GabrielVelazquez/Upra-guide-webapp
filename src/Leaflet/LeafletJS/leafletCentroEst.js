@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef} from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip, 
     LayersControl, LayerGroup, SVGOverlay} from 'react-leaflet'; /* Popup,Circle,FeatureGroup,Rectangle, SVGOverlay*/ 
                                                             //LAYER CONTROL -----  ^IMAGE ON IMAGE
@@ -11,6 +11,14 @@ import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.p
 
 const CentroEstudiantes = () => {
   const bounds = [[-90, -90], [1800, 880]];
+  const mapRef = useRef(null); // Reference to the map instance
+
+  // Function to handle centering the map
+  const handleCenterMap = () => {
+    if (mapRef.current) {
+      mapRef.current.setView([15.166345, 395.53125], 1); // Centering the map to the desired coordinates and zoom level
+    }
+  };
 
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -254,7 +262,7 @@ if (polygon2) {
 //PARA PISO 2
 //MUESTRA POLIGONO OVERLAY PARA LOCATION----------------------------------------------------------------------------------------------------
 const renderPolygons2 = () => {
-    return polygons2.map((polygon2, index) => (
+    return polygons2.map((polygon2, index) => (  //color="yellow" //ESTA ROJO EN LO QUE VEO COMO ESCONDO LOS OTROS POLIGONOS
       <Polygon key={index} positions={polygon2.positions} color="red" eventHandlers={{ click: () => handlePolygonClick2(index) }}> {/*Yellow o #FFD703 (upraYellow)*/}
         {markerPosition2 && <Marker position={markerPosition2} icon={customMarker}></Marker>}
 
@@ -276,7 +284,8 @@ const renderPolygons2 = () => {
       <p>Show 2nd level</p>
     </div>
   );
-  
+
+ 
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
   const popup = L.popup();
@@ -321,9 +330,23 @@ return (
 
   <div className='leafletcss1'>   
      <h1 className='title-lc'>Centro de Estudiantes</h1>
-    <MapContainer center={[15.166345, 395.53125]} zoom={1}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[15.166345, 395.53125]} zoom={1} ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
     
         <ImageOverlay url={imagenmapa} bounds={bounds} />
+
+{/*Button to center the map---------------------------------------------------------------------------------------------------*/}
+<button className='recenter-button'
+  //style={{position: 'absolute',top: '10px',right: '10px',zIndex: '1000',backgroundColor: 'transparent', border: 'none', cursor: 'pointer',}}
+  onClick={handleCenterMap}
+>
+  <img
+    src="https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/target_destination_current_location_place_focus_recenter-512.png"
+    alt="Center Map"
+    style={{ width: '60px', height: '60px' }} // Adjust width and height as needed
+  />
+</button>
+
+{/*render level 1---------------------------------------------------------------------------------------------------------------*/}
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
           <Polyline positions={AltpathLineCoords} color="red" dashArray="10, 10"/>{/*dashArray style para lineas entre cortadas (alt)*/}
@@ -361,6 +384,7 @@ return (
       </text>
     </SVGOverlay>
     {NivelLayer}
+    {/*{hidelevel1poly} */}
     </LayerGroup>
   </LayersControl.Overlay>
 </LayersControl>

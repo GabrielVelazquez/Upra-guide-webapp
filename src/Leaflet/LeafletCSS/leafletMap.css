@@ -29,6 +29,22 @@ flex-direction: column;
     font-weight: bold;
    
 }
+.recenter-button{
+    position: absolute;
+    bottom: 20px;
+    right: 1px;
+    z-Index: 1000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+/*IPHONE 15*/
+  @media (max-width: 767px) {
+    .recenter-button{
+        right: -1px;
+        bottom: 80px;
+    }
+}
 /*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
 .leaflet-container {
     height: 81.9vh; /*phone puede ser hasta 90 0 100*/
@@ -45,6 +61,8 @@ flex-direction: column;
      width: 1555px; 
      height: 400px;
 }
+
+
 
 
  /*  Original
