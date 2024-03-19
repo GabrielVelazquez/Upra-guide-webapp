@@ -154,8 +154,8 @@ if (polygon) {
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 return (
   
-  <div className='leafletcss1'>   
-        <h1 className='title-lc'>Salones Nivel AC 100</h1>
+  <div className='leafletcss1'>    
+        <h1 className='title-lc'>Departamento de CCOM y GTEC</h1>
     <MapContainer center={[15.166345, 389.53125]} zoom={1}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
