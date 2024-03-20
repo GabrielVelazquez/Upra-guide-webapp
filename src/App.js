@@ -24,6 +24,7 @@ import CCOM from "./Leaflet/LeafletJS/LeafletCCOM";
 import CentroEstudiantes from "./Leaflet/LeafletJS/leafletCentroEst";
 import BIOL from "./Leaflet/LeafletJS/leafletBIOL";
 import CTI from "./Leaflet/LeafletJS/leafletCTI";
+import ISMUL from "./Leaflet/LeafletJS/leafletISMUL";
 //---------------------Interior maps-------------------------
 
 import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
@@ -57,6 +58,7 @@ function App() {
           <Route exact path="/leafletCentroEst" element={<CentroEstudiantes/>} />
           <Route exact path="/leafletBIOL" element={<BIOL/>} />
           <Route exact path="/leafletCTI" element = {<CTI/>}/>
+          <Route exact path="leafletISMUL" element={<ISMUL/>}/>
 
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
