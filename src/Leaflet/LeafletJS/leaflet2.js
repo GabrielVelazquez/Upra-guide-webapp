@@ -250,7 +250,7 @@ const renderMarkers = () => {
      
     return (
       
-        <div className="mapcont">
+        <div>
             {/* --------------------------------SEARCH BOX------------------------------------*/}
       
       
@@ -303,9 +303,6 @@ const renderMarkers = () => {
       </div>  
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
-<div>
-  
-</div>
 
         <MapContainer  center={[18.46899726783513, -66.7414733800247]} zoom={19}> {/*I WANT THE CENTER OF THE IMAGE*/}
         {/*<h1 className="title-indoor">learning common</h1>*/}
@@ -347,6 +344,8 @@ const renderMarkers = () => {
       {renderMarkers()}
         </MapContainer>
         </div>
+      
+     
     );
         }
       

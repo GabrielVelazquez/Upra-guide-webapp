@@ -1,26 +1,18 @@
-.leaflet2{
-    text-align: center;
-    padding:10px;
-
+.leaflet-container{
+  margin-top: 85px;
+  width: 100vw;
+  height: 87.91vh;
+}
+/*IPHONE 15*/
+@media (max-width: 767px) {
+  .leaflet-container  {
+    top: 10%;
+    width: 100vw;
+  height: 77.60vh;
+  }
 }
 
-.mapaleaf
-{
-  height: 100vh;
-}
 
-.mapcont{
-    height: 100%;
-  
-  
-    font-family: sans-serif;
-    color: #333;
-    background-color: #002aff;
-    margin-top: 85px;
-    
-
-}
-  
   .search-bar, .category-select, .custom-checkbox, .interior-select {
     position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
     z-index: 4; /* Asegura que queden sobre el mapa */
@@ -28,45 +20,50 @@
   }
   
   .search-bar {
-    top: 10%;
+    top: 12%;
     left: 50%;
     transform: translateX(-50%); /* Centra el search bar horizontalmente */
   }
+/* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+  .search-bar  {
+    top: 11.90%;
+    left: 40%;
+    transform: translateX(-50%);
+  }
+}
   
   .category-select, .interior-select {
     top: 5%; /* Espacio desde la parte superior */
     left: 90%;
-
   }
+  /* 768px (mobile) probado en iphone 15 pro */
+@media (max-width: 767px) {
+  .category-select, .interior-select  {
+    top: 5%; /* Espacio desde la parte superior*/
+    left: 68%;
+  }
+}
   
   .custom-checkbox {
-    top: 10%;
-    right: 20px;
+    top: 12%;
+    left: 50px;
   }
-
-  .interior-select{
-    right: 20%;
-  }
-
-  
-  
-  
-
-/* 768px (mobile) probado en iphone 15 pro */
+  /* 768px (mobile) probado en iphone 15 pro */
 @media (max-width: 767px) {
-    .mapcont {
-       padding:0px;
-       margin-top: 0px;
-    }
+  .custom-checkbox {
+    top: 92%;
+   left:.05%;
+  }
 }
 
-/*  768px (desktop) probado en laptop*/
-@media (min-width: 768px) {
-    .mapcont {
-        padding-top:0px;  /*WIP*/
-        margin: top 10px;
-    }
-}
+ 
+
+
+
+
+
+
 
 
   /*
