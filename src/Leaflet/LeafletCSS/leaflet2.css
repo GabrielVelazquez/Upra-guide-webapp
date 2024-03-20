@@ -15,6 +15,37 @@
     color: #333;
     background-color: #ff0000;
 }
+  
+  .search-bar, .category-select, .custom-checkbox, .interior-select {
+    position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
+    z-index: 4; /* Asegura que queden sobre el mapa */
+    margin: 10px; /* Ajusta para dar espacio alrededor de los elementos */
+  }
+  
+  .search-bar {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%); /* Centra el search bar horizontalmente */
+  }
+  
+  .category-select, .interior-select {
+    top: 5%; /* Espacio desde la parte superior */
+    left: 90%;
+
+  }
+  
+  .custom-checkbox {
+    top: 10%;
+    right: 20px;
+  }
+
+  .interior-select{
+    right: 20%;
+  }
+
+  
+  
+  
 
 /* 768px (mobile) probado en iphone 15 pro */
 @media (max-width: 767px) {

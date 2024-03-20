@@ -1,16 +1,16 @@
 //import {React} from "react";
 /*import "./leaflet2.css";*/
-import "../LeafletCSS/leaflet2.css";
+// import "../LeafletCSS/leaflet2.css";
 import "leaflet/dist/leaflet.css";
+import '../../maps2.css';
 import { firestore } from '../../firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
 import Modal from 'react-modal';
 import React, { useState, useRef, useEffect } from "react";
 import LocImgPH from "../../images/location_PlaceHolder_img.png";
 import { Link } from 'react-router-dom';
-import { ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
-import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
-import L from 'leaflet';
+import {customMarker} from './LeafletIcons';  // Import the custom marker icon
+import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker y Popup
 
 import { MapContainer, TileLayer } from "react-leaflet";
 Modal.setAppElement('#root'); //  root para accesar el modal
@@ -114,6 +114,46 @@ useEffect(() => {
   };
 
 //Función para buscar y seleccionar un marcador según el texto de búsqueda
+// const handleSearch = () => {
+//   if (searchValue.trim() === "") {
+//     alert("Search empty");
+//     return;
+//   }
+
+//   const searchLowerCase = searchValue.toLowerCase();
+
+//   let filteredMarkersForSearch = markers;
+
+//   if (selectedCategory) {
+//     // If a category is selected, filter markers by category
+//     filteredMarkersForSearch = markers.filter((marker) => marker[6] === selectedCategory);
+//     setSelectedMarkerIndex(markers.indexOf(markers));
+//   }
+
+//   if (selectedInteriorCategory) {
+//     // If a category is selected, filter markers by category
+//     filteredMarkersForSearch = markers.filter((marker) => marker[4] === selectedInteriorCategory);
+//     setSelectedMarkerIndex(markers.indexOf(markers));
+//   }
+
+
+//   const foundMarker = filteredMarkersForSearch.find((marker) => {
+//     const markerNameLower = marker[0].toLowerCase();
+//     return markerNameLower.includes(searchLowerCase);
+//   });
+
+//   if (foundMarker) {
+//     setCenterPosition({
+//       lat: parseFloat(foundMarker[1]),
+//       lng: parseFloat(foundMarker[2]),
+//     });
+//     setSearchValue("");
+//     setSelectedMarkerIndex(markers.indexOf(foundMarker));
+//   }
+// };
+
+//Función para buscar y seleccionar un marcador según el texto de búsqueda
+//Función para buscar y seleccionar un marcador según el texto de búsqueda
 const handleSearch = () => {
   if (searchValue.trim() === "") {
     alert("Search empty");
@@ -122,22 +162,7 @@ const handleSearch = () => {
 
   const searchLowerCase = searchValue.toLowerCase();
 
-  let filteredMarkersForSearch = markers;
-
-  if (selectedCategory) {
-    // If a category is selected, filter markers by category
-    filteredMarkersForSearch = markers.filter((marker) => marker[6] === selectedCategory);
-    setSelectedMarkerIndex(markers.indexOf(markers));
-  }
-
-  if (selectedInteriorCategory) {
-    // If a category is selected, filter markers by category
-    filteredMarkersForSearch = markers.filter((marker) => marker[4] === selectedInteriorCategory);
-    setSelectedMarkerIndex(markers.indexOf(markers));
-  }
-
-
-  const foundMarker = filteredMarkersForSearch.find((marker) => {
+  const foundMarker = markers.find((marker) => {
     const markerNameLower = marker[0].toLowerCase();
     return markerNameLower.includes(searchLowerCase);
   });
@@ -148,9 +173,13 @@ const handleSearch = () => {
       lng: parseFloat(foundMarker[2]),
     });
     setSearchValue("");
-    setSelectedMarkerIndex(markers.indexOf(foundMarker));
+    setSelectedMarker(foundMarker);
+    setSelectedMarkerIndex(markers.indexOf(foundMarker)); // Establecer el índice del marcador seleccionado
+  } else {
+    alert("No matching location found");
   }
 };
+
 
 //-----------------------------------Sort por location------------------------------------
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -201,19 +230,46 @@ const handleCheckboxChange = (event) => {
 
 };
 
+const renderMarkers = () => {
+  const filteredMarkers = getFilteredMarkers(); 
+  
+  return filteredMarkers.map((marker, index) => (
+    <Marker
+      key={index}
+      position={[marker[1], marker[2]]}
+      icon={index === selectedMarkerIndex ? customSelectedMarker : customMarker} // Aplicar un icono diferente al marcador seleccionado
+      eventHandlers={{
+        click: () => {
+          handleMarkerClick(marker);
+        },
+      }}
+    >
+      <Popup>{marker[0]}</Popup> {/* Muestra el nombre en el Popup */}
+    </Marker>
+  ));
+};
+
      
     return (
+      
+
+
         <div className="mapcont">
-            
-        <MapContainer  center={[18.46899726783513, -66.7414733800247]} zoom={19}> {/*I WANT THE CENTER OF THE IMAGE*/}
-        {/*<h1 className="title-indoor">learning common</h1>*/}
-        <TileLayer 
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-{/*category drop down WIP*/}
-<div className="map-container"> {/*Truco para que el boton quede frente al mapa*/}
-{/*--------------------------------ACTUAL DROPDOWNBOXES------------------------------------*/}
+            {/* --------------------------------SEARCH BOX------------------------------------*/}
+      
+      
+      <div className="search-bar">
+      <input
+  type="text"
+  placeholder="Search..."
+  value={searchValue}
+  onChange={handleSearchChange}
+  ref={searchInputRef}
+  onKeyPress={handleKeyPress}
+/>
+        <button className="search-button" onClick={handleSearch}><img className="search-icon" src="https://cdn-icons-png.flaticon.com/256/3917/3917754.png" alt="Search" /></button>
+      </div>
+      {/*--------------------------------ACTUAL DROPDOWNBOXES------------------------------------*/}
    {showInteriorSelect ? (
         <div className="interior-select">
           <select id="interiorArea" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
@@ -247,24 +303,20 @@ const handleCheckboxChange = (event) => {
         <label htmlFor="status">
           <div className="status-switch" data-unchecked="Locations" data-checked="Interiors"></div>
         </label>
-      </div>     
-
-{/* --------------------------------SEARCH BOX------------------------------------*/}
-      <div className="search-bar">
-      <input
-  type="text"
-  placeholder="Search..."
-  value={searchValue}
-  onChange={handleSearchChange}
-  ref={searchInputRef}
-  onKeyPress={handleKeyPress}
-/>
-        <button className="search-button" onClick={handleSearch}><img className="search-icon" src="https://cdn-icons-png.flaticon.com/256/3917/3917754.png" alt="Search" /></button>
-      </div>
+      </div>  
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
 
-</div>
+        <MapContainer  center={[18.46899726783513, -66.7414733800247]} zoom={19}> {/*I WANT THE CENTER OF THE IMAGE*/}
+        {/*<h1 className="title-indoor">learning common</h1>*/}
+        
+        <TileLayer 
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        
+{/*category drop down WIP*/}
+
 
 {/*-----------------------------------------------------MODAL------------------------------------------------------------*/}
       <Modal className="modal-box"
@@ -291,10 +343,10 @@ const handleCheckboxChange = (event) => {
           </div>
         )}
       </Modal>
+      {renderMarkers()}
         </MapContainer>
         </div>
     );
         }
       
-
 
