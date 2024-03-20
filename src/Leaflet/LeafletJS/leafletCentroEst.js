@@ -8,17 +8,22 @@ import imagenmapa from '../../images/centro_de_estudiantes_leaflet_PN.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.png';
+import RecenterButton from './leafletui'; // Import RecenterButton 
+
 
 const CentroEstudiantes = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // Reference to the map instance
+  
 
-  // Function to handle centering the map
-  const handleCenterMap = () => {
-    if (mapRef.current) {
-      mapRef.current.setView([15.166345, 395.53125], 1); // Centering the map to the desired coordinates and zoom level
-    }
-  };
+ //Function para centralizar=========================
+ const handleCenterMap = (center, zoom) => {
+  if (mapRef.current) {
+    mapRef.current.setView(center, zoom);
+  }
+};
+
+
 
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -331,20 +336,11 @@ return (
   <div className='leafletcss1'>   
      <h1 className='title-lc'>Centro de Estudiantes</h1>
     <MapContainer center={[15.166345, 395.53125]} zoom={1} ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
-    
+                                   {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
-{/*Button to center the map---------------------------------------------------------------------------------------------------*/}
-<button className='recenter-button'
-  //style={{position: 'absolute',top: '10px',right: '10px',zIndex: '1000',backgroundColor: 'transparent', border: 'none', cursor: 'pointer',}}
-  onClick={handleCenterMap}
->
-  <img
-    src="https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/target_destination_current_location_place_focus_recenter-512.png"
-    alt="Center Map"
-    style={{ width: '60px', height: '60px' }} // Adjust width and height as needed
-  />
-</button>
+{/*Boton de centralizar===============================*/}
+<RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} /> {/* Pass center and zoom props */}
 
 {/*render level 1---------------------------------------------------------------------------------------------------------------*/}
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}

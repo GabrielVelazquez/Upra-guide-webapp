@@ -2,7 +2,9 @@
 /*import "./leaflet2.css";*/
 // import "../LeafletCSS/leaflet2.css";
 import "leaflet/dist/leaflet.css";
-import '../../maps2.css';
+import "../LeafletCSS/leaflet2.css";
+//import '../../maps2.css';
+
 import { firestore } from '../../firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
 import Modal from 'react-modal';
@@ -248,8 +250,6 @@ const renderMarkers = () => {
      
     return (
       
-
-
         <div className="mapcont">
             {/* --------------------------------SEARCH BOX------------------------------------*/}
       
@@ -265,6 +265,7 @@ const renderMarkers = () => {
 />
         <button className="search-button" onClick={handleSearch}><img className="search-icon" src="https://cdn-icons-png.flaticon.com/256/3917/3917754.png" alt="Search" /></button>
       </div>
+      
       {/*--------------------------------ACTUAL DROPDOWNBOXES------------------------------------*/}
    {showInteriorSelect ? (
         <div className="interior-select">
@@ -302,6 +303,9 @@ const renderMarkers = () => {
       </div>  
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
+<div>
+  
+</div>
 
         <MapContainer  center={[18.46899726783513, -66.7414733800247]} zoom={19}> {/*I WANT THE CENTER OF THE IMAGE*/}
         {/*<h1 className="title-indoor">learning common</h1>*/}
@@ -311,6 +315,7 @@ const renderMarkers = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
+       
 {/*category drop down WIP*/}
 
 

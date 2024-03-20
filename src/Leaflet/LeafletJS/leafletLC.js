@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
 import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
+import RecenterButton from './leafletui'; // Import the RecenterButton component
+
 
 const LearningCommons = () => {
   const bounds = [[-90, -90], [1800, 880]];
+  const mapRef = useRef(null); // referencia del mapa donde esta
+  
+
+ //Function para centralizar=========================
+ const handleCenterMap = (center, zoom) => {
+  if (mapRef.current) {
+    mapRef.current.setView(center, zoom);
+  }
+};
 
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -163,8 +174,16 @@ const LearningCommons = () => {
 
   //CONSTANTE DE MARKERS Y RUTAS DE SALIDAS (definir)----------------------------------------------------------------------------------------------
   const [markerPosition, setMarkerPosition] = useState(null); //marker invisible por default
-  const [pathLineCoords, setPathLineCoords] = useState([]); //path polyline ruta de salida
-  const [AltpathLineCoords, setAltPathLineCoords] = useState([]); //path polyline ruta de salida
+  const [pathLineCoords, setPathLineCoords] = useState([]); //path polyline ruta de salida (hidden)
+  const [AltpathLineCoords, setAltPathLineCoords] = useState([]); //path polyline ruta de salida (hidden)
+
+  //funcion de reset polylines----------------------------------------------------------------------------------------------
+   // Reset polyliness (rutas)
+   const handleResetPolylines = () => {
+    setPathLineCoords([]);
+    setAltPathLineCoords([]);
+  };
+  
 
   //MOSTRAR RUTA CUANDO SE SELECCIONA-----------------------------------------------------------------------------------------------------
   const handlePolygonClick = (index) => {
@@ -244,9 +263,16 @@ return (
   
   <div className='leafletcss1'>   
      <h1 className='title-lc'>Learning Commons</h1>
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
-     
+    <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+                                      {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
+
+{/*Boton de centralizar===============================*/}
+        <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} /> {/* Pass center and zoom props */}
+
+{/*Boton de reset===============================*/}
+        <button className="reset-button" onClick={handleResetPolylines}>Reset Polylines</button>
+
 
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 

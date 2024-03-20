@@ -14,6 +14,10 @@ const HUB = () => {
         <h2>Welcome to the Hub!</h2>
         <img src={logo} className="App-logo" alt="logo" />
 
+        <Link to="/leaflet2">
+            <button className="pretty-button">Mapa Leaflet 📌</button>
+          </Link>
+
         <div className="hub-button-containter">
           <Link to="/leafletLC">
             <button className="pretty-button">Learning Commons ✅</button>
@@ -46,9 +50,7 @@ const HUB = () => {
             <button className="pretty-button">ISMUL ✅</button>
           </Link>
           
-          <Link to="/leaflet2">
-            <button className="pretty-button">Mapa Leaflet 📌</button>
-          </Link>
+        
           
 
         </div>

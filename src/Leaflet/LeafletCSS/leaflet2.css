@@ -1,19 +1,24 @@
 .leaflet2{
     text-align: center;
     padding:10px;
+
 }
 
+.mapaleaf
+{
+  height: 100vh;
+}
 
 .mapcont{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1em;
+    height: 100%;
+  
+  
     font-family: sans-serif;
     color: #333;
-    background-color: #ff0000;
+    background-color: #002aff;
+    margin-top: 85px;
+    
+
 }
   
   .search-bar, .category-select, .custom-checkbox, .interior-select {
