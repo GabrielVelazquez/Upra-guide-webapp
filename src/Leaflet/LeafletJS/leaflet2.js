@@ -152,8 +152,6 @@ useEffect(() => {
 //   }
 // };
 
-//Función para buscar y seleccionar un marcador según el texto de búsqueda
-//Función para buscar y seleccionar un marcador según el texto de búsqueda
 const handleSearch = () => {
   if (searchValue.trim() === "") {
     alert("Search empty");
@@ -173,13 +171,11 @@ const handleSearch = () => {
       lng: parseFloat(foundMarker[2]),
     });
     setSearchValue("");
-    setSelectedMarker(foundMarker);
-    setSelectedMarkerIndex(markers.indexOf(foundMarker)); // Establecer el índice del marcador seleccionado
+    setSelectedMarker(foundMarker); // Establecer el marcador seleccionado para abrir el modal
   } else {
     alert("No matching location found");
   }
 };
-
 
 //-----------------------------------Sort por location------------------------------------
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -237,7 +233,7 @@ const renderMarkers = () => {
     <Marker
       key={index}
       position={[marker[1], marker[2]]}
-      icon={index === selectedMarkerIndex ? customSelectedMarker : customMarker} // Aplicar un icono diferente al marcador seleccionado
+      icon={customMarker} 
       eventHandlers={{
         click: () => {
           handleMarkerClick(marker);
@@ -349,4 +345,3 @@ const renderMarkers = () => {
     );
         }
       
-
