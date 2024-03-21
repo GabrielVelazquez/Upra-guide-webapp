@@ -2,6 +2,8 @@
   margin-top: 85px;
   width: 100vw;
   height: 87.91vh;
+  z-index: 2;
+  overflow: hidden;
 }
 /*IPHONE 15*/
 @media (max-width: 767px) {

@@ -334,11 +334,11 @@ const renderPolygons2 = () => {
 return (
 
   <div className='leafletcss1'>   
-     <h1 className='title-lc'>Centro de Estudiantes</h1>
+    
     <MapContainer center={[15.166345, 395.53125]} zoom={1} ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                    {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
-
+        <h1 className='title-lc'>Centro de Estudiantes</h1>
 {/*Boton de centralizar===============================*/}
 <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} /> {/* Pass center and zoom props */}
 

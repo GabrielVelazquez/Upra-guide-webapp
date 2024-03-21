@@ -155,10 +155,10 @@ if (polygon) {
 return (
   
   <div className='leafletcss1'>    
-        <h1 className='title-lc'>Departamento de CCOM y GTEC</h1>
+       
     <MapContainer center={[15.166345, 389.53125]} zoom={1}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
-
+        <h1 className='title-lc'>Departamento de CCOM y GTEC</h1>
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}

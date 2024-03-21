@@ -3,6 +3,7 @@ import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, To
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
 import imagenmapa from "../../images/Ismul_leaflet_PN.png";
+import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 
@@ -283,9 +284,11 @@ if (polygon) {
 return (
   
   <div className='leafletcss1'>   
-        <h1 className='title-lc'>ISMUL, Salones AC331-337 y Departamento de Ingles</h1>
+       
     <MapContainer center={[15.166345, 389.53125]} zoom={1}ref={mapRef}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
+
+        <h1 className='title-lc'>ISMUL, Salones AC331-337 y Departamento de Ingles</h1>
 
 {/*Button to center the map---------------------------------------------------------------------------------------------------*/}
 <button className='recenter-button'

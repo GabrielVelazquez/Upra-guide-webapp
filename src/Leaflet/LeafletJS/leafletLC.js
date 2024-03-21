@@ -3,6 +3,7 @@ import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, To
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
 import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
+import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import RecenterButton from './leafletui'; // Import the RecenterButton component
@@ -260,19 +261,22 @@ if (polygon) {
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 
 return (
-  
+
   <div className='leafletcss1'>   
-     <h1 className='title-lc'>Learning Commons</h1>
+    
     <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
+        
+        <h1 className='title-lc'>Learning Commons</h1>
 {/*Boton de centralizar===============================*/}
         <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} /> {/* Pass center and zoom props */}
 
 {/*Boton de reset===============================*/}
-        <button className="reset-button" onClick={handleResetPolylines}>Reset Polylines</button>
 
+        <button className="reset-button" onClick={handleResetPolylines}>Reset Polylines</button>
+        
 
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 

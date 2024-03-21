@@ -4,7 +4,7 @@ color:red;
 background-color: transparent;
 overflow-y: hidden;
 overflow-x: hidden; 
-scroll-behavior: none;
+overflow: hidden;
 }
 
 /*display: flex;
@@ -15,12 +15,25 @@ flex-direction: column;
 }
 */
 
-.title-lc{
+.title-lc {
     color: black;
-    font:larger;
-    background-color: #dddddd;
-    margin-top:85px;
-    margin-bottom: 0px;
+    font-size: large;
+    position: relative; /* Set position to relative or absolute */
+    top: 0px;
+    right:0px;
+    z-index: 9999; /* Higher z-index value to ensure it's in front */
+    background-color: transparent;
+ 
+}
+
+@media (max-width: 767px) {
+    .title-lc{
+        top: 0px;
+         right: 0px;
+         z-index: 9999; /* Higher z-index value to ensure it's in front */
+         padding-right: 5px;
+         padding-left: 30px;
+    }
 }
 
 .level{
@@ -33,11 +46,12 @@ flex-direction: column;
     position: absolute;
     bottom: 20px;
     right: 1px;
-    z-Index: 1000;
+    z-Index: 999;
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
+  
 /*IPHONE 15*/
   @media (max-width: 767px) {
     .recenter-button{
@@ -46,13 +60,7 @@ flex-direction: column;
     }
 }
 /*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
-.leaflet-container {
-    height: 81.9vh; /*phone puede ser hasta 90 0 100*/
-    width: 100%;
-    z-index: 2;
-    overflow: hidden;
 
-  }
 
 .leaflet-image-layer
 {
