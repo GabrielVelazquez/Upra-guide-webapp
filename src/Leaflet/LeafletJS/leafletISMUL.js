@@ -6,17 +6,27 @@ import imagenmapa from "../../images/Ismul_leaflet_PN.png";
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
+import {RecenterButton, ResetButton}from './leafletui';
 
 const ISMUL = () => {
     const bounds = [[-90, -90], [1800, 880]];
     const mapRef = useRef(null); // Reference to the map instance
 
-  // Function to handle centering the map
-  const handleCenterMap = () => {
-    if (mapRef.current) {
-      mapRef.current.setView([15.166345, 395.53125], 1); // Centering the map to the desired coordinates and zoom level
-    }
+//BOTONES DE USO=============================================================================================================================
+ //Function para centralizar=========================
+ const handleCenterMap = (center, zoom) => {
+  if (mapRef.current) {
+    mapRef.current.setView(center, zoom);
+  }
+};
+
+  //funcion de reset polylines=======================
+   // Reset polyliness (rutas)
+   const handleResetPolylines = () => {
+    setPathLineCoords([]);
+    setAltPathLineCoords([]);
   };
+//BOTONES DE USO=============================================================================================================================
 
     //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
@@ -290,17 +300,11 @@ return (
 
         <h1 className='title-lc'>ISMUL, Salones AC331-337 y Departamento de Ingles</h1>
 
-{/*Button to center the map---------------------------------------------------------------------------------------------------*/}
-<button className='recenter-button'
-  //style={{position: 'absolute',top: '10px',right: '10px',zIndex: '1000',backgroundColor: 'transparent', border: 'none', cursor: 'pointer',}}
-  onClick={handleCenterMap}
->
-  <img
-    src="https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/target_destination_current_location_place_focus_recenter-512.png"
-    alt="Center Map"
-    style={{ width: '60px', height: '60px' }} // Adjust width and height as needed
-  />
-</button>
+{/*Boton de centralizar===============================*/}
+<RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+{/*Boton de reset===============================*/}
+  <ResetButton handleResetPolylines={handleResetPolylines} />
+
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
 
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}

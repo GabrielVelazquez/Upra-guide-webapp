@@ -42,23 +42,83 @@ flex-direction: column;
     font-weight: bold;
    
 }
+
+/*BOTONES==================================================================================*/
+/*RESET==================================================================================*/
+.reset-button{
+    position: absolute;
+    bottom: 150px;
+    right: 20px;
+    z-Index: 999;
+    background-color: #ffffff;
+    border-color: #B1B1B1;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+ .reset-button:active {
+    background-color:#FFD703;
+  }
+  
+/*IPHONE 15*/
+  @media (max-width: 767px) {
+    .reset-button{
+        right: 10px;
+        bottom: 140px;
+    }
+}
+
+/*RECENTER==================================================================================*/
 .recenter-button{
     position: absolute;
-    bottom: 20px;
-    right: 1px;
+    bottom: 100px;
+    right: 20px;
     z-Index: 999;
-    background-color: transparent;
-    border: none;
+    background-color: #ffffff;
+    border-color: #B1B1B1;
     cursor: pointer;
+    border-radius: 5px;
+    padding: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+ .recenter-button:active {
+    background-color:#FFD703;
   }
   
 /*IPHONE 15*/
   @media (max-width: 767px) {
     .recenter-button{
-        right: -1px;
-        bottom: 80px;
+        right: 10px;
+        bottom: 100px;
     }
 }
+
+/*ZOOM==================================================================================*/
+.leaflet-control-zoom{
+   /*top: 30px;
+    right: 0px; */
+    top: 520px;
+    left: 1470px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+    border-color: #B1B1B1;
+    border-radius: 5px;
+}
+/*IPHONE 15*/
+@media (max-width: 767px) {
+    .leaflet-control-zoom{
+        top: 470px;
+    left: 338.5px;
+    }
+}
+
+
+
+
 /*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
 
 

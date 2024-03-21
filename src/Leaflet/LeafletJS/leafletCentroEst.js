@@ -8,7 +8,7 @@ import imagenmapa from '../../images/centro_de_estudiantes_leaflet_PN.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.png';
-import RecenterButton from './leafletui'; // Import RecenterButton 
+import {RecenterButton,ResetButton} from './leafletui'; // Import RecenterButton 
 
 
 const CentroEstudiantes = () => {
@@ -16,12 +16,21 @@ const CentroEstudiantes = () => {
   const mapRef = useRef(null); // Reference to the map instance
   
 
+//BOTONES DE USO=============================================================================================================================
  //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {
   if (mapRef.current) {
     mapRef.current.setView(center, zoom);
   }
 };
+
+  //funcion de reset polylines=======================
+   // Reset polyliness (rutas)
+   const handleResetPolylines = () => {
+    setPathLineCoords([]);
+    setAltPathLineCoords([]);
+  };
+//BOTONES DE USO=============================================================================================================================
 
 
 
@@ -339,8 +348,11 @@ return (
                                    {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Centro de Estudiantes</h1>
+
 {/*Boton de centralizar===============================*/}
-<RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} /> {/* Pass center and zoom props */}
+<RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+{/*Boton de reset===============================*/}
+  <ResetButton handleResetPolylines={handleResetPolylines} />
 
 {/*render level 1---------------------------------------------------------------------------------------------------------------*/}
           {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
