@@ -59,6 +59,9 @@ const HUB = () => {
             <button className="pretty-button">AC 217-220 ❌</button>
           </Link>
           
+          <Link to="/leafletDecanatoEst">
+            <button className="pretty-button">Decanato Estudiantes ❌</button>
+          </Link>
           
         
           

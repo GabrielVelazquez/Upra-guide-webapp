@@ -27,6 +27,7 @@ import CTI from "./Leaflet/LeafletJS/leafletCTI";
 import ISMUL from "./Leaflet/LeafletJS/leafletISMUL";
 import Cafeteria from "./Leaflet/LeafletJS/leafletCafeteria";
 import AC217220 from "./Leaflet/LeafletJS/leafletAC217to220";
+import Decanato from "./Leaflet/LeafletJS/leafletDecanatoEst";
 //---------------------Interior maps-------------------------
 
 import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
@@ -63,6 +64,8 @@ function App() {
           <Route exact path="leafletISMUL" element={<ISMUL/>}/>
           <Route exact path="leafletCafeteria" element={<Cafeteria />}/>
           <Route exact path="leafletAC217to220" element={<AC217220 />}/>
+          <Route exact path="leafletDecanatoEst" element={<Decanato />}/>
+
           
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
