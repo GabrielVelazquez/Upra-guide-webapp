@@ -3,6 +3,7 @@
 // import "../LeafletCSS/leaflet2.css";
 import "leaflet/dist/leaflet.css";
 import "../LeafletCSS/leaflet2.css";
+import "../LeafletCSS/leafletMap.css";
 //import '../../maps2.css';
 
 import { firestore } from '../../firebase.config';
@@ -15,6 +16,7 @@ import {customMarker} from './LeafletIcons';  // Import the custom marker icon
 import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker y Popup
 
 import { MapContainer, TileLayer } from "react-leaflet";
+import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 Modal.setAppElement('#root'); //  root para accesar el modal
 
     const fetchData = async () => {
@@ -59,6 +61,8 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       }
     };
 
+    
+
     export default function Intro() { //manda el read request
       const defaultPosition = { lat: 18.468435565260574, lng: -66.74114959255792 }; //mapa localizado en centro de upra
       const [centerPosition, setCenterPosition] = useState(defaultPosition);
@@ -76,6 +80,14 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const [showInteriorSelect, setShowInteriorSelect] = useState(false); //muestra/esconde dropdown de sorting
       const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
       
+      const mapRef = useRef(null); // Reference to the map instance
+
+      const handleCenterMap = () => {
+        if (mapRef.current) {
+          mapRef.current.setView([18.46899726783513, -66.7414733800247], 19); // Centering the map to the desired coordinates and zoom level
+        }
+      };
+
 // filtra markers segun el checkbox 
 const getFilteredMarkers = () => {
   if (showInteriorMarkers) { //interiormarkercat???????????
@@ -304,13 +316,30 @@ const renderMarkers = () => {
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
 
-        <MapContainer  center={[18.46899726783513, -66.7414733800247]} zoom={19}> {/*I WANT THE CENTER OF THE IMAGE*/}
+        <MapContainer ref={mapRef} center={[18.46899726783513, -66.7414733800247]} zoom={19} 
+>
+{/*I WANT THE CENTER OF THE IMAGE*/}
         {/*<h1 className="title-indoor">learning common</h1>*/}
         
         <TileLayer 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        /*url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"*/
         />
+
+        {/*Button to center the map---------------------------------------------------------------------------------------------------*/}
+<button className='recenter-button'
+  //style={{position: 'absolute',top: '10px',right: '10px',zIndex: '1000',backgroundColor: 'transparent', border: 'none', cursor: 'pointer',}}
+  onClick={handleCenterMap}
+>
+  <img
+    src="https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/target_destination_current_location_place_focus_recenter-512.png"
+    alt="Center Map"
+    style={{ width: '30px', height: '30px' }} // Adjust width and height as needed
+  />
+</button>
+
+       
         
        
 {/*category drop down WIP*/}

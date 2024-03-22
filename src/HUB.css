@@ -7,7 +7,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-
+margin-top: -10px;
 }
 
 .hub {
@@ -19,7 +19,9 @@
 }
 
 .Hub-title {
+ margin-top: 90px;
   color: #f0d024;
+  margin-bottom: -30px;
 }
 
 .pretty-button {

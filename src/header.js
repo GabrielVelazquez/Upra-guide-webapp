@@ -133,7 +133,7 @@ const Header = () => {
         </Link>
 
         <hr className="hr-burgermenu" />
-        <Link className="menu-text" to="/maps2" onClick={toggleMenu}>
+        <Link className="menu-text" to="/leaflet2" onClick={toggleMenu}>
           Map
         </Link>
         {/*<button className="menu-item">Maps</button>*/}

@@ -17,11 +17,12 @@
 
   .search-bar, .category-select, .custom-checkbox, .interior-select {
     position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
-    z-index: 4; /* Asegura que queden sobre el mapa */
+     z-Index: 3; /* Asegura que queden sobre el mapa   998*/
     margin: 10px; /* Ajusta para dar espacio alrededor de los elementos */
   }
   
   .search-bar {
+  
     top: 12%;
     left: 50%;
     transform: translateX(-50%); /* Centra el search bar horizontalmente */
@@ -61,7 +62,7 @@
   
   .custom-checkbox {
     top: 12%;
-    left: 50px;
+    left: 1px;
   }
   /* 768px (mobile) probado en iphone 15 pro */
 @media (max-width: 767px) {
@@ -78,15 +79,7 @@
 }*/
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>switch button>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-.custom-checkbox {
-  width: 150px;
-  height: 30px;
-  position: absolute;
-  top: 80px; /* Adjust this value as needed */
-  /*right: 10px; /* Adjust this value as needed */
-left: 0%;
 
-}
 .custom-checkbox input#status {
   display: none;
 }
@@ -99,8 +92,8 @@ left: 0%;
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: grey;
-  color: white;
+  background-color: #a8adb2;
+  color: black;
   transition: all 0.5s ease;
   padding: 3px;
   border-radius: 2px;
@@ -130,14 +123,14 @@ left: 0%;
   content: attr(data-checked);
 }
 .custom-checkbox input#status:checked + label > .status-switch {
-  background-color: #40c253;
+  background-color: #ffd703;
 }
 .custom-checkbox input#status:checked + label > .status-switch:after {
   left: 0;
   content: attr(data-unchecked);
 }
 .custom-checkbox input#status:checked + label > .status-switch:before {
-  color: #40c253;
+  color: black;
   left: 50%;
   content: attr(data-checked);
 }

@@ -140,7 +140,7 @@ const Home = () => {
       {/* Linea que divide */}
         <hr />
 
-       <h1 className="home-services">Other services: </h1>
+       <h1 className="home-services">Other services </h1>
 
         {/*  botones que los links no son parte del web app (paginas externas) */}
         <div className="image-container">
