@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import "./Home.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { auth } from "./firebase.config";
 import map_icon from "./icons/Map_icon.png";
 import events_icon from "./icons/Events_icon.png";
@@ -66,7 +67,8 @@ const Home = () => {
           className="image pressable-image"
           onClick={() => handleImageClick("Maps")}>
                   <h1 className="image-title" > Map </h1>
-          <Link to="/maps2">
+          <Link to="/leaflet2">
+             {/*<Link to="/maps2">*/}
             <img
               src={map_icon}
               alt="Map"

@@ -121,7 +121,6 @@ flex-direction: column;
 
 /*----------------------------------------------------------------DO NOT TOUCH------------------------------------------------------------*/
 
-
 .leaflet-image-layer
 {
     z-index: 1; 
@@ -129,9 +128,6 @@ flex-direction: column;
      width: 1555px; 
      height: 400px;
 }
-
-
-
 
  /*  Original
  .leaflet-image-layer

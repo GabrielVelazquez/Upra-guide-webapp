@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  z-index: 2; /* layer de frente */
+  z-index: 10; /* layer de frente */
   transition: right 0.3s; /* slide */
 }
 

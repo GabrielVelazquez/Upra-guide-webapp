@@ -226,8 +226,6 @@ body {
   /*right: 10px; /* Adjust this value as needed */
   left:10px;
   z-index: 2; /* Ensure it's above the map */
-  
-
 }
 .custom-checkbox input#status {
   display: none;

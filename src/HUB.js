@@ -49,6 +49,16 @@ const HUB = () => {
           <Link to="/leafletISMUL">
             <button className="pretty-button">ISMUL ✅</button>
           </Link>
+
+          <Link to="/leafletCafeteria">
+            <button className="pretty-button">Cafeteria ⚠️</button>
+          </Link>
+         
+
+          <Link to="/leafletAC217to220">
+            <button className="pretty-button">AC 217-220 ❌</button>
+          </Link>
+          
           
         
           
