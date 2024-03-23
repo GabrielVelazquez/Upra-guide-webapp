@@ -30,6 +30,7 @@ import AC217220 from "./Leaflet/LeafletJS/leafletAC217to220";
 import Decanato from "./Leaflet/LeafletJS/leafletDecanatoEst";
 import AC231 from "./Leaflet/LeafletJS/leafletAC231";
 import Anexos from "./Leaflet/LeafletJS/leafletAnexos";
+import DeptEnfermeria from "./Leaflet/LeafletJS/leafletDeptEnfe";
 //---------------------Interior maps-------------------------
 
 import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
@@ -69,7 +70,7 @@ function App() {
           <Route exact path="leafletDecanatoEst" element={<Decanato />}/>
           <Route exact path="leafletAC231" element={<AC231/>}/>
           <Route exact path="leafletAnexos" element={<Anexos/>}/>
-
+          <Route exact path="leafletDeptEnfe" element={<DeptEnfermeria/>}/>
           
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />

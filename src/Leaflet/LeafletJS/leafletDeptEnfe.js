@@ -1,22 +1,15 @@
-
-
-import imagenmapa from '../../images/DecanatoEstudiantes_leaflet_PN.png';
-
-
-
 import React, { useState,useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-
+import imagenmapa from '../../images/DeptEnfermeria_leaflet_PN.png';
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 
-const Decanato = () => {
-  const bounds = [[-110, -110], [100, 680]];
-
+const DeptEnfermeria = () => {
+  const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // referencia del mapa donde esta
   
 //BOTONES DE USO==================================================================================================================================
@@ -33,50 +26,48 @@ const Decanato = () => {
     setPathLineCoords([]);
     setAltPathLineCoords([]);
   };
+//BOTONES DE USO==================================================================================================================================
 
-
-//Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
+//Coordenadas de los extintores-------------------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
-    [-82.634101, -24.082031],
-    
-
+    [29.791780, 251.455078], //center
+    [-43.915607, 572.519531],//southeast
+    [78.444373, 313.154297],//north
+    [20.087403, 725.009766],//east
+    [-33.753612, -4.855957], //west
   ];
 
   const PullStationLocations = [
-   [55.176033, 663.398438],
-
+    [-27.420451, -16.435452], //west
+    [78.304371, 290.390625],//north
+    [9.394305, 737.314453],//east
   ];
 
   const MeetingPointLocations = [
-    [83.440046, 826.875000],
-    
+    [-53.188156, -61.875000],
+    [81.454114, 787.500000],
   ];
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
     {
-      name: 'AC101',
-      positions: [
-        [-57.105338,  54.163284], [-57.105338, 138.407135],
-        [-83.121618,138.407135], [-83.121618, 54.163284],
-    ],
-    markerPosition: [-74.628825, 95.625],
-    },
+      name: 'Conference Room',
 
-  
+      positions: [[59.46165, 110.126953],[59.46165, 231.943359],
+      [-66.883523, 231.943359],[-66.883523, 109.6875]],
+
+      markerPosition: [-8.162836, 170.156250],
+    },
     
-   
   ];
 
 //COORDENADAS DE RUTAS DE SALIDAS y nombre de salon (para el case)-------------------------------------------------------------------------
   const getPolylinePositions = (name) => {
     switch (name) {
-      case 'AC101':
-        return [[-53.958744, 60.820313],[-40.450481, 60.820313],[-40.450481, 26.367188],[-81.04527, 26.367188],[-81.04527, -84.726563]];
-
+      case 'Conference Room':
+        return [[-8.119559, 109.198545], [-8.119559, -55.893442]];
       
-          
-          
+
         default:
         return [];
     }
@@ -85,7 +76,25 @@ const Decanato = () => {
   //COORDENADAS DE RUTAS DE SALIDAS Alternas------------------------------------------------------------------------
   const getAltPolylinePositions = (name) => {
     switch (name) {
-     
+      case 'Conference Room':
+        return [[-8.076627, 92.851450], [67.843036, 92.851450], [67.843036, 358.748084],[84.145701, 358.748084],[84.145701, 625.024416]];
+        case 'Study Room 1':
+          return [[-63.684333, 248.392056], [-70.270980, 248.392056], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]]; //separado del primary ers7 posiciones
+        case 'Study Room 2':
+          return [[-63.684333, 375.572083], [-70.270980, 375.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
+        case 'Study Room 3':
+          return [[-63.684333, 478.572083], [-70.270980, 478.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
+        case 'Male Bathroom':
+          return [[-61.684333, 520.532227],[-61.684333, 532.572083], [-70.270980, 532.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
+        case 'Female Bathroom':
+          return [[54.232116, 520.224609],[54.232116, 534.023438],[66.245539, 533.847656],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
+        case 'Multimedia Room':
+          return [[33.516880, 437.695313],[66.399556, 437.695313],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
+        case 'Mechanical Room':
+          return  [[33.381240, 282.392578],[67.888519,282.392578], [67.843036, 92.851450],[-8.076627, 92.851450],[-8.119559, -55.893442]];
+        case 'Cafe':
+          return [[3.984703, 616.113281],[3.984703, 630.703125],[68.057847, 630.703125],[68.057847, 525.755532],[68.057847, 402.883430], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
+
         default:
         return [];
     }
@@ -173,10 +182,10 @@ if (polygon) {
 return (
 
   <div className='leafletcss1'>   
-    <MapContainer center={[10.949322, 280.796875]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
-      <h1 className='title-lc'>Decanato de estudiantes</h1>
+        <h1 className='title-lc'>Departamento de enfermeria</h1>
 {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
 {/*Boton de reset===============================*/}
@@ -215,4 +224,4 @@ return (
   );
 };
 
-export default Decanato;
+export default DeptEnfermeria;

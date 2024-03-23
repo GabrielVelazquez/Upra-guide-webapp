@@ -15,7 +15,7 @@ const HUB = () => {
         <img src={logo} className="App-logo" alt="logo" />
 
         <div className="hub-button-containter">
-          
+
         <Link to="/leaflet2">
             <button className="pretty-button">Mapa Leaflet 📌</button>
           </Link>
@@ -72,6 +72,9 @@ const HUB = () => {
             <button className="pretty-button">Anexos ❌</button>
           </Link>
           
+          <Link to="/leafletDeptEnfe">
+            <button className="pretty-button">Departamento de enfermeria ❌</button>
+          </Link>
 
         </div>
 

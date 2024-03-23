@@ -9,11 +9,10 @@
 @media (max-width: 767px) {
   .leaflet-container  {
     top: 10%;
-    width: 100vw;
+    width: 100vw;  /*tratar con porciento*/
   height: 77.60vh;
   }
 }
-
 
   .search-bar, .category-select, .custom-checkbox, .interior-select {
     position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
@@ -31,7 +30,7 @@
 @media (max-width: 767px) {
   .search-bar  {
     top: 11.90%;
-    left: 40%;
+    left: 31%;
     transform: translateX(-50%);
   }
 }
@@ -71,6 +70,7 @@
    left:.05%;
   }
 }
+
 
   /*
 .title-indoor{

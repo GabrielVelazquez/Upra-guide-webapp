@@ -9,7 +9,7 @@ import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 
 const Cafeteria = () => {
-  const bounds = [[-130,-130], [1800, 900]];
+  const bounds = [[-100,-100], [1800, 800]];
   const mapRef = useRef(null); // referencia del mapa donde esta
   
 //BOTONES DE USO==================================================================================================================================
@@ -49,9 +49,9 @@ const Cafeteria = () => {
     {
       name: 'Dining room',
 
-      positions: [[73.083508, 372.996826],[73.083508, 808.022461],
-      [48.718079, 808.022461],[48.718079, 737.006836],
-    [-71.284683, 737.006836],[-71.284683, 372.886963],[73.118902, 372.886963]],
+      positions: [[73.083508, 339.345703],[73.083508,  719.472656],
+      [48.718079, 719.472656],[48.718079,  657.421875],
+    [-71.284683,  656.894531],[-71.284683, 339.521484],[73.118902, 339.521484]],
 
       markerPosition: [-8.162836, 170.156250],
     },
@@ -164,7 +164,7 @@ if (polygon) {
 return (
 
   <div className='leafletcss1'>   
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[2.042465, 350.390625]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Cafeteria</h1>
