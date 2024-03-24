@@ -69,7 +69,7 @@ const HUB = () => {
           </Link>
           
           <Link to="/leafletAnexos">
-            <button className="pretty-button">Anexos ❌</button>
+            <button className="pretty-button">Anexos ✅</button>
           </Link>
           
           <Link to="/leafletDeptEnfe">
