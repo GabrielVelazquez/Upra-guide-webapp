@@ -3,6 +3,7 @@ import waypoint from '../../images/Leaflet_marker_upra.png'; //waypoint de salon
 import extintor from '../../images/leaflet_extintor.jpg';
 import pull from '../../images/leaflet_pullStation.png';
 import meet from '../../images/leaflet_meetingpoint.jpg';
+import inflamable from'../../images/inflamableIcon_leaflet.png';
 
 const customMarker = new L.Icon({//waypoint
     iconUrl: waypoint,
@@ -35,6 +36,14 @@ const customMarker = new L.Icon({//waypoint
     popupAnchor: [0, -50],
   });
 
+  const customInflamable = new L.Icon({//pull station de inflamable (Labs)
+    iconUrl: inflamable,
+    iconSize: [30,30],
+    //iconAnchor: [24, 24],
+    iconAnchor: [0,0], //si es 0,0 siempre es accurate
+    popupAnchor: [0, -50],
+  });
+
   
 
-  export {customMarker, customExtintor, customPullStation, customMeetingPoint};
+  export {customMarker, customExtintor, customPullStation, customMeetingPoint, customInflamable};
