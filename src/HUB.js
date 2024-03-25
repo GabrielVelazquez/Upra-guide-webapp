@@ -76,6 +76,15 @@ const HUB = () => {
             <button className="pretty-button">Departamento de enfermeria ❌</button>
           </Link>
 
+          <Link to="/leafletLabBiol">
+            <button className="pretty-button">Laboratorios de Biologia ⚠️</button>
+          </Link>
+
+          <Link to="/leafletLabQuim">
+            <button className="pretty-button">Laboratorios de Quimica ⚠️</button>
+          </Link>
+
+
         </div>
 
       </header>
