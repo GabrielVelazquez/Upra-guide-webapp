@@ -2,7 +2,7 @@ import React, { useState,useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
+// import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
@@ -11,7 +11,7 @@ import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterBu
 const LearningCommons = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // referencia del mapa donde esta
-  
+  const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FLearning_common_leaflet_PN.png?alt=media&token=6c6e623b-9b1b-4872-9698-d1840b167724'
 //BOTONES DE USO==================================================================================================================================
 //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {

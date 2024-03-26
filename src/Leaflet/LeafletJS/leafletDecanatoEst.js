@@ -1,6 +1,6 @@
 
 
-import imagenmapa from '../../images/DecanatoEstudiantes_leaflet_PN.png';
+// import imagenmapa from '../../images/DecanatoEstudiantes_leaflet_PN.png';
 
 
 
@@ -15,10 +15,11 @@ import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 
 const Decanato = () => {
+ 
   const bounds = [[-110, -110], [100, 680]];
 
   const mapRef = useRef(null); // referencia del mapa donde esta
-  
+  const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FDecanatoEstudiantes_leaflet_PN.png?alt=media&token=33b68d89-d7ca-4d8f-a1a6-e2239822deb0';
 //BOTONES DE USO==================================================================================================================================
 //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {

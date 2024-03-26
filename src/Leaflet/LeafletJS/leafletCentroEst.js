@@ -4,18 +4,18 @@ import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, To
                                                             //LAYER CONTROL -----  ^IMAGE ON IMAGE
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from '../../images/centro_de_estudiantes_leaflet_PN.png';
+// import imagenmapa from '../../images/centro_de_estudiantes_leaflet_PN.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
-import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.png';
+// import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.png';
 import {RecenterButton,ResetButton} from './leafletui'; // Import RecenterButton 
 
 
 const CentroEstudiantes = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // Reference to the map instance
-  
-
+  const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2Fcentro_de_estudiantes_leaflet_PN.png?alt=media&token=604100c1-eedc-4edb-afe0-9c01c3956520'
+  const imageURL = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2Fcentro_de_estudiantes_piso2_crop_leaflet_PN.png?alt=media&token=aca1c722-ddbd-471a-a128-f9c39a718767'
 //BOTONES DE USO=============================================================================================================================
  //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {

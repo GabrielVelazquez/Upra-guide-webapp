@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from '../../images/ccom_gtec.png';
+// import imagenmapa from '../../images/ccom_gtec.png';
 //import waypoint from '../../images/Leaflet_marker_upra.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 
 const CCOM = () => {
   const bounds = [[-90, -90], [1800, 880]];
-
+  const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2Fccom_gtec.png?alt=media&token=82e975a6-880c-484a-9e63-77258bbe0ef7'
 //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
    [61.01459, 439.277344]

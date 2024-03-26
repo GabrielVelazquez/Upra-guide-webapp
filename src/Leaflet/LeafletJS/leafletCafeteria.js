@@ -2,7 +2,7 @@ import React, { useState,useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from '../../images/Cafeteria_leaflet_PN.png';
+// import imagenmapa from '../../images/Cafeteria_leaflet_PN.png';
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
@@ -11,7 +11,7 @@ import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterBu
 const Cafeteria = () => {
   const bounds = [[-100,-100], [1800, 800]];
   const mapRef = useRef(null); // referencia del mapa donde esta
-  
+  const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FCafeteria_leaflet_PN.png?alt=media&token=77746b12-6c84-442c-9575-33ff7c1fcc61'
 //BOTONES DE USO==================================================================================================================================
 //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {

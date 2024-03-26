@@ -2,7 +2,7 @@ import React, {useState, useRef}  from "react";
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from "../../images/Ismul_leaflet_PN.png";
+// import imagenmapa from "../../images/Ismul_leaflet_PN.png";
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
@@ -11,7 +11,7 @@ import {RecenterButton, ResetButton}from './leafletui';
 const ISMUL = () => {
     const bounds = [[-90, -90], [1800, 880]];
     const mapRef = useRef(null); // Reference to the map instance
-
+    const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FIsmul_leaflet_PN.png?alt=media&token=2f5dd649-6782-4006-84b0-afec366a8c18'
 //BOTONES DE USO=============================================================================================================================
  //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {

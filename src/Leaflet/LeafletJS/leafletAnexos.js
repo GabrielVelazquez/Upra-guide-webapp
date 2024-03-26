@@ -2,7 +2,7 @@ import React, {useState, useRef}  from "react";
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-import imagenmapa from "../../images/Anexos_leaflet.png";
+// import imagenmapa from "../../images/Anexos_leaflet.png";
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
@@ -11,7 +11,7 @@ import {RecenterButton, ResetButton}from './leafletui';
 const Anexos = () => {
     const bounds = [[-110, -110], [1400, 400]];
     const mapRef = useRef(null); // Reference to the map instance
-
+    const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FAnexos_leaflet.png?alt=media&token=03306103-66a3-4f01-9830-2f6749123933'
 //BOTONES DE USO=============================================================================================================================
  //Function para centralizar=========================
  const handleCenterMap = (center, zoom) => {
