@@ -1,14 +1,32 @@
-import React, {useState}  from "react";
+import React, {useState, useRef}  from "react";
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
 // import imagenmapa from "../../images/dept_biol.png";
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
-
+import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 const BIOL = () => {
     const bounds = [[-90, -90], [1800, 880]];
+    const mapRef = useRef(null); // Reference to the map instance
     const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2Fdept_biol.png?alt=media&token=b60b59ac-c36f-41ef-978c-e803ae06f638'
+
+  const handleCenterMap = (center, zoom) => {
+    if (mapRef.current) {
+      mapRef.current.setView(center, zoom);
+    }
+  };
+
+  //declaracion de reset polylines=======================
+   // Reset polyliness (rutas)
+   const handleResetPolylines = () => {
+    setPathLineCoords([]);
+    setAltPathLineCoords([]);
+  };
+
+
+
+
     //Coordenadas de los extintores-----------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
    [16.679771, 508.359375]
@@ -174,11 +192,14 @@ return (
   
   <div className='leafletcss1'>   
         
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}>
+    <MapContainer center={[15.166345, 389.53125]} zoom={1} ref={mapRef}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Departamento de Biologia </h1>
-          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
-
+           {/*Boton de centralizar===============================*/}
+           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+{/*Boton de reset===============================*/}
+          <ResetButton handleResetPolylines={handleResetPolylines} />
+         {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
           <Polyline positions={AltpathLineCoords} color="red" dashArray="10, 10"/>{/*dashArray style para lineas entre cortadas (alt)*/}
 
