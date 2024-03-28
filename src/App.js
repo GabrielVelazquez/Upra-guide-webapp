@@ -33,7 +33,7 @@ import Anexos from "./Leaflet/LeafletJS/leafletAnexos";
 import DeptEnfermeria from "./Leaflet/LeafletJS/leafletDeptEnfe";
 import LabBiol from "./Leaflet/LeafletJS/leafletLabBiol";
 import LabQuim from "./Leaflet/LeafletJS/leafletLabQuim";
-import AdminOutodoors from "./Admin-outdoors";
+import AdminOutdoors from "./Admin-outdoors";
 import AdminUsersPage from "./Admin-Users";
 
 //---------------------Interior maps-------------------------
@@ -53,7 +53,7 @@ function App() {
           {/*------------Navigation---------------*/}
           <Route exact path="/" element={<Home />} />
           <Route exact path="/admin-home" element={<AdminHome />} />
-          <Route exact path="/Admin-outdoors" element={<AdminOutodoors/>}/>
+          <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
           <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />

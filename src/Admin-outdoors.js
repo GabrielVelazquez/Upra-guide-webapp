@@ -4,7 +4,7 @@ import './admin-home.css';
 import { firestore, storage } from './firebase.config';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes,getDownloadURL } from 'firebase/storage'; // Importa las funciones necesarias para cargar archivos
-const AdminOutodoors = () => {
+const AdminOutdoors = () => {
   const [formData, setFormData] = useState({
     name: '',
     lat: '',
@@ -203,4 +203,4 @@ const AdminOutodoors = () => {
   );
 };
 
-export default AdminOutodoors;
+export default AdminOutdoors;
