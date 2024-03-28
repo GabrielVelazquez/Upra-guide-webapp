@@ -22,7 +22,7 @@ const Login = () => {
         if (userData.isAdmin) {
           navigate("/admin-home");
         } else {
-          navigate("/Home");
+          navigate("/");
         }
       } else {
         // El usuario no tiene información en Firestore, podría ser un problema
