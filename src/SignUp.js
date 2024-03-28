@@ -49,6 +49,7 @@ createUserWithEmailAndPassword(auth, email, password)
     studentNumber: studentNumber,
     department: department,
     association: association,
+    isAdmin: 'false',
   };
 
   // Agregar datos del usuario a Firestore

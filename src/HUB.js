@@ -19,6 +19,11 @@ const HUB = () => {
         <Link to="/leaflet2">
             <button className="pretty-button">Mapa Leaflet 📌</button>
           </Link>
+          
+          <Link to="/admin-home">
+            <button className="pretty-button">Admin Home 📌</button>
+          </Link>
+
 
           <Link to="/leafletLC">
             <button className="pretty-button">Learning Commons ✅</button>

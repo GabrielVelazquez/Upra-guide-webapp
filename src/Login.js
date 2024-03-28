@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "./firebase.config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, firestore } from "./firebase.config";
+import { doc, getDoc } from 'firebase/firestore';
+import { signInWithEmailAndPassword} from "firebase/auth";
 import "./Login.css";
 import lobo_icon from "./images/lobo-upra_icon.png";
 
@@ -10,23 +11,28 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const userType = "user";
-
-        if (userType === "admin") {
+  const handleSignIn = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userDoc = await getDoc(doc(firestore, "users", userCredential.user.uid));
+      
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        
+        if (userData.isAdmin) {
           navigate("/admin-home");
-        } else if (userType === "user") {
-          navigate("/");
         } else {
-          console.error("Invalid user type:", userType);
+          navigate("/Home");
         }
-      })
-      .catch((error) => {
-        alert("Invalid email or password");
-        console.error(error);
-      });
+      } else {
+        // El usuario no tiene información en Firestore, podría ser un problema
+        console.error("El usuario no tiene información en Firestore");
+        // Aquí puedes decidir cómo manejar esta situación
+      }
+    } catch (error) {
+      alert("Invalid email or password");
+      console.error(error);
+    }
   };
 
   const handleKeyPress = (e) => {

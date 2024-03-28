@@ -1,0 +1,45 @@
+
+
+/* admin-home.css */
+
+.admin-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto hace que el contenedor ocupe toda la altura de la ventana */
+  }
+  
+  .options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    height: 20%;
+  }
+  
+  .option {
+    text-align:center; /* Centra el texto dentro de cada opción */
+  }
+  
+  .option img {
+    width: 100px; /* Ajusta el tamaño de las imágenes según sea necesario */
+  }
+
+  .option span {
+    display: block; /* Hace que el texto sea un elemento de bloque */
+    margin-top: 10px; /* Añade espacio entre la imagen y el texto */
+  }
+  
+  .tittle {
+   height: 20%;
+  }
+  
+  .admin-users-page {
+    padding: 20px; /* Ajusta el espacio alrededor del contenido */
+  }
+  
+  .users-list-container {
+    margin-top: 20px; /* Agrega espacio entre el encabezado y la lista de usuarios */
+  }
+  
