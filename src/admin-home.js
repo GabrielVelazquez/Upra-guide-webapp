@@ -26,7 +26,7 @@ const AdminHome = () => {
           </Link>
         </div>
         <div className="option">
-          <Link to="/add_edit_events">
+          <Link to="/AdminEvents">
             <img src={events_icon} alt="Add/Edit Events" />
             <span>Add/Edit Events</span>
           </Link>

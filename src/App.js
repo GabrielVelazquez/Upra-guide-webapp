@@ -35,6 +35,7 @@ import LabBiol from "./Leaflet/LeafletJS/leafletLabBiol";
 import LabQuim from "./Leaflet/LeafletJS/leafletLabQuim";
 import AdminOutdoors from "./Admin-outdoors";
 import AdminUsersPage from "./Admin-Users";
+import AdminEvents from "./AdminEvents";
 
 //---------------------Interior maps-------------------------
 
@@ -55,6 +56,7 @@ function App() {
           <Route exact path="/admin-home" element={<AdminHome />} />
           <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
           <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
+          <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/map" element={<Map />} />
