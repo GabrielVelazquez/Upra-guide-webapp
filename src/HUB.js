@@ -89,6 +89,9 @@ const HUB = () => {
             <button className="pretty-button">Laboratorios de Quimica ✅</button>
           </Link>
 
+          <Link to="/leafletAC307">
+            <button className="pretty-button">AC307-310 ✅</button>
+          </Link>
 
         </div>
 
