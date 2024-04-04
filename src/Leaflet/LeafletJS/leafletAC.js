@@ -7,6 +7,9 @@ import L from 'leaflet';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
 const AC2 = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // Reference to the map instance
@@ -43,6 +46,32 @@ const AC2 = () => {
     [83.440046, 826.875000],
     [83.440046, -43.593750]
   ];
+
+  const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento facultad 1)
+        </div>
+        <div className="legend-item">
+          <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
+          Ruta de salida
+        </div>
+      </div>
+    );
+  };
+  
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -180,6 +209,8 @@ const AC2 = () => {
       ],
       markerPosition: [-21.346219, 800.859375],
     },
+
+    
     
    
   ];
@@ -373,11 +404,12 @@ return (
   <div className='leafletcss1'>   
         
     <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}>
+    <Legend />
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Salones Nivel AC 100</h1>
           {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
-{/*Boton de reset===============================*/}
+          {/*Boton de reset===============================*/}
           <ResetButton handleResetPolylines={handleResetPolylines} />
          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
           <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
@@ -389,6 +421,7 @@ return (
           )
          )
         }
+         
 {/*Hace render a los markers icons (Pull statuions)*/}
            {PullStationLocations.map((position, index) => ( 
            <Marker key={index} position={position} icon={customPullStation}></Marker> 
