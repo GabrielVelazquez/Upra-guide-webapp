@@ -37,6 +37,7 @@ import AdminOutdoors from "./Admin-outdoors";
 import AdminUsersPage from "./Admin-Users";
 import AdminEvents from "./AdminEvents";
 import AC307 from "./Leaflet/LeafletJS/leafletAC307";
+import AC302 from "./Leaflet/LeafletJS/leafletAC302";
 
 //---------------------Interior maps-------------------------
 
@@ -85,6 +86,7 @@ function App() {
          <Route exact path="leafletLabBiol" element={<LabBiol/>}/>
          <Route exact path="leafletLabQuim" element={<LabQuim/>}/>
          <Route exact path="leafletAC307" element={<AC307/>}/>
+         <Route exact path="leafletAC302" element={<AC302/>}/>
           {/*----------------TESTING------------------*/}
           <Route exact path="/mappedin" element={<Mappedin/>} />
           <Route exact path="/leaflet2" element={<Leaflet2/>} />
