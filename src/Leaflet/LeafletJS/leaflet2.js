@@ -49,6 +49,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
             markerData.lat, //1
             markerData.lng, //2
             markerData.interiorArea,//3
+            markerData.leafletUrl//4
           ];
         });
 
@@ -103,7 +104,7 @@ useEffect(() => {
     fetchData().then((markersArray) => {
       setMarkers(markersArray);
       // Separate interior markers from the combined array
-      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 4);
+      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 5);
       setInteriorMarkers(interiorMarkersArray);
       setDataFetched(true);
       console.log('fetched markers');
@@ -111,16 +112,61 @@ useEffect(() => {
   }
 }, [dataFetched]);
 
-  //Presionar Marker
-  const handleMarkerClick = (marker) => { 
-    setSelectedMarker(marker); 
-    document.body.style.overflow = 'hidden';
-    //setSelectedMarkerIndex(index);//recolor
-  };
-  const closePopup = () => { // const closePopup = (index) => { //index para el recolor al normal
-    setSelectedMarker(null);
-    setSelectedMarkerIndex(null);//recolor a su color original despuse del search
-  };
+ // Dentro del componente Intro
+const [showInteriorFileButton, setShowInteriorFileButton] = useState(false);
+const [selectedInteriorMarker, setSelectedInteriorMarker] = useState(null); // Para almacenar el marcador interior seleccionado
+
+const handleMarkerClick = (marker) => { 
+  setSelectedMarker(marker); 
+  document.body.style.overflow = 'hidden';
+  // Si es un interior, mostrar el botón para ver el archivo y ejecutar el código
+  if (marker.length === 5) {
+    setShowInteriorFileButton(true);
+    setSelectedInteriorMarker(marker);
+    if (selectedInteriorMarker) {
+      handleViewInteriorCode(); // Llama a la función para ejecutar el código
+    }
+  } else {
+    setShowInteriorFileButton(false);
+  }
+};
+
+
+
+const handleClosePopup = () => {
+  setSelectedMarker(null);
+  setShowInteriorFileButton(false); // Asegúrate de ocultar el botón cuando se cierre el modal
+};
+
+// const handleViewInteriorFile = () => {
+//   if (selectedInteriorMarker) {
+//     // Obtener la URL del archivo desde los datos del marcador
+//     const fileUrl = selectedInteriorMarker[4]; // Suponiendo que selectedInteriorMarker[4] contiene la URL del archivo interior
+    
+//     // Abrir una nueva ventana del navegador con la URL del archivo
+//     window.open(fileUrl, '_blank');
+//   }
+// };
+const handleViewInteriorCode = async () => {
+  if (selectedInteriorMarker) {
+    const codeUrl = selectedInteriorMarker[4]; // URL del código JavaScript
+    try {
+      const response = await fetch(codeUrl);
+      if (!response.ok) {
+        throw new Error('Failed to fetch code');
+      }
+      const code = await response.text();
+      // Ejecuta el código obtenido
+      eval(code);
+    } catch (error) {
+      console.error('Error al obtener o ejecutar el código:', error);
+    }
+  }
+};
+
+
+
+
 
   // Función para manejar el cambio en el campo de búsqueda
   const handleSearchChange = (event) => {
@@ -346,30 +392,34 @@ const renderMarkers = () => {
 
 
 {/*-----------------------------------------------------MODAL------------------------------------------------------------*/}
-      <Modal className="modal-box"
-        isOpen={selectedMarker !== null}
-        onRequestClose={closePopup}
-        contentLabel="Marker Information Modal"
-        style={{ overlay: { zIndex: 3 }, content: { zIndex: 3 } }}
-      >
-        {selectedMarker && (
-          
-          <div>
-            <div className="modal-box-top ">
-              <p className="location-title">{selectedMarker[0]}</p>
-            </div>
-            <img
-  className="location-img"
-  src={selectedMarker[5] !== "" ? selectedMarker[5] : LocImgPH} alt={selectedMarker[5] !== "" ? selectedMarker[0] : "LocImgPH"} /> {/*Imagen*/}
-            <hr className='hr-modal ' />
-            <p className="location-info-text">{selectedMarker[3]}</p>{/*Nivel*/}
-            <p className="location-info-text">{selectedMarker[4]}</p>{/*Descripcion*/}
-            <div className="modal-exit">
-              <Link className="modal-exit" onClick={closePopup}>Exit</Link>{/*Exit*/}
-            </div>
-          </div>
-        )}
-      </Modal>
+<Modal className="modal-box"
+  isOpen={selectedMarker !== null}
+  onRequestClose={handleClosePopup}
+  contentLabel="Marker Information Modal"
+  style={{ overlay: { zIndex: 3 }, content: { zIndex: 3 } }}
+>
+  {selectedMarker && (
+    <div>
+      <div className="modal-box-top ">
+        <p className="location-title">{selectedMarker[0]}</p>
+      </div>
+      <img
+        className="location-img"
+        src={selectedMarker[5] !== "" ? selectedMarker[5] : LocImgPH} 
+        alt={selectedMarker[5] !== "" ? selectedMarker[0] : "LocImgPH"} 
+      />
+      <hr className='hr-modal ' />
+      <p className="location-info-text">{selectedMarker[3]}</p>
+      {/* <p className="location-info-text">{selectedMarker[3]}</p> */}
+      {showInteriorFileButton && (
+        <button onClick={handleViewInteriorCode}>View Interior File</button>
+      )}
+      <div className="modal-exit">
+        <Link className="modal-exit" onClick={handleClosePopup}>Exit</Link>
+      </div>
+    </div>
+  )}
+</Modal>
       {renderMarkers()}
         </MapContainer>
         </div>
@@ -377,4 +427,3 @@ const renderMarkers = () => {
      
     );
         }
-      

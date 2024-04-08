@@ -14,7 +14,7 @@ const AdminHome = () => {
       </div>
       <div className="options-container">
         <div className="option">
-          <Link to="/add_edit_indoors">
+          <Link to="/Admin_indoors">
             <img src={indoors_icon} alt="Add/Edit Indoors" />
             <span>Add/Edit Indoors</span>
           </Link>

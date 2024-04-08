@@ -36,6 +36,7 @@ import LabQuim from "./Leaflet/LeafletJS/leafletLabQuim";
 import AdminOutdoors from "./Admin-outdoors";
 import AdminUsersPage from "./Admin-Users";
 import AdminEvents from "./AdminEvents";
+import AdminIndoors from "./Admin_indoors";
 import AC307 from "./Leaflet/LeafletJS/leafletAC307";
 import AC302 from "./Leaflet/LeafletJS/leafletAC302";
 
@@ -60,6 +61,7 @@ function App() {
           <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
           <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
           <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
+          <Route exact path="/Admin_Indoors" element={<AdminIndoors/>}/>
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/map" element={<Map />} />
