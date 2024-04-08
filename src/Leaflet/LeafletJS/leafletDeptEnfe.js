@@ -9,7 +9,7 @@ import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 
 const DeptEnfermeria = () => {
-  const bounds = [[-90, -90], [1800, 880]];
+  const bounds = [[-90, -90], [1700, 770]];
   const mapRef = useRef(null); // referencia del mapa donde esta
   const imagenmapa = 'https://firebasestorage.googleapis.com/v0/b/upra-guide.appspot.com/o/leafletImg%2FDeptEnfermeria_leaflet_PN.png?alt=media&token=8f6c0f3e-eaa5-4bae-85e8-a385f52dcf7e'
 //BOTONES DE USO==================================================================================================================================
@@ -30,33 +30,59 @@ const DeptEnfermeria = () => {
 
 //Coordenadas de los extintores-------------------------------------------------------------------------------------------------------------------
   const ExtintorLocations = [
-    [29.791780, 251.455078], //center
-    [-43.915607, 572.519531],//southeast
-    [78.444373, 313.154297],//north
-    [20.087403, 725.009766],//east
-    [-33.753612, -4.855957], //west
+    [-81.679933, 158.203125], // al lado bano
+    [38.600259, 293.203125], // afuera oficina profesores
+    [-65.146434, 455.625000], // lado secretaria
+    [-80.378755, 519.257813],//secretaria
+    
   ];
 
   const PullStationLocations = [
-    [-27.420451, -16.435452], //west
-    [78.304371, 290.390625],//north
-    [9.394305, 737.314453],//east
+    [16.788220, -9.1406252], //izq
+    [35.001967, 633.515625],// derecha
   ];
 
   const MeetingPointLocations = [
-    [-53.188156, -61.875000],
-    [81.454114, 787.500000],
+    [-81.577655, -49.218750], // est facultada 4
+    [84.339727, 702.421875], // est administracion
   ];
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
     {
-      name: 'Conference Room',
-
-      positions: [[59.46165, 110.126953],[59.46165, 231.943359],
-      [-66.883523, 231.943359],[-66.883523, 109.6875]],
-
-      markerPosition: [-8.162836, 170.156250],
+      name: 'Oficinas de Profesores',
+      positions: [[77.473225, -17.226563],[77.473225, 310.078125],[44.773041, 310.078125],[44.773041, -17.226563]],
+      markerPosition: [68.173671, 144.84375],
+    },
+    {
+      name: 'Oficinas de Profesores 2',
+      positions: [[77.473225, 313.681641],[77.473225, 644.062500],[44.773041, 644.062500],[44.773041, 313.681641]],
+      markerPosition: [64.817004, 478.828125],
+    },
+    {
+      name: 'Faculty Lounge',
+      positions: [[9.984892, -16.875000],[9.984892, 144.843750],[-81.852075, 144.843750],[-81.852075, -16.875000]],
+      markerPosition: [-58.692076, 63.281250],
+    },
+    {
+      name: 'Oficina Secretaria',
+      positions: [[-12.341417, 479.707031],[-12.341417, 560.390625],[-81.875904, 560.390625],[-81.875904, 479.707031]],
+      markerPosition: [-63.440177, 518.203125],
+    },
+    {
+      name: 'Oficina Director',
+      positions: [[-62.989376, 313.769531],[-62.989376, 392.343750],[-81.863525, 392.343750],[-81.863525, 313.769531]],
+      markerPosition: [-76.119218, 352.265625],
+    },
+    {
+      name: 'Cuarto HVAC',
+      positions: [[9.822816, 204.785156],[9.822816, 268.242188],[-81.881113, 268.242188],[-81.881113, 204.785156]],
+      markerPosition: [-58.692076, 233.437500],
+    },
+    {
+      name: 'Baños',
+      positions: [[8.787721, 151.699219],[8.787721, 200.390625],[-71.089761, 200.390625],[-71.089761,  151.699219]],
+      markerPosition: [-58.692076, 233.437500],
     },
     
   ];
@@ -64,9 +90,21 @@ const DeptEnfermeria = () => {
 //COORDENADAS DE RUTAS DE SALIDAS y nombre de salon (para el case)-------------------------------------------------------------------------
   const getPolylinePositions = (name) => {
     switch (name) {
-      case 'Conference Room':
-        return [[-8.119559, 109.198545], [-8.119559, -55.893442]];
+      case 'Oficinas de Profesores':
+        return [[38.324052, 260.507813], [31.115325, 260.507813],[31.115325, -48.164063],[-75.250972, -48.164063]];
       
+      case 'Oficinas de Profesores 2':
+        return [[37.271161, 348.046875],[31.115325, 348.046875],[31.115325, 703.828125],[81.565930, 703.828125]];
+      
+      case 'Faculty Lounge':
+        return [[13.617901, 66.445313],[31.115325, 66.445313],[31.115325, -48.164063],[-75.250972, -48.164063]];
+      
+      case 'Oficina Director':
+        return [[-62.400631, 373.710938],[-53.195175, 373.710938],[-53.195175, 276.855469],[31.115325, 276.855469],
+        [31.115325, -48.164063],[-75.250972, -48.164063]];
+      
+      case 'Oficina Secretaria':
+        return [[-11.435441, 524.882813],[31.115325, 524.882813],[31.115325, 703.828125],[81.565930, 703.828125]];
 
         default:
         return [];
@@ -76,25 +114,21 @@ const DeptEnfermeria = () => {
   //COORDENADAS DE RUTAS DE SALIDAS Alternas------------------------------------------------------------------------
   const getAltPolylinePositions = (name) => {
     switch (name) {
-      case 'Conference Room':
-        return [[-8.076627, 92.851450], [67.843036, 92.851450], [67.843036, 358.748084],[84.145701, 358.748084],[84.145701, 625.024416]];
-        case 'Study Room 1':
-          return [[-63.684333, 248.392056], [-70.270980, 248.392056], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]]; //separado del primary ers7 posiciones
-        case 'Study Room 2':
-          return [[-63.684333, 375.572083], [-70.270980, 375.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Study Room 3':
-          return [[-63.684333, 478.572083], [-70.270980, 478.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Male Bathroom':
-          return [[-61.684333, 520.532227],[-61.684333, 532.572083], [-70.270980, 532.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Female Bathroom':
-          return [[54.232116, 520.224609],[54.232116, 534.023438],[66.245539, 533.847656],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Multimedia Room':
-          return [[33.516880, 437.695313],[66.399556, 437.695313],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Mechanical Room':
-          return  [[33.381240, 282.392578],[67.888519,282.392578], [67.843036, 92.851450],[-8.076627, 92.851450],[-8.119559, -55.893442]];
-        case 'Cafe':
-          return [[3.984703, 616.113281],[3.984703, 630.703125],[68.057847, 630.703125],[68.057847, 525.755532],[68.057847, 402.883430], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
-
+      case 'Oficinas de Profesores':
+        return [[38.600722, 276.679688], [31.115325,279.140625],[31.115325, 703.828125],[81.565930, 703.828125]];
+      
+      case 'Oficinas de Profesores 2':
+        return [[40.763097, 359.648438],[31.115325, 359.648438],[31.115325, -48.164063],[-75.250972, -48.164063]];
+      
+      case 'Faculty Lounge':
+        return [[11.613898, 80.156250],[31.115325, 80.156250],[31.115325, 703.828125],[81.565930, 703.828125]];
+      
+      case 'Oficina Director':
+        return [[-62.400631, 373.710938],[-54.480632, 373.710938],[-54.480632, 510.468750],[31.115325, 512.578125],
+        [31.115325, 703.828125],[81.565930, 703.828125]];
+      
+      case 'Oficina Secretaria':
+        return [[-11.068562, 512.578125],[31.115325, 512.578125],[31.115325, -48.164063],[-75.250972, -48.164063]];
         default:
         return [];
     }
@@ -182,12 +216,12 @@ if (polygon) {
 return (
 
   <div className='leafletcss1'>   
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[9.939225, 319.921875]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
-        <h1 className='title-lc'>Departamento de enfermeria</h1>
+        <h1 className='title-lc'>Departamento de Enfermeria</h1>
 {/*Boton de centralizar===============================*/}
-          <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+          <RecenterButton handleCenterMap={handleCenterMap} center={[9.939225, 319.921875]} zoom={1} />
 {/*Boton de reset===============================*/}
           <ResetButton handleResetPolylines={handleResetPolylines} />
          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}

@@ -78,7 +78,7 @@ const HUB = () => {
           </Link>
           
           <Link to="/leafletDeptEnfe">
-            <button className="pretty-button">Departamento de enfermeria ❌</button>
+            <button className="pretty-button">Departamento de enfermeria ✅ </button>
           </Link>
 
           <Link to="/leafletLabBiol">
