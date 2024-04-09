@@ -41,10 +41,11 @@ const AdminEvents = () => {
       }
 
       const newEvent = {
-        date: formData.date, // Current date and time
+        date: formData.date,
         imageUrl: formData.image,
         name: formData.name,
-        time: '', // You didn't specify a time field, so leaving it blank for now
+        time: formData.time,
+        location: formData.location,
       };
 
       await addDoc(eventCollection, newEvent);
