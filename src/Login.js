@@ -27,10 +27,11 @@ const Login = () => {
       } else {
         // El usuario no tiene información en Firestore, podría ser un problema
         console.error("El usuario no tiene información en Firestore");
+        alert("Cuenta inhabilitada, contacte al administrador");
         // Aquí puedes decidir cómo manejar esta situación
       }
     } catch (error) {
-      alert("Invalid email or password");
+      alert("Correo o contraseña incorrectos");
       console.error(error);
     }
   };
