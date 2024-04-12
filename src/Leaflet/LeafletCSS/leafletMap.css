@@ -147,22 +147,25 @@ flex-direction: column;
 
 .legend {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 10px;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgb(230, 230, 230);
+    padding: 3px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    z-index: 9999; /* Higher z-index value to ensure it's in front */
   }
   
   .legend h3 {
     margin-top: 0;
+    color: black;
   }
   
   .legend-item {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    color: black;
   }
   
   .legend-item img {

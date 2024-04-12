@@ -10,6 +10,8 @@ import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterBu
 import extintor from '../../images/leaflet_extintor.jpg';
 import pull from '../../images/leaflet_pullStation.png';
 import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 const AC2 = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // Reference to the map instance
@@ -51,6 +53,17 @@ const AC2 = () => {
     return (
       <div className="legend">
         <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
         <div className="legend-item">
           <img src={extintor} alt="Extintor" />
           Extintores
@@ -64,10 +77,7 @@ const AC2 = () => {
           Puntos de reunión <br />
           (Estacionamiento facultad 1)
         </div>
-        <div className="legend-item">
-          <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
-          Ruta de salida
-        </div>
+       
       </div>
     );
   };
@@ -404,9 +414,10 @@ return (
   <div className='leafletcss1'>   
         
     <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}>
-    <Legend />
+    
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Salones Nivel AC 100</h1>
+        <Legend />
           {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
           {/*Boton de reset===============================*/}
