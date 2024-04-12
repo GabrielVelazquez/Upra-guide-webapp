@@ -410,7 +410,7 @@ const renderMarkers = () => {
       />
       <hr className='hr-modal ' />
       <p className="location-info-text">{selectedMarker[3]}</p>
-      {/* <p className="location-info-text">{selectedMarker[3]}</p> */}
+      <p className="location-info-text">{selectedMarker[4]}</p>
       {showInteriorFileButton && (
         <button onClick={handleViewInteriorCode}>View Interior File</button>
       )}

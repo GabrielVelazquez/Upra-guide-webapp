@@ -1,5 +1,6 @@
+
 import {React, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Asegúrate de tener react-router-dom instalado
+import { Link } from 'react-router-dom';
 import './Account.css'
 import { firestore } from './firebase.config';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
@@ -74,6 +75,10 @@ const Account = () => {
     } else {
       fetchUserData();
     }
+
+    return () => {
+      sessionStorage.removeItem('userData');
+    };
   }, [firestoreDB]);
 
  useEffect(() => {
