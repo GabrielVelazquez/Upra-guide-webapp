@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "./firebase.config";
 import { collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
-import "./admin-home2.css"; 
+import "./Admin-Users.css"; 
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -64,22 +64,29 @@ const AdminUsersPage = () => {
 
   return (
     <div className="admin-users-page"> {/* Agregamos una clase para aplicar estilos */}
-      <h2>Admin Users Page</h2>
+      <h1>Admin Users Page</h1>
+      <h2 className="admin-users-header">Users List</h2>
       <div className="users-list-container"> {/* Agregamos una clase para aplicar estilos */}
-        <h3>Users List</h3>
-        <ul>
+        
+        <div> {/*vertical look*/}
+        <div className="admin-users-tips">
+        <span>User email</span>
+        <span>Admin management</span>
+        <span>Discard account</span>
+        </div>
           {users.map((user) => (
-            <li key={user.id}>
+            
+            <div className="listdiv" key={user.id}>
               {user.email}{" "}
               <button onClick={() => handleToggleAdmin(user.id, user.isAdmin)}>
                 {user.isAdmin ? "Revoke Admin" : "Make Admin"}
               </button>
               <button onClick={() => handleDeleteUser(user.id)}>Delete User</button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
-    </div>
+    </div> /*vertical look*/
   );
 };
 
