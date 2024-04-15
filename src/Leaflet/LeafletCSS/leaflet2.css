@@ -75,6 +75,18 @@
     color: rgb(4, 4, 4);
 }*/
 
+.textbox_text{
+  font-weight:600;
+  font-size: medium;
+}
+
+.textbox_button{
+ border-color: #ffd703;
+  font-weight:600;
+
+
+}
+
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>switch button>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 .custom-checkbox input#status {

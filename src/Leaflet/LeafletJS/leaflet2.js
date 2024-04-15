@@ -5,8 +5,6 @@ import "leaflet/dist/leaflet.css";
 import "../LeafletCSS/leaflet2.css";
 import "../LeafletCSS/leafletMap.css";
 
-import LearningCommons from './leafletLC';
-import AC2 from './leafletAC';
 //import '../../maps2.css';
 
 import { firestore } from '../../firebase.config';
@@ -59,7 +57,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
             markerData.name, //0
             markerData.lat, //1
             markerData.lng, //2
-            markerData.interiorArea,//3
+            //markerData.interiorArea,//3
             //markerData.leafletUrl//4
           ];
         });
@@ -106,7 +104,7 @@ const getFilteredMarkers = () => {
   if (showInteriorMarkers) { //interiormarkercat???????????
     return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
   } else {
-    return filteredMarkersCat.filter((marker) => marker.length !== 4); // Display los location markers when checkbox is unchecked
+    return filteredMarkersCat.filter((marker) => marker.length !== 3); // Display los location markers when checkbox is unchecked
   }
 };
 
@@ -116,7 +114,7 @@ useEffect(() => {
     fetchData().then((markersArray) => {
       setMarkers(markersArray);
       // Separate interior markers from the combined array
-      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 4);
+      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 3);
       setInteriorMarkers(interiorMarkersArray);
       setDataFetched(true);
       console.log('fetched markers');
@@ -186,7 +184,7 @@ const handleInteriorCategoryChange = (event) => {
 };
 
 const filteredInteriorMarkersCat = selectedInteriorCategory
-  ? markers.filter((marker) => marker[4] === selectedInteriorCategory)
+  ? markers.filter((marker) => marker[3] === selectedInteriorCategory)
   : markers;
 
   //-----------------------------------V enter en search V-----------------------------------
@@ -244,8 +242,8 @@ const renderMarkers = () => {
         <Marker key={index} position={[lat, lng]} icon={customMarker}>
           <Popup>
             <div>
-              <p>{name}</p>
-              <button onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
+              <p className="textbox_text" >{name}</p>
+              <button className="textbox_button" onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
             </div>
           </Popup>
         </Marker>
@@ -261,6 +259,63 @@ const handleInteriorMarkerClick = (name) => {
     navigate('/leafletLC'); // va al js file llamado leafletLC
   } else if (name === 'AC 100 y 200') {
     navigate('/leafletAC'); // va al js file llamado leafletAC
+  }
+
+  /*else if (name === 'AC 200') {
+    navigate('/leafletAC2'); // va al js file llamado leafletAC
+  }
+  */
+
+  else if (name === 'Dept. CCOM/GTEC') {
+    navigate('/LeafletCCOM'); 
+  }
+  else if (name === 'Centro de estudiantes') {
+    navigate('/leafletCentroEst'); 
+  }
+  else if (name === 'Dept. Biol') {
+    navigate('/leafletBIOL'); 
+  }
+  else if (name === 'CTI') {
+    navigate('/leafletCTI'); 
+  }
+  else if (name === 'ISMUL') {
+    navigate('/leafletISMUL'); 
+  }
+  else if (name === 'Cafeteria') {
+    navigate('/leafletCafeteria'); 
+  }
+  else if (name === 'AC 217-220') {
+    navigate('/leafletAC217to220'); 
+  }
+  else if (name === 'Decanato de estudiantes') {
+    navigate('/leafletDecanatoEst');
+  }
+  else if (name === 'Dept. FISI/QUIMI & AC 231-237') {
+    navigate('/leafletAC231'); 
+  }
+  else if (name === 'Anexos') {
+    navigate('/leafletAnexos'); 
+  }
+  else if (name === 'Dept. Enfermeria') {
+    navigate('/leafletDeptEnfe'); 
+  }
+  else if (name === 'leafletLabBio') {
+    navigate('/leafletLabBio'); 
+  }
+  else if (name === 'Laboratorios de quimica') {
+    navigate('/leafletLabQuim'); 
+  }
+  else if (name === 'leafletAC307') {
+    navigate('/leafletAC307');
+  }
+
+  /*else if (name === 'AC 307') {
+    navigate('/leaflet307'); // va al js file llamado leafletAC
+  }
+  */
+
+  else if (name === 'Dept. ESPA/MATE') {
+    navigate('/leafletAC302'); 
   }
   //seguir a~nadiendo
 
@@ -289,11 +344,11 @@ const handleInteriorMarkerClick = (name) => {
       {/*--------------------------------ACTUAL DROPDOWNBOXES------------------------------------*/}
    {showInteriorSelect ? (
         <div className="interior-select">
-          <select id="interiorArea" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
+          <select id="name" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
             <option value="">All Interiors</option>
-            {[...new Set(interiorMarkers.map((marker) => marker[3]))].map((interiorArea) => (
-              <option key={interiorArea} value={interiorArea}>
-                {interiorArea}
+            {[...new Set(interiorMarkers.map((marker) => marker[3]))].map((name) => (
+              <option key={name} value={name}>
+                {name}
               </option>
             ))}
           </select>
@@ -349,10 +404,6 @@ const handleInteriorMarkerClick = (name) => {
 
        
 <Routes>
-        {/*define ruta como el homepage*/}
-        <Route path="/leafletLC" element={<LearningCommons />} />
-        <Route path="/leafletAC" element={<AC2 />} />
-        {/*seguir a~nadiendo mas*/}
       
         <Route element={<MapContainer ref={mapRef} center={[18.46899726783513, -66.7414733800247]} zoom={19} />}> {/*info del mapa */}
 

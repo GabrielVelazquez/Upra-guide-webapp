@@ -10,10 +10,10 @@ const AdminIndoors = () => {
     name: '',
     lat: '',
     lng: '',
-    level: '',
-    description: '',
-    leafletFile: null,
-    categoria: '', 
+    //level: '',
+    //description: '',
+    //leafletFile: null,
+    //categoria: '', 
   });
 
   const handleChange = (e) => {
@@ -21,34 +21,40 @@ const AdminIndoors = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  /*
   const handleLeafletFileChange = (e) => {
     const file = e.target.files[0];
     setFormData((prevData) => ({ ...prevData, leafletFile: file }));
   };
+  */
 
   const handleAddLocation = async () => {
-    if (!formData.name || !formData.lat || !formData.lng || !formData.level || !formData.description || !formData.leafletFile) {
-      alert('Please fill in all fields and select a Leaflet file.');
+    if (!formData.name || !formData.lat || !formData.lng){ //|| !formData.level || !formData.description || !formData.leafletFile) {
+      alert('Please fill in all fields.'); // and select a Leaflet file.');
       return;
     }
   
     try {
       const locationCollection = collection(firestore, 'interior');
-      const leafletRef = ref(storage, `leafletJS/${formData.leafletFile.name}`);
+      //const leafletRef = ref(storage, `leafletJS/${formData.leafletFile.name}`);
       
-      await uploadBytes(leafletRef, formData.leafletFile);
-      const leafletUrl = await getDownloadURL(leafletRef);
+      //await uploadBytes(leafletRef, formData.leafletFile);
+      //const leafletUrl = await getDownloadURL(leafletRef);
   
       await addDoc(locationCollection, { 
         name: formData.name,
         lat: formData.lat,
         lng: formData.lng,
-        level: formData.level,
-        description: formData.description,
-        leafletUrl: leafletUrl, // Aquí se guarda la URL de descarga en lugar del objeto File
-        categoria: formData.categoria
+        //level: formData.level,
+        //description: formData.description,
+        //leafletUrl: leafletUrl, // Aquí se guarda la URL de descarga en lugar del objeto File
+        //categoria: formData.categoria
       });
-      
+      setFormData({
+        name: '',
+        lat: '',
+        lng: '',
+      });
       
       alert('Location added');
     } catch (error) {
@@ -105,6 +111,7 @@ const AdminIndoors = () => {
             />
           </div>
 
+      {/*}
           <div className="Account-info-row">
             <p className="Account-info-text-course-admin">Level:</p>
             <input
@@ -116,8 +123,10 @@ const AdminIndoors = () => {
               placeholder="Ex. level 1"
             />
           </div>
+  */}
 
-          <div className="Account-info-row">
+
+          {/*<div className="Account-info-row">
             <p className="Account-info-text-course-admin">Description:</p>
             <input
               type="text"
@@ -127,9 +136,10 @@ const AdminIndoors = () => {
               className="Account-info-input"
               placeholder="Ex. public park"
             />
-          </div>
+           </div>
+           */}
 
-          <div className="Account-info-row">
+         {/*} <div className="Account-info-row">
             <p className="Account-info-text-course-admin">Leaflet File:</p>
             <input
               type="file"
@@ -138,6 +148,7 @@ const AdminIndoors = () => {
               className="Account-info-input"
             />
           </div>
+          */}
         </div>
       </div>
     </div>
