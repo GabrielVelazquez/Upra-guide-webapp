@@ -35,10 +35,7 @@
   }
 }
 
-.interior-select {
-  top: 5%; /* Espacio desde la parte superior */
-  left: 90%;
-}
+
 
 @media (max-width: 767px) {
 .interior-select  {
@@ -47,10 +44,10 @@
   }
 }
   
-  .category-select{
-    top: 5%; /* Espacio desde la parte superior */
-    left: 90%;
-  }
+.interior-select {
+  top: 5%; /* Espacio desde la parte superior */
+  left: 89%;
+}
   /* 768px (mobile) probado en iphone 15 pro */
 @media (max-width: 767px) {
   .category-select, .interior-select  {

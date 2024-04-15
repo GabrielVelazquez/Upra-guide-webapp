@@ -4,6 +4,9 @@
 import "leaflet/dist/leaflet.css";
 import "../LeafletCSS/leaflet2.css";
 import "../LeafletCSS/leafletMap.css";
+
+import LearningCommons from './leafletLC';
+import AC2 from './leafletAC';
 //import '../../maps2.css';
 
 import { firestore } from '../../firebase.config';
@@ -11,13 +14,21 @@ import { collection, getDocs } from 'firebase/firestore';
 import Modal from 'react-modal';
 import React, { useState, useRef, useEffect } from "react";
 import LocImgPH from "../../images/location_PlaceHolder_img.png";
-import { Link } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Link } from 'react-router-dom';
+
 import {customMarker} from './LeafletIcons';  // Import the custom marker icon
 import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker y Popup
 
 import { MapContainer, TileLayer } from "react-leaflet";
+
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
 Modal.setAppElement('#root'); //  root para accesar el modal
+
+
 
     const fetchData = async () => {
       try {
@@ -49,7 +60,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
             markerData.lat, //1
             markerData.lng, //2
             markerData.interiorArea,//3
-            markerData.leafletUrl//4
+            //markerData.leafletUrl//4
           ];
         });
 
@@ -82,6 +93,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
       
       const mapRef = useRef(null); // Reference to the map instance
+      const navigate = useNavigate();
 
       const handleCenterMap = () => {
         if (mapRef.current) {
@@ -104,7 +116,7 @@ useEffect(() => {
     fetchData().then((markersArray) => {
       setMarkers(markersArray);
       // Separate interior markers from the combined array
-      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 5);
+      const interiorMarkersArray = markersArray.filter((marker) => marker.length === 4);
       setInteriorMarkers(interiorMarkersArray);
       setDataFetched(true);
       console.log('fetched markers');
@@ -112,60 +124,16 @@ useEffect(() => {
   }
 }, [dataFetched]);
 
- // Dentro del componente Intro
-const [showInteriorFileButton, setShowInteriorFileButton] = useState(false);
-const [selectedInteriorMarker, setSelectedInteriorMarker] = useState(null); // Para almacenar el marcador interior seleccionado
-
-const handleMarkerClick = (marker) => { 
-  setSelectedMarker(marker); 
-  document.body.style.overflow = 'hidden';
-  // Si es un interior, mostrar el botón para ver el archivo y ejecutar el código
-  if (marker.length === 5) {
-    setShowInteriorFileButton(true);
-    setSelectedInteriorMarker(marker);
-    if (selectedInteriorMarker) {
-      handleViewInteriorCode(); // Llama a la función para ejecutar el código
-    }
-  } else {
-    setShowInteriorFileButton(false);
-  }
-};
-
-
-
-const handleClosePopup = () => {
-  setSelectedMarker(null);
-  setShowInteriorFileButton(false); // Asegúrate de ocultar el botón cuando se cierre el modal
-};
-
-// const handleViewInteriorFile = () => {
-//   if (selectedInteriorMarker) {
-//     // Obtener la URL del archivo desde los datos del marcador
-//     const fileUrl = selectedInteriorMarker[4]; // Suponiendo que selectedInteriorMarker[4] contiene la URL del archivo interior
-    
-//     // Abrir una nueva ventana del navegador con la URL del archivo
-//     window.open(fileUrl, '_blank');
-//   }
-// };
-const handleViewInteriorCode = async () => {
-  if (selectedInteriorMarker) {
-    const codeUrl = selectedInteriorMarker[4]; // URL del código JavaScript
-    try {
-      const response = await fetch(codeUrl);
-      if (!response.ok) {
-        throw new Error('Failed to fetch code');
-      }
-      const code = await response.text();
-      // Ejecuta el código obtenido
-      eval(code);
-    } catch (error) {
-      console.error('Error al obtener o ejecutar el código:', error);
-    }
-  }
-};
-
-
-
+  //Presionar Marker
+  const handleMarkerClick = (marker) => { 
+    setSelectedMarker(marker); 
+    document.body.style.overflow = 'hidden';
+    //setSelectedMarkerIndex(index);//recolor
+  };
+  const closePopup = () => { // const closePopup = (index) => { //index para el recolor al normal
+    setSelectedMarker(null);
+    setSelectedMarkerIndex(null);//recolor a su color original despuse del search
+  };
 
 
   // Función para manejar el cambio en el campo de búsqueda
@@ -173,44 +141,6 @@ const handleViewInteriorCode = async () => {
     setSearchValue(event.target.value);
   };
 
-//Función para buscar y seleccionar un marcador según el texto de búsqueda
-// const handleSearch = () => {
-//   if (searchValue.trim() === "") {
-//     alert("Search empty");
-//     return;
-//   }
-
-//   const searchLowerCase = searchValue.toLowerCase();
-
-//   let filteredMarkersForSearch = markers;
-
-//   if (selectedCategory) {
-//     // If a category is selected, filter markers by category
-//     filteredMarkersForSearch = markers.filter((marker) => marker[6] === selectedCategory);
-//     setSelectedMarkerIndex(markers.indexOf(markers));
-//   }
-
-//   if (selectedInteriorCategory) {
-//     // If a category is selected, filter markers by category
-//     filteredMarkersForSearch = markers.filter((marker) => marker[4] === selectedInteriorCategory);
-//     setSelectedMarkerIndex(markers.indexOf(markers));
-//   }
-
-
-//   const foundMarker = filteredMarkersForSearch.find((marker) => {
-//     const markerNameLower = marker[0].toLowerCase();
-//     return markerNameLower.includes(searchLowerCase);
-//   });
-
-//   if (foundMarker) {
-//     setCenterPosition({
-//       lat: parseFloat(foundMarker[1]),
-//       lng: parseFloat(foundMarker[2]),
-//     });
-//     setSearchValue("");
-//     setSelectedMarkerIndex(markers.indexOf(foundMarker));
-//   }
-// };
 
 const handleSearch = () => {
   if (searchValue.trim() === "") {
@@ -287,28 +217,60 @@ const handleCheckboxChange = (event) => {
 };
 
 const renderMarkers = () => {
-  const filteredMarkers = getFilteredMarkers(); 
-  
-  return filteredMarkers.map((marker, index) => (
-    <Marker
-      key={index}
-      position={[marker[1], marker[2]]}
-      icon={customMarker} 
-      eventHandlers={{
-        click: () => {
-          handleMarkerClick(marker);
-        },
-      }}
-    >
-      <Popup>{marker[0]}</Popup> {/* Muestra el nombre en el Popup */}
-    </Marker>
-  ));
+  const filteredMarkers = getFilteredMarkers();
+
+  return filteredMarkers.map((marker, index) => {
+    const [name, lat, lng, level, description, image, categoria] = marker;
+
+    if (categoria) {
+      // Location Marker
+      return (
+        <Marker
+          key={index}
+          position={[lat, lng]}
+          icon={customMarker}
+          eventHandlers={{
+            click: () => {
+              handleMarkerClick(marker);
+            },
+          }}
+        >
+          <Popup>{name}</Popup>
+        </Marker>
+      );
+    } else {
+      // Interior Marker
+      return (
+        <Marker key={index} position={[lat, lng]} icon={customMarker}>
+          <Popup>
+            <div>
+              <p>{name}</p>
+              <button onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
+            </div>
+          </Popup>
+        </Marker>
+      );
+    }
+  });
+};
+
+const handleInteriorMarkerClick = (name) => {
+  console.log(`interior seleccionado: ${name}`); //deubbnig
+
+  if (name === 'Learning Commons') { //name es igual al  Nombre de marker en firebase
+    navigate('/leafletLC'); // va al js file llamado leafletLC
+  } else if (name === 'AC 100 y 200') {
+    navigate('/leafletAC'); // va al js file llamado leafletAC
+  }
+  //seguir a~nadiendo
+
 };
 
      
-    return (
+    return ( 
       
-        <div>
+            <div>
+
             {/* --------------------------------SEARCH BOX------------------------------------*/}
       
       
@@ -337,7 +299,7 @@ const renderMarkers = () => {
           </select>
         </div>
       ) : (
-        <div className="category-select"> 
+        <div className="interior-select"> 
           <select id="categoria" onChange={handleCategoryChange} value={selectedCategory}>
             <option value="">All Locations</option>
             {[...new Set(markers.map((marker) => marker[6]))].map((categoria) => (
@@ -381,45 +343,50 @@ const renderMarkers = () => {
   <img
     src="https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/target_destination_current_location_place_focus_recenter-512.png"
     alt="Center Map"
-    style={{ width: '30px', height: '30px' }} // Adjust width and height as needed
+    style={{ width: '30px', height: '30px' }} 
   />
 </button>
 
        
-        
+<Routes>
+        {/*define ruta como el homepage*/}
+        <Route path="/leafletLC" element={<LearningCommons />} />
+        <Route path="/leafletAC" element={<AC2 />} />
+        {/*seguir a~nadiendo mas*/}
+      
+        <Route element={<MapContainer ref={mapRef} center={[18.46899726783513, -66.7414733800247]} zoom={19} />}> {/*info del mapa */}
+
+        </Route>
+      </Routes>
        
 {/*category drop down WIP*/}
 
 
 {/*-----------------------------------------------------MODAL------------------------------------------------------------*/}
 <Modal className="modal-box"
-  isOpen={selectedMarker !== null}
-  onRequestClose={handleClosePopup}
-  contentLabel="Marker Information Modal"
-  style={{ overlay: { zIndex: 3 }, content: { zIndex: 3 } }}
->
-  {selectedMarker && (
-    <div>
-      <div className="modal-box-top ">
-        <p className="location-title">{selectedMarker[0]}</p>
-      </div>
-      <img
-        className="location-img"
-        src={selectedMarker[5] !== "" ? selectedMarker[5] : LocImgPH} 
-        alt={selectedMarker[5] !== "" ? selectedMarker[0] : "LocImgPH"} 
-      />
-      <hr className='hr-modal ' />
-      <p className="location-info-text">{selectedMarker[3]}</p>
-      <p className="location-info-text">{selectedMarker[4]}</p>
-      {showInteriorFileButton && (
-        <button onClick={handleViewInteriorCode}>View Interior File</button>
-      )}
-      <div className="modal-exit">
-        <Link className="modal-exit" onClick={handleClosePopup}>Exit</Link>
-      </div>
-    </div>
-  )}
-</Modal>
+        isOpen={selectedMarker !== null}
+        onRequestClose={closePopup}
+        contentLabel="Marker Information Modal"
+        style={{ overlay: { zIndex: 3 }, content: { zIndex: 3 } }}
+      >
+        {selectedMarker && (
+          
+          <div>
+            <div className="modal-box-top ">
+              <p className="location-title">{selectedMarker[0]}</p>
+            </div>
+            <img
+  className="location-img"
+  src={selectedMarker[5] !== "" ? selectedMarker[5] : LocImgPH} alt={selectedMarker[5] !== "" ? selectedMarker[0] : "LocImgPH"} /> {/*Imagen*/}
+            <hr className='hr-modal ' />
+            <p className="location-info-text">{selectedMarker[3]}</p>{/*Nivel*/}
+            <p className="location-info-text">{selectedMarker[4]}</p>{/*Descripcion*/}
+            <div className="modal-exit">
+              <Link className="modal-exit" onClick={closePopup}>Exit</Link>{/*Exit*/}
+            </div>
+          </div>
+        )}
+      </Modal>
       {renderMarkers()}
         </MapContainer>
         </div>
