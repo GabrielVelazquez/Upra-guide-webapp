@@ -12,6 +12,7 @@ import pull from '../../images/leaflet_pullStation.png';
 import meet from '../../images/leaflet_meetingpoint.jpg';
 import exit from '../../images/icon_salida.png';
 import altexit from '../../images/icon_alt_salida.png';
+
 const AC2 = () => {
   const bounds = [[-90, -90], [1800, 880]];
   const mapRef = useRef(null); // Reference to the map instance
@@ -75,7 +76,7 @@ const AC2 = () => {
         <div className="legend-item">
           <img src={meet} alt="Punto de reunión" />
           Puntos de reunión <br />
-          (Estacionamiento facultad 1)
+          (Estacionamiento Facultad 1)
         </div>
        
       </div>

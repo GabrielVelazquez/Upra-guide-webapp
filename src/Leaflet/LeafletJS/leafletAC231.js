@@ -7,6 +7,12 @@ import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui';
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
+
 
 const AC231 = () => {
     const bounds = [[-90, -90], [1700, 890]];
@@ -45,6 +51,39 @@ const AC231 = () => {
     
     
    ];
+
+   const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 2 y 4)
+        </div>
+       
+      </div>
+    );
+  };
 
     //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -166,7 +205,7 @@ const AC231 = () => {
         ];
     
       case 'LAB AC236':
-        return [[32.690986, 104.765625],[-60.801247, 96.328125],[-73.142056, 96.328125],
+        return [[32.672043, 96.328125],[-60.801247, 96.328125],[-73.142056, 96.328125],
         [-73.142056, 1.933594],[-73.142056, -64.6875],[-73.142056, -60.46875]];
     
       case 'Centro Computos Quimica':
@@ -346,6 +385,7 @@ return (
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
         <h1 className='title-lc'>Salones AC231-237 y Departamento de Fisica/Quimica</h1>
+        <Legend />
 
 {/*Boton de centralizar===============================*/}
 <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />

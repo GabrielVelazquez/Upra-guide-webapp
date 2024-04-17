@@ -10,6 +10,8 @@ import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterBu
 import extintor from '../../images/leaflet_extintor.jpg';
 import pull from '../../images/leaflet_pullStation.png';
 import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const AC302 = () => {
   const bounds = [[-90, -90], [1700, 700]];
@@ -51,6 +53,17 @@ const AC302 = () => {
     return (
       <div className="legend">
         <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
         <div className="legend-item">
           <img src={extintor} alt="Extintor" />
           Extintores
@@ -62,15 +75,14 @@ const AC302 = () => {
         <div className="legend-item">
           <img src={meet} alt="Punto de reunión" />
           Puntos de reunión <br />
-          (Estacionamiento facultad 1)
+          (Estacionamiento Facultad 2)
         </div>
-        <div className="legend-item">
-          <Polyline positions={pathLineCoords} color="red" /> {/*rutas de salida*/}
-          Ruta de salida
-        </div>
+       
       </div>
     );
   };
+ 
+   
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -259,10 +271,11 @@ return (
 
   <div className='leafletcss1'>   
     <MapContainer center={[9.261135, 296.015625]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
-    <Legend />
+    
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Salones AC 302-306 y Departamento de ESPA/MATE</h1>
+        <Legend />
 {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[9.261135, 296.015625]} zoom={1} />
 {/*Boton de reset===============================*/}
