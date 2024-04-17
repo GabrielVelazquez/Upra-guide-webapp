@@ -92,18 +92,29 @@ flex-direction: column;
 /*IPHONE 15*/
   @media (max-width: 767px) {
     .recenter-button{
-        /*right: 10px;
-        bottom: 100px;
-        */
+
+      /*ORIGNAL*/
+      /*
         width: 45px;
         height: 45px;
         right: 2.5vw;
-       /* bottom: 12%;*/
-      
+        */
+        position: absolute;
+        right: 10px;
+        height: 5.5%;
+        width: 10%;
+        margin-top: 80px;
+
+        /*EL DEL SWTICH FOR REFERENCE
+        position: absolute;
+left: 1px;
+top:81%;
+margin-top: 80px;
+        */
+     
 
     }
 }
-
 
 /*ZOOM==================================================================================*/
 .leaflet-control-zoom{
