@@ -51,7 +51,8 @@ const Decanato = () => {
   ];
 
   const MeetingPointLocations = [
-    [83.440046, 826.875000],
+    [82.126582, -27.421875],//Afuera de COMU/Decanato
+    [35.765738, -96.328125],//Afuera de ADEM
     
   ];
 
@@ -79,8 +80,11 @@ const Decanato = () => {
 //COORDENADAS DE RUTAS DE SALIDAS y nombre de salon (para el case)-------------------------------------------------------------------------
   const getPolylinePositions = (name) => {
     switch (name) {
-      case 'AC101':
-        return [[-53.958744, 60.820313],[-40.450481, 60.820313],[-40.450481, 26.367188],[-81.04527, 26.367188],[-81.04527, -84.726563]];
+      case 'ADEM':
+        return [[-62.155262, -10.546875],[-62.155262,-100.898438],[30.173549, -100.898438]];
+      
+      case 'COMU':
+        return [[34.425458, -9.843750],[80.307206, -9.843750]]
 
       
           
@@ -93,6 +97,11 @@ const Decanato = () => {
   //COORDENADAS DE RUTAS DE SALIDAS Alternas------------------------------------------------------------------------
   const getAltPolylinePositions = (name) => {
     switch (name) {
+      case 'ADEM':
+        return [[-71.700088, -2.812500],[-71.700088, -16.523438],[77.623106,-16.523438]];
+      
+      case 'COMU':
+        return [[34.425458, -9.843750],[-61.491836, -9.843750],[-61.491836, -96.679687],[30.173549, -96.679687]]
      
         default:
         return [];
@@ -186,7 +195,7 @@ return (
       <ImageOverlay url={imagenmapa} bounds={bounds} />
       <h1 className='title-lc'>Decanato de estudiantes</h1>
 {/*Boton de centralizar===============================*/}
-          <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+          <RecenterButton handleCenterMap={handleCenterMap} center={[10.949322, 280.796875]} zoom={1} />
 {/*Boton de reset===============================*/}
           <ResetButton handleResetPolylines={handleResetPolylines} />
          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}
