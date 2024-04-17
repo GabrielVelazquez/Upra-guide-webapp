@@ -1,32 +1,90 @@
 .leaflet-container{
-  margin-top: 85px;
+ /* margin-top: 85px; */
   width: 100vw;
-  height: 87.91vh;
+  height: 100vh;
   z-index: 2;
   overflow: hidden;
 }
+
 /*IPHONE 15*/
-@media (max-width: 767px) {
+
+@media screen and (max-width: 767px) {
   .leaflet-container  {
-    top: 10%;
     width: 100vw;  /*tratar con porciento*/
-  height: 77.60vh;
+  /*height: 100vh; */
+  height:100vh;
+
+  }
+}
+/*SWITCH BOX-------------------------------------------------------------------*/
+.custom-checkbox{
+    position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
+     z-Index: 3; /* Asegura que queden sobre el mapa   998*/
+    margin: 5px; /* Ajusta para dar espacio alrededor de los elementos */
+      top: 85px;
+      left: 1px;
+  }
+
+    /* MOBILE*/
+@media screen and (max-width: 767px) {
+  .custom-checkbox {
+    position: absolute;
+    left: 1px;
+    top:81%;
+    margin-top: 80px;
+    
+  }
+}
+  
+/*SORT DROP BOX-------------------------------------------------------------------*/
+ .interior-select {
+  position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
+  z-Index: 3; /* Asegura que queden sobre el mapa   998*/
+top:6vh;
+  }
+  
+  /* MOBILE*/
+@media screen and (max-width: 767px) {
+  .interior-select {
+    position: absolute;
+    top: -33px; /* Adjust as needed */
+    right: 10px;
+    margin-top: 80px;
+    
   }
 }
 
-  .search-bar, .category-select, .custom-checkbox, .interior-select {
-    position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
-     z-Index: 3; /* Asegura que queden sobre el mapa   998*/
-    margin: 10px; /* Ajusta para dar espacio alrededor de los elementos */
-  }
-  
+/*SEARCH BAR-------------------------------------------------------------------*/
   .search-bar {
-  
-    top: 12%;
-    left: 50%;
-    transform: translateX(-50%); /* Centra el search bar horizontalmente */
+    position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
+     z-Index: 3; 
+    margin: 3px; 
+    top:12.25vh;
+    /* transform: translateX(-50%); /* Centra el search bar horizontalmente */
   }
+
+    /* DESKTOP*/
+  @media screen and (min-width: 769px) {
+    .search-bar {
+      justify-content: center; /* Center items horizontally */
+      align-items: flex-start; /* Align items to the start (top side) */
+      margin-left: 42%;
+    }
+  }
+
+  /* MOBILE*/
+@media screen and (max-width: 767px) {
+  .search-bar {
+    position: absolute;
+  top: 10px; /* Adjust as needed */
+  left: 1px; /* Adjust as needed */ /* Center items vertically */
+    width:50%;
+    margin-top: 80px;
+  }
+}
+  
 /* 768px (mobile) probado en iphone 15 pro */
+/*
 @media (max-width: 767px) {
   .search-bar  {
     top: 11.90%;
@@ -34,39 +92,38 @@
     transform: translateX(-50%);
   }
 }
+*/
 
 
-
+/*
 @media (max-width: 767px) {
 .interior-select  {
-    top: 5%; /* Espacio desde la parte superior*/
+    top: 5%; /* Espacio desde la parte superior* /
     left: 68%;
   }
-}
+  */
   
-.interior-select {
-  top: 5%; /* Espacio desde la parte superior */
-  left: 89%;
-}
+
   /* 768px (mobile) probado en iphone 15 pro */
+  /*
 @media (max-width: 767px) {
   .category-select, .interior-select  {
-    top: 5%; /* Espacio desde la parte superior*/
+    top: 5%; /* Espacio desde la parte superior* /
     left: 68%;
   }
 }
+*/
   
-  .custom-checkbox {
-    top: 12%;
-    left: 1px;
-  }
+ 
   /* 768px (mobile) probado en iphone 15 pro */
+  /*
 @media (max-width: 767px) {
   .custom-checkbox {
     top: 92%;
    left:.05%;
   }
 }
+*/
 
 
   /*

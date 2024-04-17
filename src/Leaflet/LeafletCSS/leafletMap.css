@@ -89,20 +89,27 @@ flex-direction: column;
  .recenter-button:active {
     background-color:#FFD703;
   }
-  
 /*IPHONE 15*/
   @media (max-width: 767px) {
     .recenter-button{
-        right: 10px;
+        /*right: 10px;
         bottom: 100px;
+        */
+        width: 45px;
+        height: 45px;
+        right: 2.5vw;
+       /* bottom: 12%;*/
+      
+
     }
 }
+
 
 /*ZOOM==================================================================================*/
 .leaflet-control-zoom{
    /*top: 30px;
     right: 0px; */
-    top: 520px;
+    top: 86vh;
     left: 1470px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
     border-color: #B1B1B1;
@@ -111,8 +118,11 @@ flex-direction: column;
 /*IPHONE 15*/
 @media (max-width: 767px) {
     .leaflet-control-zoom{
-        top: 470px;
-    left: 338.5px;
+        /* top: 78vh;
+    left: 86vw;
+    */
+    opacity: 0%;
+
     }
 }
 
