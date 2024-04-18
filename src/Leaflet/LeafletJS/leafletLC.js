@@ -262,7 +262,7 @@ if (polygon) {
 return (
 
   <div className='leafletcss1'>   
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[15.166345, 389.53125]} zoom={1} maxZoom={3}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Learning Commons</h1>

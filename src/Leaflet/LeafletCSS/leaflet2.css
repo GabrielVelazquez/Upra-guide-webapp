@@ -43,14 +43,14 @@
 top:6vh;
   }
   
-  /* MOBILE*/
+/* MOBILE*/
 @media screen and (max-width: 767px) {
   .interior-select {
     position: absolute;
-    top: -33px; /* Adjust as needed */
+    top: -33px; 
     right: 10px;
     margin-top: 80px;
-    
+ max-width: 150px; /* Adjust the value according to your needs */
   }
 }
 

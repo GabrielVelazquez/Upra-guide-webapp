@@ -102,7 +102,10 @@ Modal.setAppElement('#root'); //  root para accesar el modal
 // filtra markers segun el checkbox 
 const getFilteredMarkers = () => {
   if (showInteriorMarkers) { //interiormarkercat???????????
-    return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
+return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
+  //return filteredInteriorMarkersCat;
+
+
   } else {
     return filteredMarkersCat.filter((marker) => marker.length !== 3); // Display los location markers when checkbox is unchecked
   }
@@ -183,9 +186,11 @@ const handleInteriorCategoryChange = (event) => {
   setSelectedInteriorCategory(newInteriorCategory);
 };
 
-const filteredInteriorMarkersCat = selectedInteriorCategory
-  ? markers.filter((marker) => marker[3] === selectedInteriorCategory)
+ const filteredInteriorMarkersCat = selectedInteriorCategory
+  ? markers.filter((marker) => marker[0] === selectedInteriorCategory)
   : markers;
+
+
 
   //-----------------------------------V enter en search V-----------------------------------
      const handleKeyPress = (e) => {
@@ -346,7 +351,7 @@ const handleInteriorMarkerClick = (name) => {
         <div className="interior-select">
           <select id="name" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
             <option value="">All Interiors</option>
-            {[...new Set(interiorMarkers.map((marker) => marker[3]))].map((name) => (
+            {[...new Set(interiorMarkers.map((marker) => marker[0]))].map((name) => (
               <option key={name} value={name}>
                 {name}
               </option>
@@ -379,15 +384,22 @@ const handleInteriorMarkerClick = (name) => {
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
 
-        <MapContainer ref={mapRef} center={[18.46899726783513, -66.7414733800247]} zoom={19} 
+        <MapContainer ref={mapRef} center={[18.46899726783518, -66.7414733800247]} zoom={20}   
+        minZoom={16} 
 >
 {/*I WANT THE CENTER OF THE IMAGE*/}
         {/*<h1 className="title-indoor">learning common</h1>*/}
         
         <TileLayer 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        /*url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"*/
+        /*LEAFLET DEFAULT*/
+         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+         /*GOOGLE FREE*/
+          /* url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" */
+         /*SATELLITET*/
+         /*url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"*/
+         /*url="https://maps.geoapify.com/v1/tile/osm-liberty/{z}/{x}/{y}.png" */
+         /*url="mapbox://styles/gabidraco/clv4q670y02db01p63jnw0dt6?acces_token=pk.eyJ1IjoiZ2FiaWRyYWNvIiwiYSI6ImNsdjRubm5leDBhbTMyam51bGZkdmVuNjIifQ.XkAS-kYyXrOoPBRDj_J-3Q" */
         />
 
         {/*Button to center the map---------------------------------------------------------------------------------------------------*/}
