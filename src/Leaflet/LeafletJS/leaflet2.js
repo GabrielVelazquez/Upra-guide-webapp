@@ -173,10 +173,12 @@ const handleSearch = () => {
   const handleCategoryChange = (event) => {
     const newCategory = event.target.value || ""; 
     setSelectedCategory(newCategory);
+    console.log("Filtered category:", newCategory);
+    /*console.log("filter:", newCategory.categoria);*/
   };
   const filteredMarkersCat = selectedCategory
     ? markers.filter((marker) => marker[6] === selectedCategory)
-    : markers;
+    : markers;   
 
 
 //-----------------------------------Sort por interior------------------------------------
@@ -184,12 +186,12 @@ const handleSearch = () => {
 const handleInteriorCategoryChange = (event) => {
   const newInteriorCategory = event.target.value || "";
   setSelectedInteriorCategory(newInteriorCategory);
+  console.log("Filtered category:", newInteriorCategory);
 };
 
- const filteredInteriorMarkersCat = selectedInteriorCategory
-  ? markers.filter((marker) => marker[0] === selectedInteriorCategory)
-  : markers;
-
+const filteredInteriorMarkersCat = selectedInteriorCategory
+  ? interiorMarkers.filter((marker) => marker[0] === selectedInteriorCategory)
+  : interiorMarkers;
 
 
   //-----------------------------------V enter en search V-----------------------------------
@@ -220,12 +222,17 @@ const handleCheckboxChange = (event) => {
 };
 
 const renderMarkers = () => {
-  const filteredMarkers = getFilteredMarkers();
+  let filteredMarkers;
+  if (showInteriorMarkers) {
+    filteredMarkers = filteredInteriorMarkersCat;
+  } else {
+    filteredMarkers = filteredMarkersCat.filter((marker) => marker.length !== 3);
+  }
 
   return filteredMarkers.map((marker, index) => {
     const [name, lat, lng, level, description, image, categoria] = marker;
 
-    if (categoria) {
+    if (categoria) { //componentes de markers para diferentes popups
       // Location Marker
       return (
         <Marker
@@ -251,6 +258,14 @@ const renderMarkers = () => {
               <button className="textbox_button" onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
             </div>
           </Popup>
+
+         {/* <div className="certify-container">
+            <div className="certify-box">
+                lol
+            </div>
+          </div>
+          */}
+
         </Marker>
       );
     }
@@ -304,8 +319,8 @@ const handleInteriorMarkerClick = (name) => {
   else if (name === 'Dept. Enfermeria') {
     navigate('/leafletDeptEnfe'); 
   }
-  else if (name === 'leafletLabBio') {
-    navigate('/leafletLabBio'); 
+  else if (name === 'Laboratorios de biologia') {
+    navigate('/leafletLabBiol'); 
   }
   else if (name === 'Laboratorios de quimica') {
     navigate('/leafletLabQuim'); 
@@ -351,7 +366,8 @@ const handleInteriorMarkerClick = (name) => {
         <div className="interior-select">
           <select id="name" onChange={handleInteriorCategoryChange} value={selectedInteriorCategory}>
             <option value="">All Interiors</option>
-            {[...new Set(interiorMarkers.map((marker) => marker[0]))].map((name) => (
+            {/*{[...new Set(interiorMarkers.map((marker) => marker[3]))].map((name) => (*/}
+              {[...new Set(interiorMarkers.map((marker) => marker[0]))].map((name) => (
               <option key={name} value={name}>
                 {name}
               </option>
@@ -361,6 +377,7 @@ const handleInteriorMarkerClick = (name) => {
       ) : (
         <div className="interior-select"> 
           <select id="categoria" onChange={handleCategoryChange} value={selectedCategory}>
+            
             <option value="">All Locations</option>
             {[...new Set(markers.map((marker) => marker[6]))].map((categoria) => (
               <option key={categoria} value={categoria}>
@@ -384,20 +401,28 @@ const handleInteriorMarkerClick = (name) => {
       
 {/* --------------------------------ACTUAL MAP------------------------------------*/}
 
-        <MapContainer ref={mapRef} center={[18.46899726783518, -66.7414733800247]} zoom={20}   
-        minZoom={16} 
+        <MapContainer ref={mapRef} center={[18.46899726783518, -66.7414733800247]}  zoom={18}  
+        //minZoom={16} maxZoom={20}
 >
 {/*I WANT THE CENTER OF THE IMAGE*/}
         {/*<h1 className="title-indoor">learning common</h1>*/}
         
         <TileLayer 
+        minZoom={16} maxZoom={19} 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
         /*LEAFLET DEFAULT*/
+        /*NO PERMITE 20 ZOOM*/
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
          /*GOOGLE FREE*/
-          /* url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" */
-         /*SATELLITET*/
+         /*PERMITE 20 ZOOM*/
+           /*url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" */
+
+         /*SATELLITTE*/
+         /*NO PERMITE 20 ZOOM*/
          /*url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"*/
+
          /*url="https://maps.geoapify.com/v1/tile/osm-liberty/{z}/{x}/{y}.png" */
          /*url="mapbox://styles/gabidraco/clv4q670y02db01p63jnw0dt6?acces_token=pk.eyJ1IjoiZ2FiaWRyYWNvIiwiYSI6ImNsdjRubm5leDBhbTMyam51bGZkdmVuNjIifQ.XkAS-kYyXrOoPBRDj_J-3Q" */
         />
