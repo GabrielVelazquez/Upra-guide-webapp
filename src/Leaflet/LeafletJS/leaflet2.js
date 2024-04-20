@@ -256,15 +256,31 @@ const renderMarkers = () => {
             <div>
               <p className="textbox_text" >{name}</p>
               <button className="textbox_button" onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
-            </div>
-          </Popup>
+            
+           
 
-         {/* <div className="certify-container">
+            </div>
+
+{/*SO UGLY, FIXXXXXXXXXXXX*/}
+            <div className="certify-container">
+      <input className="certify-checkbox"
+        type="checkbox"
+
+                                                    /*checked={checked}
+                                                    onChange={handleChange}
+                                                    */
+      />
             <div className="certify-box">
-                lol
+               Certificar la ruta de salida
             </div>
           </div>
-          */}
+          
+  {/*SO UGLY, FIXXXXXXXXXXXX  */}
+
+          </Popup>
+
+         
+          
 
         </Marker>
       );

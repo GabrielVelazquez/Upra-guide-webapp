@@ -140,19 +140,18 @@ top:6vh;
 .textbox_button{
  border-color: #ffd703;
   font-weight:600;
+  margin-bottom: 10px;
 }
 
 .certify-container
 {
-  position:absolute;
-  top: 55vh;
-  left: 10px;
+
   background-color: #eaf1f7;
   padding: 3px;
   border: 2px solid #b6bec6;
   border-radius: 5px;
   z-index: 9999; /* Higher z-index value to ensure it's in front */
-  width: 20%;
+ 
 }
 
 .certify-box
@@ -161,7 +160,12 @@ top:6vh;
   align-items: center;
   margin-bottom: 7px;
   color: black;
+  justify-content: center;
 
+}
+
+.certify-checkbox{
+background-color: red;
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>switch button>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/

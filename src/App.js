@@ -57,11 +57,6 @@ function App() {
          
           {/*------------Navigation---------------*/}
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/admin-home" element={<AdminHome />} />
-          <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
-          <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
-          <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
-          <Route exact path="/Admin_Indoors" element={<AdminIndoors/>}/>
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/map" element={<Map />} />
@@ -69,6 +64,13 @@ function App() {
           <Route exact path="/About" element={<About />} />
           <Route exact path="/Account" element={<Account />} />
           <Route exact path="/maps2" element={<Maps2 />} />
+
+           {/*------------Admin---------------*/}
+          <Route exact path="/admin-home" element={<AdminHome />} />
+          <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
+          <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
+          <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
+          <Route exact path="/Admin_Indoors" element={<AdminIndoors/>}/>
 
           {/*------------SALONES DE LEAFLET---------------*/}
           <Route exact path="/leafletLC" element={<LearningCommons/>} /> 
