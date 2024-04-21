@@ -78,7 +78,7 @@ const AC231 = () => {
         <div className="legend-item">
           <img src={meet} alt="Punto de reunión" />
           Puntos de reunión <br />
-          (Estacionamiento Facultad 2 y 4)
+          (Estacionamiento Facultad 2)<br />(Estacionamiento Facultad 4)
         </div>
        
       </div>

@@ -7,6 +7,11 @@ import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui';
+import extintor from '../../images/leaflet_extintor.jpg';
+//import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const Anexos = () => {
     const bounds = [[-110, -110], [1400, 400]];
@@ -41,6 +46,36 @@ const Anexos = () => {
    const MeetingPointLocations = [
     [-83.719340, 212.343750],[-81.577134, 444.375000]
    ];
+
+   const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 1) <br /> (Porton University Gardens)
+        </div>
+       
+      </div>
+    );
+  };
 
     //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -251,6 +286,7 @@ return (
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
         <h1 className='title-lc'>Salones Anexos</h1>
+        <Legend />
 
 {/*Boton de centralizar===============================*/}
 <RecenterButton handleCenterMap={handleCenterMap} center={[-1.953225, 128.671875]} zoom={1} />
