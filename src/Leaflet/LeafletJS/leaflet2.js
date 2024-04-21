@@ -1,3 +1,4 @@
+//checkbox works but has lots of errors
 //import {React} from "react";
 /*import "./leaflet2.css";*/
 // import "../LeafletCSS/leaflet2.css";
@@ -7,8 +8,10 @@ import "../LeafletCSS/leafletMap.css";
 
 //import '../../maps2.css';
 
-import { firestore } from '../../firebase.config';
+import { firestore,auth } from '../../firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
+
+
 import Modal from 'react-modal';
 import React, { useState, useRef, useEffect } from "react";
 import LocImgPH from "../../images/location_PlaceHolder_img.png";
@@ -18,15 +21,14 @@ import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Link } from 'react-router-dom';
 
-import {customMarker} from './LeafletIcons';  // Import the custom marker icon
+import {customMarker} from './LeafletIcons';  // marker custom
 import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker y Popup
 
 import { MapContainer, TileLayer } from "react-leaflet";
 
-import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
+import {RecenterButton, ResetButton}from './leafletui'; // Import RecenterButton 
+
 Modal.setAppElement('#root'); //  root para accesar el modal
-
-
 
     const fetchData = async () => {
       try {
@@ -93,9 +95,15 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const mapRef = useRef(null); // Reference to the map instance
       const navigate = useNavigate();
 
+      const [isChecked, setIsChecked] = useState(false);
+
+      const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+      const [markerCheckStates, setMarkerCheckStates] = useState({});
+
       const handleCenterMap = () => {
         if (mapRef.current) {
-          mapRef.current.setView([18.46899726783513, -66.7414733800247], 19); // Centering the map to the desired coordinates and zoom level
+          mapRef.current.setView([18.46899726783513, -66.7414733800247], 19); // centralizar el mapa y zoom level
         }
       };
 
@@ -107,16 +115,32 @@ return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra i
 
 
   } else {
-    return filteredMarkersCat.filter((marker) => marker.length !== 3); // Display los location markers when checkbox is unchecked
+    return filteredMarkersCat.filter((marker) => marker.length !== 3); // display los location markers when checkbox is unchecked
   }
 };
 
 
 useEffect(() => {
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if (user) {
+      setUserLoggedIn(true);
+      fetchData(); // llama a funcion: fetchData function si esta loged in
+    } else {
+      setUserLoggedIn(false);
+      // si no esta loged in
+    }
+  });
+
+  return () => {
+    unsubscribe();
+  };
+}, []);
+
+useEffect(() => {
   if (!dataFetched) {
     fetchData().then((markersArray) => {
       setMarkers(markersArray);
-      // Separate interior markers from the combined array
+      // Separa interior markers del array
       const interiorMarkersArray = markersArray.filter((marker) => marker.length === 3);
       setInteriorMarkers(interiorMarkersArray);
       setDataFetched(true);
@@ -128,16 +152,16 @@ useEffect(() => {
   //Presionar Marker
   const handleMarkerClick = (marker) => { 
     setSelectedMarker(marker); 
-    document.body.style.overflow = 'hidden';
-    //setSelectedMarkerIndex(index);//recolor
+    document.body.style.overflow = 'hidden';//scroll bar se esconde al entrar al modal (truco)
   };
   const closePopup = () => { // const closePopup = (index) => { //index para el recolor al normal
     setSelectedMarker(null);
     setSelectedMarkerIndex(null);//recolor a su color original despuse del search
+    document.body.style.overflow = 'visible'; //scroll bar regresa everywhere cuando sale del mapa modal
   };
 
 
-  // Función para manejar el cambio en el campo de búsqueda
+  // Funcion para manejar el cambio en el campo de búsqueda
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
@@ -203,7 +227,7 @@ const filteredInteriorMarkersCat = selectedInteriorCategory
     };
 
 //-----------------------------------CHECKBOX------------------------------------
-// Update handleCheckboxChange to toggle the flag
+// Update handleCheckboxChange que hace toggle
 const handleCheckboxChange = (event) => {
   setShowInteriorMarkers(event.target.checked);
   const checkbox =event.target;
@@ -220,6 +244,15 @@ const handleCheckboxChange = (event) => {
   }
 
 };
+/*CERTIFY CHECBOX*/
+const handleCheckboxChangecert = (event, markerName) => {
+  const { checked } = event.target;
+  setMarkerCheckStates(prevState => ({
+    ...prevState,
+    [markerName]: checked
+  }));
+  console.log('checked')
+};
 
 const renderMarkers = () => {
   let filteredMarkers;
@@ -228,6 +261,28 @@ const renderMarkers = () => {
   } else {
     filteredMarkers = filteredMarkersCat.filter((marker) => marker.length !== 3);
   }
+
+  /*---CHECKBOX-----------------------------------------------------------*/
+
+
+
+  /* const handleCheckboxChange = (value) => {
+    setIsChecked(value);
+  };*/
+
+/*
+const handleCheckboxChange = (event) => { //ORIGINALBOXCHANGE
+  setIsChecked(event.target.checked);
+};
+*/
+
+/*const handleCheckboxChangecert = (event) => {
+  setIsChecked(event.target.checked);
+};*/
+
+
+
+   /*---CHECKBOX-----------------------------------------------------------*/
 
   return filteredMarkers.map((marker, index) => {
     const [name, lat, lng, level, description, image, categoria] = marker;
@@ -262,19 +317,30 @@ const renderMarkers = () => {
             </div>
 
 {/*SO UGLY, FIXXXXXXXXXXXX*/}
-            <div className="certify-container">
-      <input className="certify-checkbox"
-        type="checkbox"
 
-                                                    /*checked={checked}
-                                                    onChange={handleChange}
-                                                    */
-      />
+{userLoggedIn && (
+            <div className="certify-container">
+
+            {/*//ORIGINALHANDLEBOXCHANGE
+            <input
+  className="certify-checkbox"
+  type="checkbox"
+  checked={isChecked} //cuando se marca
+  onChange={handleCheckboxChange} // Use handleCheckboxChange function here
+/>
+*/}
+<input
+  className="certify-checkbox"
+  type="checkbox"
+  checked={markerCheckStates[name] || false}
+/*onChange={(event) => handleCheckboxChange(event, name)} */ //ORIGINALHANDLEBOXCHANGE
+  onChange={(event) => handleCheckboxChangecert(event, name)}
+/>
             <div className="certify-box">
                Certificar la ruta de salida
             </div>
           </div>
-          
+)}
   {/*SO UGLY, FIXXXXXXXXXXXX  */}
 
           </Popup>
@@ -290,6 +356,13 @@ const renderMarkers = () => {
 
 const handleInteriorMarkerClick = (name) => {
   console.log(`interior seleccionado: ${name}`); //deubbnig
+
+    // chequea si el checkbox esta checked en el marker (del stackoverflow link)
+    const isChecked = markerCheckStates[name] || false;
+
+  if (isChecked) { //ve si esta checked
+    console.log(`Certificar la ruta de salida para: ${name}`); // nombre del marker 
+  }
 
   if (name === 'Learning Commons') { //name es igual al  Nombre de marker en firebase
     navigate('/leafletLC'); // va al js file llamado leafletLC

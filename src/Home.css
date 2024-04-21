@@ -1,6 +1,7 @@
 .home {
   padding: 0px;
   margin-top: 60px;
+
   /* background-color:#dfe6ed; */
 }
 
@@ -67,12 +68,13 @@
   display: flex; /*left */
   align-items: flex-start;
   margin-left: 10px;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
   margin-top: -10px;
 }
 
 .link-text {
   text-decoration: none;
+  color: black;
 }
 
 /* linea de division */

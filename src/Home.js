@@ -11,7 +11,9 @@ import schedule_icon from "./icons/Schedule_icon.png";
 import upra_icon from "./icons/Upra_img.jpg";
 import portal_icon from "./icons/Portal_img.png";
 import cursos_icon from "./icons/CursosUpra_img.jpg";
+import Footer from "./footer";
 const Home = () => {
+  document.body.style.overflow = 'visible'; //scroll siempre, evita bug saliendo del modal
   //const location = useLocation();
   //const { state } = location;
 
@@ -153,7 +155,7 @@ const Home = () => {
         </a>
 
         <a className="image pressable-image" href="https://portal.upr.edu/">
-          <h1>Portal</h1>
+          <h1 className="link-text">Portal</h1>
           <img
             src={portal_icon }
             alt="Portal"
@@ -161,15 +163,17 @@ const Home = () => {
         </a>
 
         <a className="image pressable-image" href="https://cursos.upra.edu/">
-          <h1 className="TEXT">Moodle</h1>
+          <h1 className="link-text">Moodle</h1>
           <img
             src={cursos_icon }
             alt="Moodle"
           />
         </a>
       </div>
+        <Footer/>
     </div>
   );
+
 };
 
 // function hideContainers(auth) {

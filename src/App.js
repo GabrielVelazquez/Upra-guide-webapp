@@ -50,6 +50,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+
         <Routes>
           {/* <Route exact path="/Hub" element={<HUB />} />{" "} */}
           {/*tengo "/" para que sea el default por el momento */}
