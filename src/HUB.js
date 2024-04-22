@@ -33,7 +33,7 @@ const HUB = () => {
             <button className="pretty-button">AC 100 ✅ (LEYEND) ✅</button>
           </Link>
           <Link to="/leafletAC2">
-            <button className="pretty-button">AC 200 ✅</button>
+            <button className="pretty-button">AC 200 ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletCCOM">
@@ -49,11 +49,11 @@ const HUB = () => {
           </Link>
 
           <Link to="/leafletBIOL">
-            <button className="pretty-button">BIOL ✅</button>
+            <button className="pretty-button">BIOL ✅ (LEYEND) ✅ </button>
           </Link>
 
           <Link to="/leafletISMUL">
-            <button className="pretty-button">ISMUL ✅</button>
+            <button className="pretty-button">ISMUL ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletCafeteria">
@@ -66,15 +66,15 @@ const HUB = () => {
           </Link>
           
           <Link to="/leafletDecanatoEst">
-            <button className="pretty-button">Decanato Estudiantes ❌</button>
+            <button className="pretty-button">Decanato Estudiantes ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletAC231">
-            <button className="pretty-button">AC231 ✅</button>
+            <button className="pretty-button">AC231 ✅ (LEYEND) ✅</button>
           </Link>
           
           <Link to="/leafletAnexos">
-            <button className="pretty-button">Anexos ✅</button>
+            <button className="pretty-button">Anexos ✅ (LEYEND) ✅</button>
           </Link>
           
           <Link to="/leafletDeptEnfe">
@@ -90,11 +90,11 @@ const HUB = () => {
           </Link>
 
           <Link to="/leafletAC307">
-            <button className="pretty-button">AC307-310 ✅</button>
+            <button className="pretty-button">AC307-310 ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletAC302">
-            <button className="pretty-button">AC302-306 ✅</button>
+            <button className="pretty-button">AC302-306 ✅ (LEYEND) ✅</button>
           </Link>
 
         </div>

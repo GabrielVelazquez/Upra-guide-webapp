@@ -8,11 +8,15 @@ import React, { useState,useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
-
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const Decanato = () => {
  
@@ -42,6 +46,8 @@ const Decanato = () => {
     [55.400136, 76.816406], //Entre COMU y Decanato
     [72.027132, 28.652344], //Afuera de COMU
     [41.244772, 503.789063], //Afuera de Seguridad ocupacional/cerca Asistencia
+    [-68.911005, 349.453125], //Entre Registraduria y Consejeria
+    [21.289374, 165.234375], //Afuera de Recaudaciones
     
     
 
@@ -56,8 +62,42 @@ const Decanato = () => {
   const MeetingPointLocations = [
     [82.126582, -27.421875],//Afuera de COMU/Decanato
     [35.765738, -96.328125],//Afuera de ADEM
+    [84.405941, -9.843750], //Est Facultad 1 (Admisiones, Seguridad, Registraduria, Asistencia)
     
   ];
+
+  const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 1) <br /> (Estacionamiento Administracion)
+        </div>
+       
+      </div>
+    );
+  };
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -103,6 +143,28 @@ const Decanato = () => {
       [-23.725012,663.046875],[51.944265,663.046875],[51.944265,620.507813],[47.989922,620.507813]],
       markerPosition:[-1.406109, 575.859375],
     },
+    {
+      name: 'REGISTRADURIA',
+      positions: [[-26.431228, 663.046875],[-83.979259, 663.046875],[-83.979259, 471.796875],[-83.979259, 412.910156],[-66.231457, 412.910156],[-66.231457, 471.796875],
+      [-66.231457, 504.492188],[-30.145127, 504.492188],[-30.145127, 607.148438],[-26.431228, 607.148438]],
+      markerPosition: [-69.162558, 577.265625],
+    },
+    {
+      name: 'RECAUDACIONES',
+      positions: [[70.959697, 67.851563],[70.959697,160.664063],[-34.741612, 160.664063],[-34.741612, 67.851563]],
+      markerPosition: [25.165173, 114.609375],
+    },
+    {
+      name: 'CONSEJERIA Y SERVICIOS PSICOLOGICOS',
+      positions: [[-84.052561, 162.421875],[-64.320872,162.421875],[-64.320872,238.359375],[-57.891497, 238.359375],[-57.891497, 290.566406],
+      [-71.187754,290.566406],[-71.187754,341.367188],[-74.959392,341.367188],[-74.959392,397.792969],[-84.052561, 397.792969]],
+      markerPosition: [-78.903929, 279.843750],
+    },
+    {
+      name: 'BAÑOS F/M',
+      positions: [[84.284704, 204.433594],[84.284704, 340.839844],[71.524909, 340.839844],[71.524909, 204.433594]],
+      markerPosition: [79.592349, 290.917969],
+    }
 
   
     
@@ -120,20 +182,33 @@ const Decanato = () => {
       
       case 'ADMISIONES':
         return [[65.658275, 404.296875],[83.400042, 404.296875],[83.400042, 383.203125],[84.706049,383.203125],
-        [84.706049, 208.828125]];
+        [84.706049, 208.828125],[84.706049,30.937500]];
 
       case 'CONSEJERIA':
         return [[24.527135, 404.296875],[65.658275, 404.296875],[83.400042, 404.296875],[83.400042, 383.203125],[84.706049,383.203125],
-          [84.706049, 208.828125]];
+          [84.706049, 208.828125],[84.706049,30.937500]];
       
       case 'ASISTENCIA ECONOMICA':
         return [[49.382373, 613.125],[49.382373, 530.156250],[58.170702, 530.156250],[58.170702, 404.296875],[65.658275, 404.296875],[83.400042, 404.296875],[83.400042, 383.203125],[84.706049,383.203125],
-              [84.706049, 208.828125]];  
+              [84.706049, 208.828125],[84.706049,30.937500]];  
       
       case 'SALUD Y SEGURIDAD OCUPACIONAL':
         return [[-3.864255, 505.546875],[-3.864255, 488.671875],[56.944974, 488.671875],[56.944974, 406.054688],
-        [83.111071, 406.054688],[83.111071, 382.851563],[84.541361,382.851563],[84.541361,208.828125]];
+        [83.111071, 406.054688],[83.111071, 382.851563],[84.541361,382.851563],[84.541361,208.828125],[84.541361,30.937500]];
 
+      case 'REGISTRADURIA':
+        return [[-63.074866, 506.250000],[-63.074866, 488.671875],[56.944974, 488.671875],[56.944974, 406.054688],
+        [83.111071, 406.054688],[83.111071, 382.851563],[84.541361,382.851563],[84.541361,208.828125],[84.541361,30.937500]];
+
+      case 'CONSEJERIA Y SERVICIOS PSICOLOGICOS':
+        return [[-64.320872, 196.875000],[79.935918, 196.875000],[79.935918,-13.007813]];
+      
+      case 'RECAUDACIONES':
+        return [[37.439974, 161.718750],[37.439974, 176.484375],[76.100796, 176.484375],[76.100796, 3.164063]];
+      
+      case 'BAÑOS F/M':
+        return [[79.687184, 204.082031],[79.687184,-16.347656]];
+      
         default:
         return [];
     }
@@ -163,6 +238,19 @@ const Decanato = () => {
       case 'SALUD Y SEGURIDAD OCUPACIONAL':
         return [[-3.864255, 505.546875],[-3.864255, 488.671875],[-52.696361, 488.671875],[-52.696361, 183.164063],
           [71.635993, 183.164063],[76.184995, 183.164063],[76.184995, -11.953125]];
+      
+      case 'REGISTRADURIA':
+        return [[-63.074866, 506.250000],[-63.074866, 488.671875],[-56.170023,488.671875],[-56.170023,183.164063],
+        [71.635993, 183.164063],[76.184995, 183.164063],[76.184995, -11.953125]];
+
+      case 'CONSEJERIA Y SERVICIOS PSICOLOGICOS':
+        return [[-64.320872, 194.501953],[81.281717, 194.501953],[81.281717,29.53125]];
+
+      case 'RECAUDACIONES':
+        return [[37.439974, 161.718750],[37.439974, 186.679688],[80.05805, 186.679688],[80.05805, 3.164063]];
+      
+      case 'BAÑOS F/M':
+        return [[77.273855, 203.554688],[77.273855,5.273438]];
 
         default:
         return [];
@@ -251,12 +339,13 @@ if (polygon) {
 return (
 
   <div className='leafletcss1'>   
-    <MapContainer center={[10.949322, 280.796875]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
+    <MapContainer center={[32.546813, 243.281250]} zoom={1}  ref={mapRef}> {/*ASEGURATE DE QUE ESTE EN EL MISMO MEDIO*/}
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
       <h1 className='title-lc'>Decanato de estudiantes</h1>
+      <Legend />
 {/*Boton de centralizar===============================*/}
-          <RecenterButton handleCenterMap={handleCenterMap} center={[10.949322, 280.796875]} zoom={1} />
+          <RecenterButton handleCenterMap={handleCenterMap} center={[32.546813, 243.281250]} zoom={1} />
 {/*Boton de reset===============================*/}
           <ResetButton handleResetPolylines={handleResetPolylines} />
          {renderPolygons()} {/*muestra funciones de render a poligonos (salones)*/}

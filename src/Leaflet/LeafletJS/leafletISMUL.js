@@ -7,6 +7,11 @@ import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui';
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const ISMUL = () => {
     const bounds = [[-90, -90], [1800, 880]];
@@ -47,6 +52,39 @@ const ISMUL = () => {
   
     
    ];
+
+   const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 2 y 4)
+        </div>
+       
+      </div>
+    );
+  };
 
     //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -294,13 +332,14 @@ return (
   
   <div className='leafletcss1'>   
        
-    <MapContainer center={[15.166345, 389.53125]} zoom={1}ref={mapRef}>
+    <MapContainer center={[11.178402, 395.15625]} zoom={1}ref={mapRef}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
         <h1 className='title-lc'>ISMUL, Salones AC331-337 y Departamento de Ingles</h1>
+        <Legend />
 
 {/*Boton de centralizar===============================*/}
-<RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
+<RecenterButton handleCenterMap={handleCenterMap} center={[11.178402, 395.15625]} zoom={1} />
 {/*Boton de reset===============================*/}
   <ResetButton handleResetPolylines={handleResetPolylines} />
 
