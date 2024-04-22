@@ -15,11 +15,11 @@ const Footer = () => {
           <ul>
             {/*hacer botones*/}
             {/*<li>Map</li>*/}
-            <Link className='link' to="/leaflet2">Map</Link>
+            <Link className='link' to="/leaflet2">-Map</Link>
             <li></li>
-            <Link className='link' to="/SignUp">Sign up</Link>
+            <Link className='link' to="/SignUp">-Sign up</Link>
             <li> </li>
-            <Link className='link' to="/Events">Events</Link>
+            <Link className='link' to="/Events">-Events</Link>
            
           </ul>
         </div>

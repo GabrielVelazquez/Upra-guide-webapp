@@ -26,18 +26,18 @@ const HUB = () => {
 
 
           <Link to="/leafletLC">
-            <button className="pretty-button">Learning Commons ✅</button>
+            <button className="pretty-button">Learning Commons ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletAC">
-            <button className="pretty-button">AC 100 ✅</button>
+            <button className="pretty-button">AC 100 ✅ (LEYEND) ✅</button>
           </Link>
           <Link to="/leafletAC2">
             <button className="pretty-button">AC 200 ✅</button>
           </Link>
 
           <Link to="/leafletCCOM">
-            <button className="pretty-button">DEPT. CCOM/GTEC ✅</button>
+            <button className="pretty-button">DEPT. CCOM/GTEC ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletCentroEst">
