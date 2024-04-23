@@ -45,7 +45,7 @@ const HUB = () => {
           </Link>
 
           <Link to="/leafletCTI">
-            <button className="pretty-button">CTI ✅</button>
+            <button className="pretty-button">CTI ✅ (LEYEND) ✅ </button>
           </Link>
 
           <Link to="/leafletBIOL">
@@ -57,12 +57,12 @@ const HUB = () => {
           </Link>
 
           <Link to="/leafletCafeteria">
-            <button className="pretty-button">Cafeteria ⚠️</button>
+            <button className="pretty-button">Cafeteria ✅ (LEYEND) ✅</button>
           </Link>
          
 
           <Link to="/leafletAC217to220">
-            <button className="pretty-button">AC 217-220 ✅</button>
+            <button className="pretty-button">AC 217-220 ✅ (LEYEND) ✅</button>
           </Link>
           
           <Link to="/leafletDecanatoEst">
@@ -78,15 +78,15 @@ const HUB = () => {
           </Link>
           
           <Link to="/leafletDeptEnfe">
-            <button className="pretty-button">Departamento de enfermeria ✅ </button>
+            <button className="pretty-button">Departamento de enfermeria ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletLabBiol">
-            <button className="pretty-button">Laboratorios de Biologia ✅</button>
+            <button className="pretty-button">Laboratorios de Biologia ✅ (LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletLabQuim">
-            <button className="pretty-button">Laboratorios de Quimica ✅</button>
+            <button className="pretty-button">Laboratorios de Quimica ✅(LEYEND) ✅</button>
           </Link>
 
           <Link to="/leafletAC307">

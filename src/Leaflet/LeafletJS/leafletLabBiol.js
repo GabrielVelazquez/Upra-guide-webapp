@@ -7,6 +7,12 @@ import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui';
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
+import inflamable from '../../images/inflamableIcon_leaflet.png';
 
 const LabBiol = () => {
     const bounds = [[-85, -85], [1400, 400]];
@@ -44,6 +50,43 @@ const LabBiol = () => {
    const InflamableLocations = [
     [68.429686, 93.515625],[16.644491, 138.867188]
    ];
+
+   const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={inflamable} alt="Combustible/Inflamable" />
+          Combustible Inflamable
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 2 y 3)
+        </div>
+       
+      </div>
+    );
+  };
 
     //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -209,13 +252,14 @@ return (
   
   <div className='leafletcss1'>   
        
-    <MapContainer center={[-1.953225, 128.671875]} zoom={1}ref={mapRef}>
+    <MapContainer center={[38.272689, 148.359375]} zoom={1}ref={mapRef}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
 
         <h1 className='title-lc'>Laboratorios de Biologia</h1>
+        <Legend />
 
 {/*Boton de centralizar===============================*/}
-<RecenterButton handleCenterMap={handleCenterMap} center={[-1.953225, 128.671875]} zoom={1} />
+<RecenterButton handleCenterMap={handleCenterMap} center={[38.272689, 148.359375]} zoom={1} />
 {/*Boton de reset===============================*/}
   <ResetButton handleResetPolylines={handleResetPolylines} />
 

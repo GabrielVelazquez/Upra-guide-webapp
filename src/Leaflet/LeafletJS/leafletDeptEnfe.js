@@ -7,6 +7,11 @@ import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 import {RecenterButton, ResetButton}from './leafletui'; // Import the RecenterButton component
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const DeptEnfermeria = () => {
   const bounds = [[-90, -90], [1700, 770]];
@@ -46,6 +51,39 @@ const DeptEnfermeria = () => {
     [-81.577655, -49.218750], // est facultada 4
     [84.339727, 702.421875], // est administracion
   ];
+
+  const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 4)<br /> (Estacionamiento Administracion)
+        </div>
+       
+      </div>
+    );
+  };
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -220,6 +258,7 @@ return (
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Departamento de Enfermeria</h1>
+        <Legend />
 {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[9.939225, 319.921875]} zoom={1} />
 {/*Boton de reset===============================*/}
