@@ -294,7 +294,7 @@ const renderPolygons2 = () => {
   };
   
   const NivelLayer = (
-    <div style={{ position: 'absolute', top: -12, right: 50, padding: 15, fontSize:15, color:'black'}}>
+    <div style={{ position: 'absolute', top: -40, right: 20, padding: 15, fontSize:20, color:'black', zIndex:999, marginTop:85}}>
       <p>Show 2nd level</p>
     </div>
   );
@@ -379,24 +379,28 @@ return (
           )  
         }
 
-<LayersControl position="topright">
+
+{/*<LayersControl position="topright"> */}
+<LayersControl position="bottomleft">  {/*por ahora solo sale en pc*/}
   <LayersControl.Overlay name="Second level">
   <LayerGroup>
+  
     <ImageOverlay  url={imageURL} bounds = {[[-76.358727, 207.377930], [77.747603,412.757813]]}  />
     {renderPolygons2()}
     <Polyline positions={pathLineCoords2} color="red" /> {/*rutas de salida*/}
     <Polyline positions={AltpathLineCoords2} color="red" dashArray="10, 10"/>{/*dashArray style para lineas entre cortadas (alt)*/}
+   
     <SVGOverlay  bounds={bounds}>
       <text x="47%" y="6%" fill="#F1393A" fontWeight={'bold'} fontSize={30}>
         Level 2
       </text>
     </SVGOverlay>
+    
     {NivelLayer}
     {/*{hidelevel1poly} */}
     </LayerGroup>
   </LayersControl.Overlay>
 </LayersControl>
-
 
 {/*DEV ONLY IMAGE COORDINATES*/}
 <MapClickHandler />{/*IMAGE COORDINATES*/}

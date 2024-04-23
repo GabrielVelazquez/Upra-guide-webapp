@@ -414,14 +414,13 @@ const handleInteriorMarkerClick = (name) => {
   else if (name === 'Laboratorios de quimica') {
     navigate('/leafletLabQuim'); 
   }
-  else if (name === 'leafletAC307') {
+  else if (name === 'AC 307') {
     navigate('/leafletAC307');
   }
 
-  /*else if (name === 'AC 307') {
+  else if (name === 'AC 307') {
     navigate('/leaflet307'); // va al js file llamado leafletAC
   }
-  */
 
   else if (name === 'Dept. ESPA/MATE') {
     navigate('/leafletAC302'); 
