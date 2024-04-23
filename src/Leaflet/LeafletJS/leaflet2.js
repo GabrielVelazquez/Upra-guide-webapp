@@ -28,6 +28,8 @@ import { MapContainer, TileLayer } from "react-leaflet";
 
 import {RecenterButton, ResetButton}from './leafletui'; // Import RecenterButton 
 
+import scuffed_close_button from "../../icons/scuffed_close_button.png";
+
 Modal.setAppElement('#root'); //  root para accesar el modal
 
     const fetchData = async () => {
@@ -549,6 +551,15 @@ const handleInteriorMarkerClick = (name) => {
           
           <div>
             <div className="modal-box-top ">
+            {/*<Link className="modal-exit" onClick={closePopup}>Exit</Link> */}{/*Exit*/}
+            <Link className="modal-exit" onClick={closePopup}>
+            <img
+            style={{ width: '40px', height: '40px' }}
+              src={scuffed_close_button}
+              alt="Exit"
+            />
+            </Link>
+           
               <p className="location-title">{selectedMarker[0]}</p>
             </div>
             <img
@@ -558,7 +569,7 @@ const handleInteriorMarkerClick = (name) => {
             <p className="location-info-text">{selectedMarker[3]}</p>{/*Nivel*/}
             <p className="location-info-text">{selectedMarker[4]}</p>{/*Descripcion*/}
             <div className="modal-exit">
-              <Link className="modal-exit" onClick={closePopup}>Exit</Link>{/*Exit*/}
+             
             </div>
           </div>
         )}
