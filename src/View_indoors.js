@@ -63,8 +63,8 @@ const ViewIndoors = () => {
     return (
         <div className="admin-users-page">
             <h1>Admin View Indoors Page</h1>
-            <Link to="/Admin_indoors">Add Indoor</Link>
-            <h2 className="admin-users-header">Indoors List</h2>
+            <button className="Edit" to="/Admin_indoors">Add Indoor</button>
+            <h2 className="admin-users-header">Indoor Markers List</h2>
             <div className="users-list-container">
                 <div>
                     <div className="admin-users-tips">
@@ -78,6 +78,7 @@ const ViewIndoors = () => {
                             <div className="listdiv" key={indoor.id}>
                                 {editedIndoor === indoor.id ? (
                                     <div>
+                                        Name:
                                         <input
                                             className="inputs"
                                             type="text"
@@ -90,6 +91,7 @@ const ViewIndoors = () => {
                                                 setIndoors(updatedIndoors);
                                             }}
                                         />
+                                         Longitude:
                                         <input
                                             className="inputs"
                                             type="text"
@@ -102,6 +104,7 @@ const ViewIndoors = () => {
                                             }}
                                         />
                                         <br />
+                                        Latitude:
                                         <input
                                             className="inputs"
                                             type="text"
@@ -113,8 +116,10 @@ const ViewIndoors = () => {
                                                 setIndoors(updatedIndoors);
                                             }}
                                         />
-                                        <button onClick={handleSaveIndoor}>Save</button>
-                                        <button onClick={handleCancelEdit}>Cancel</button>
+                                        <div className="save-container">
+                                        <button className="Save" onClick={handleSaveIndoor}>Save</button>
+                                        <button className="Cancel" onClick={handleCancelEdit}>Cancel</button>
+                                        </div>
                                     </div>
                                 ) : (
                                     <>
@@ -122,7 +127,7 @@ const ViewIndoors = () => {
                                         <button className="Edit" onClick={() => handleEditIndoor(indoor.id)}>
                                             Edit Indoor
                                         </button>
-                                        <button onClick={() => handleDeleteIndoor(indoor.id)}>Delete Indoor</button>
+                                        <button className="Discard" onClick={() => handleDeleteIndoor(indoor.id)}>Delete Indoor</button>
                                     </>
                                 )}
                             </div>

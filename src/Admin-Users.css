@@ -31,10 +31,11 @@
 display: grid;
 grid-auto-flow: column;
 grid-column-gap: 15vw;
-
-justify-content: space-between; /* or space-around */
-align-items: center; /* optional, for vertical alignment */
+grid-template-columns: 1fr auto auto; /* Adjusted grid template columns */
+justify-content: space-between;
+align-items: center; /*vertical*/
 }
+
 
 
   

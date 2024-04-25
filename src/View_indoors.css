@@ -26,15 +26,15 @@
     text-align: left;
   }
 
-.listdiv{
-  margin-bottom:5%;
-display: grid;
-grid-auto-flow: column;
-grid-column-gap: 15vw;
-
-justify-content: space-between; /* or space-around */
-align-items: center; /* optional, for vertical alignment */
-}
+  .listdiv{
+    margin-bottom:5%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 15vw;
+  grid-template-columns: 1fr auto auto; /* Adjusted grid template columns */
+  justify-content: space-between;
+  align-items: center; /*vertical*/
+  }
 
 .inputs{
     margin-bottom: 1%;
@@ -43,12 +43,63 @@ align-items: center; /* optional, for vertical alignment */
 
 .Edit{
     justify-items: center;
+    background-color: #ffc107;
+    border-radius: 2px;
+    border: none;
+    width: 6vw;
+    height: 5vh;
+    font-weight:500;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.Discard{
+  justify-items: center;
+  background-color: #f64f64;
+  border-radius: 2px;
+  border: none;
+  width: 7vw;
+  height: 5vh;
+  font-weight:500;
+  font-size:15px;
+  cursor: pointer;
+}
+
+.Save{
+  justify-items: center;
+  background-color: #ffc107;
+  border-radius: 2px;
+  border: none;
+  width: 4vw;
+  height: 4vh;
+  font-weight:500;
+  font-size:16px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.Cancel{
+  justify-items: center;
+  background-color: #f64f64;
+  border-radius: 2px;
+  border: none;
+  width: 4vw;
+  height: 4vh;
+  font-weight:500;
+  font-size:16px;
+  cursor: pointer;
 }
 
 .text-area-style {
     font-family: "TuTipoDeLetra", sans-serif; /* Reemplaza "TuTipoDeLetra" con el nombre de tu tipo de letra */
     font-size: 16px; /* Tamaño de fuente, ajusta según sea necesario */
     /* Otros estilos adicionales que desees aplicar */
+}
+
+.save-container{
+  display: flex;
+  justify-content:center; /* or space-around */
+  align-items: center; /* optional, for vertical alignment */
 }
 
 

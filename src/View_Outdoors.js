@@ -105,6 +105,7 @@ const ViewOutdoors = () => {
                         <div className="listdiv" key={outdoor.id}>
                             {editedoutdoor === outdoor.id ? (
                                 <div>
+                                    Name:
                                     <input
                                         className="inputs"
                                         type="text"
@@ -117,6 +118,7 @@ const ViewOutdoors = () => {
                                             setOutdoors(updatedOutdoors);
                                         }}
                                     />
+                                    Longitude:
                                     <input
                                         className="inputs"
                                         type="text"
@@ -129,6 +131,7 @@ const ViewOutdoors = () => {
                                         }}
                                     />
                                     <br />
+                                    Latitude:
                                     <input
                                         className="inputs"
                                         type="text"
@@ -141,6 +144,7 @@ const ViewOutdoors = () => {
                                         }}
                                     />
                                     <br />
+                                    Category:
                                     <select
                                         className="inputs"
                                         value={outdoor.categoria}
@@ -158,6 +162,7 @@ const ViewOutdoors = () => {
                                         ))}
                                     </select>
                                     <br />
+                                    Description:
                                     <textarea
                                         className={`inputs text-area-style`}
                                         type="text"
@@ -170,6 +175,7 @@ const ViewOutdoors = () => {
                                         }}
                                     />
                                     <br />
+                                    Image:
                                     <input
                                         className="inputs"
                                         type="file"
@@ -178,6 +184,7 @@ const ViewOutdoors = () => {
                                     />
                                     <img src={outdoor.image} alt="Outdoor" style={{ width: "250px", height: "250px" }} />
                                     <br />
+                                    Level:
                                     <input
                                         className="inputs"
                                         type="text"
