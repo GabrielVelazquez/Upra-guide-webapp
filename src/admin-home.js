@@ -14,21 +14,31 @@ const AdminHome = () => {
       </div>
       <div className="options-container">
         <div className="option">
+        <img src={indoors_icon} alt="Add/Edit Indoors" />
+          <Link to="/View_indoors">
+            <span>View/Edit Indoors</span>
+          </Link>
           <Link to="/Admin_indoors">
-            <img src={indoors_icon} alt="Add/Edit Indoors" />
-            <span>Add/Edit Indoors</span>
+            <span>Add Indoors</span>
           </Link>
         </div>
         <div className="option">
+        <img src={outdoors_icon} alt="Add/Edit Outdoors" />
+          <Link to="/View_outdoors">
+            <span>View/Edit Outdoors</span>
+          </Link>
           <Link to="/Admin-outdoors">
-            <img src={outdoors_icon} alt="Add/Edit Outdoors" />
-            <span>Add/Edit Outdoors</span>
+            <span>Add Outdoors</span>
           </Link>
+          
         </div>
         <div className="option">
+        <img src={events_icon} alt="Add/Edit Events" />
+          <Link to="/View_events">
+            <span>View/Edit Events</span>
+          </Link>
           <Link to="/AdminEvents">
-            <img src={events_icon} alt="Add/Edit Events" />
-            <span>Add/Edit Events</span>
+            <span>Add Events</span>
           </Link>
         </div>
         <div className="option">

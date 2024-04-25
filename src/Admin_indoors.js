@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'; 
-import { firestore, storage } from './firebase.config';
+import { firestore } from './firebase.config';
 import './admin-home.css';
 
 const AdminIndoors = () => {
@@ -10,10 +9,7 @@ const AdminIndoors = () => {
     name: '',
     lat: '',
     lng: '',
-    //level: '',
-    //description: '',
-    //leafletFile: null,
-    //categoria: '', 
+ 
   });
 
   const handleChange = (e) => {
@@ -21,12 +17,7 @@ const AdminIndoors = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  /*
-  const handleLeafletFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({ ...prevData, leafletFile: file }));
-  };
-  */
+
 
   const handleAddLocation = async () => {
     if (!formData.name || !formData.lat || !formData.lng){ //|| !formData.level || !formData.description || !formData.leafletFile) {
@@ -36,19 +27,12 @@ const AdminIndoors = () => {
   
     try {
       const locationCollection = collection(firestore, 'interior');
-      //const leafletRef = ref(storage, `leafletJS/${formData.leafletFile.name}`);
-      
-      //await uploadBytes(leafletRef, formData.leafletFile);
-      //const leafletUrl = await getDownloadURL(leafletRef);
   
       await addDoc(locationCollection, { 
         name: formData.name,
         lat: formData.lat,
         lng: formData.lng,
-        //level: formData.level,
-        //description: formData.description,
-        //leafletUrl: leafletUrl, // Aquí se guarda la URL de descarga en lugar del objeto File
-        //categoria: formData.categoria
+      
       });
       setFormData({
         name: '',
@@ -110,45 +94,6 @@ const AdminIndoors = () => {
               placeholder="Ex. 139.5577317"
             />
           </div>
-
-      {/*}
-          <div className="Account-info-row">
-            <p className="Account-info-text-course-admin">Level:</p>
-            <input
-              type="text"
-              name="level"
-              value={formData.level}
-              onChange={handleChange}
-              className="Account-info-input"
-              placeholder="Ex. level 1"
-            />
-          </div>
-  */}
-
-
-          {/*<div className="Account-info-row">
-            <p className="Account-info-text-course-admin">Description:</p>
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="Account-info-input"
-              placeholder="Ex. public park"
-            />
-           </div>
-           */}
-
-         {/*} <div className="Account-info-row">
-            <p className="Account-info-text-course-admin">Leaflet File:</p>
-            <input
-              type="file"
-              accept=".js"
-              onChange={handleLeafletFileChange}
-              className="Account-info-input"
-            />
-          </div>
-          */}
         </div>
       </div>
     </div>

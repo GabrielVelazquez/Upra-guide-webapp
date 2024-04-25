@@ -1,0 +1,56 @@
+.admin-users-page {
+    padding: 2%; /* Ajusta el espacio alrededor del contenido */
+    margin-top: 3%;
+  }
+
+  .admin-users-header{
+    background:#2594e5;
+    align-items: flex-start;
+    display: flex; /*left */
+    text-indent: .5cm ;
+  }
+
+  .admin-users-tips{
+    background: #eaeaea;
+    display: flex;
+    justify-content: space-between; /* or space-around */
+    align-items: center; /* optional, for vertical alignment */
+    font-weight:bold;
+    margin-bottom: 2%;
+  }
+  
+  .users-list-container {
+    margin-top: 20px; /* Agrega espacio entre el encabezado y la lista de usuarios */
+    display: flex; /*left */
+    align-items: flex-start;
+    text-align: left;
+  }
+
+.listdiv{
+  margin-bottom:5%;
+display: grid;
+grid-auto-flow: column;
+grid-column-gap: 15vw;
+
+justify-content: space-between; /* or space-around */
+align-items: center; /* optional, for vertical alignment */
+}
+
+.inputs{
+    margin-bottom: 1%;
+  
+}
+
+.Edit{
+    justify-items: center;
+}
+
+.text-area-style {
+    font-family: "TuTipoDeLetra", sans-serif; /* Reemplaza "TuTipoDeLetra" con el nombre de tu tipo de letra */
+    font-size: 16px; /* Tamaño de fuente, ajusta según sea necesario */
+    /* Otros estilos adicionales que desees aplicar */
+}
+
+
+
+  

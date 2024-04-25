@@ -39,7 +39,9 @@ import AdminEvents from "./AdminEvents";
 import AdminIndoors from "./Admin_indoors";
 import AC307 from "./Leaflet/LeafletJS/leafletAC307";
 import AC302 from "./Leaflet/LeafletJS/leafletAC302";
-
+import ViewIndoors from "./View_indoors";
+import ViewOutdoors from "./View_Outdoors";
+import ViewEvents from "./View_events";
 //---------------------Interior maps-------------------------
 
 import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
@@ -72,6 +74,9 @@ function App() {
           <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
           <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
           <Route exact path="/Admin_Indoors" element={<AdminIndoors/>}/>
+          <Route exact path="/View_Indoors" element={<ViewIndoors/>}/>
+          <Route exact path="/View_Outdoors" element={<ViewOutdoors/>}/>
+          <Route exact path="/View_Events" element={<ViewEvents/>}/>
 
           {/*------------SALONES DE LEAFLET---------------*/}
           <Route exact path="/leafletLC" element={<LearningCommons/>} /> 
