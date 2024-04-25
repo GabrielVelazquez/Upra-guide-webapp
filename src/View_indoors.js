@@ -63,14 +63,22 @@ const ViewIndoors = () => {
     return (
         <div className="admin-users-page">
             <h1>Admin View Indoors Page</h1>
-            <button className="Edit" to="/Admin_indoors">Add Indoor</button>
-            <h2 className="admin-users-header">Indoor Markers List</h2>
+
+            <Link to="/Admin_indoors">
+            <button className="Edit-add">➕ Add Indoor marker</button>
+            </Link>
+           
+            <h2 className="admin-users-header">Indoor Markers List </h2>
+
+          
+
+
             <div className="users-list-container">
                 <div>
                     <div className="admin-users-tips">
                         <span>Name</span>
-                        <span>Edit</span>
-                        <span>Discard Indoor</span>
+                        <span>Edit info</span>
+                        <span>Discard marker</span>
                     </div>
                     {indoors
                         .sort((a, b) => a.name.localeCompare(b.name)) // Sort indoors alphabetically by name

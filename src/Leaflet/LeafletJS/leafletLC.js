@@ -309,7 +309,7 @@ return (
                                       {/*REFERENCIA DE CENTRALIZAR^^^*/}
       <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Learning Commons</h1>
-        <Legend />
+        <Legend/>
 {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
 {/*Boton de reset===============================*/}

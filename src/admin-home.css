@@ -13,6 +13,7 @@
   /*font-size: calc(10px + 2vmin);*/
   color: black; /*color de texto*/
   /*margin-top: 85px;*/
+  
 }
 
 .bubble-AddLocation-admin{
@@ -94,4 +95,33 @@
   font-size: 16px;
 }
 
+.admin-home-link{
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  text-decoration-line: none;
+  font-weight: 800;
+  font-size: large;
+  margin-top: 50px;
+}
+.admin-home-link:hover {
+  color: #ffc107; 
+}
 
+@media (max-width: 767px) {
+  .admin-home-link{
+    color:rgb(0, 0, 0);
+    font-size: small;
+    font-weight: bold;
+  }
+  }
+
+  .admin-home{
+    margin-top: -5vh;
+  }
+
+  @media (max-width: 767px) {
+
+    .admin-home{
+      margin-top: -15vh;
+    }
+    }

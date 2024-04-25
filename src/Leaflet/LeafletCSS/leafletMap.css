@@ -15,11 +15,6 @@ flex-direction: column;
 }
 */
 
-.layers-control-container {
-  margin-top: 85px; /* Adjust the margin top value as needed */
-  z-index: 9999;
-}
-
 .title-lc {
     color: black;
     font-size: large;

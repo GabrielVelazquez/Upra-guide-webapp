@@ -92,14 +92,18 @@ const ViewOutdoors = () => {
     return (
         <div className="admin-users-page">
             <h1>Admin View Outdoors Page</h1>
-            <Link to="/Admin-outdoors">Add Outdoor</Link>
-            <h2 className="admin-users-header">Outdoors List</h2>
+
+            <Link  to="/Admin-outdoors">
+            <button className="Edit-add">➕ Add Outdoor marker</button>
+            </Link>
+
+            <h2 className="admin-users-header">Outdoors Markers List</h2>
             <div className="users-list-container">
                 <div>
                     <div className="admin-users-tips">
                         <span>Name</span>
-                        <span>Edit</span>
-                        <span>Discard outdoor</span>
+                        <span>Edit info</span>
+                        <span>Discard marker</span>
                     </div>
                     {Outdoors.sort((a, b) => a.name.localeCompare(b.name)).map((outdoor) => (
                         <div className="listdiv" key={outdoor.id}>
@@ -146,7 +150,7 @@ const ViewOutdoors = () => {
                                     <br />
                                     Category:
                                     <select
-                                        className="inputs"
+                                        className="cat-inputs"
                                         value={outdoor.categoria}
                                         onChange={(e) => {
                                             const updatedOutdoors = Outdoors.map((item) =>
@@ -164,7 +168,7 @@ const ViewOutdoors = () => {
                                     <br />
                                     Description:
                                     <textarea
-                                        className={`inputs text-area-style`}
+                                        className="text-area-style"
                                         type="text"
                                         value={outdoor.description}
                                         onChange={(e) => {
@@ -197,17 +201,18 @@ const ViewOutdoors = () => {
                                         }}
                                     />
                                     <br />
-                                    <button onClick={handleSaveoutdoor}>Save</button>
-                                    <button onClick={handleCancelEdit}>Cancel</button>
+                                    <button className="Save" onClick={handleSaveoutdoor}>Save</button>
+                                    <button className="Cancel" onClick={handleCancelEdit}>Cancel</button>
                                 </div>
                             ) : (
                                 <>
                                     {outdoor.name}
                                     <button className="Edit" onClick={() => handleEditoutdoor(outdoor.id)}>Edit outdoor</button>
-                                    <button onClick={() => handleDeleteoutdoor(outdoor.id)}>Delete outdoor</button>
+                                    <button className="Discard" onClick={() => handleDeleteoutdoor(outdoor.id)}>Delete outdoor</button>
+                               
                                 </>
                             )}
-                        </div>
+                        </div>  
                     ))}
                 </div>
             </div>
