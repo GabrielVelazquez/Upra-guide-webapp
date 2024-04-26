@@ -99,12 +99,29 @@
   color: rgb(0, 0, 0);
   text-decoration: none;
   text-decoration-line: none;
-  font-weight: 800;
+  font-weight: 700;
   font-size: large;
   margin-top: 50px;
 }
-.admin-home-link:hover {
-  color: #ffc107; 
+
+.admin-home-button{
+display: grid;
+margin-top: 10px;
+outline: none;
+cursor: pointer;
+border: 1px solid transparent;
+
+padding: calc(.875rem - 3px) 63px calc(.875rem - 3px) 15px;
+background-color: #2594e5;
+font-size: 16px;
+
+min-height: 40px;
+color: #fff;
+font-weight: 400;
+}
+
+.admin-home-button:hover {
+  background-color: #1374ba;
 }
 
 @media (max-width: 767px) {

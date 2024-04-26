@@ -10,15 +10,16 @@ const HUB = () => {
   return (
     <div className="hub">
       <header className="Hub-header">
-        <h1 className="Hub-title">Map HUB</h1>
+        <h1 className="Hub-title">Admin HUB</h1>
         <h2>Welcome to the Hub!</h2>
         <img src={logo} className="App-logo" alt="logo" />
 
         <div className="hub-button-containter">
 
-        <Link to="/leaflet2">
+        {/*<Link to="/leaflet2">
             <button className="pretty-button">Mapa Leaflet 📌</button>
           </Link>
+          */}
           
           <Link to="/admin-home">
             <button className="pretty-button">Admin Home 📌</button>

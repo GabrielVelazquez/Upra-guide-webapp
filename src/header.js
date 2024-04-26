@@ -116,7 +116,7 @@ const Header = () => {
       <div >
       <Link to="/HUB">
       <button className="HUB_Button" >
-        MAP HUB
+        ADMIN HUB
         </button>
         </Link>
         </div>

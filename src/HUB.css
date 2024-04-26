@@ -24,9 +24,42 @@ margin-top: -10px;
   margin-bottom: -30px;
 }
 
-.pretty-button {
+/*.pretty-button {
   color: #f0d024;
   background-color: #282c34;
+}
+*/
+
+/*
+.pretty-button {
+  color: #000000;
+  font-size:medium;
+  background-color: #FFC107;
+  margin-bottom: 20px;
+  height: 5vh;
+  border: none;
+  border-radius: 4px;
+}
+*/
+
+.pretty-button {
+display: inline-block;
+outline: 0;
+border: none;
+cursor: pointer;
+font-weight: 600;
+border-radius: 4px;
+font-size: 13px;
+height: 30px;
+background-color: #FFC107;
+color: #0e0e10;
+padding: 0 20px;
+margin-bottom: 5px;
+}
+
+.pretty-button:hover {
+    background-color: #0000001a;
+    color: #FFC107;
 }
 
 .hub-button-containter {
@@ -51,3 +84,4 @@ margin-top: -10px;
     transform: rotate(360deg);
   }
 }
+
