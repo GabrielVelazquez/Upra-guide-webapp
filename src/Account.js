@@ -115,9 +115,7 @@ useEffect(() => {
         const userDoc = await getDoc(userDocRef);
   
         if (userDoc.exists()) {
-          const userData = userDoc.data();
-  
-          // Actualizar el documento en Firestore con los nuevos datos editados
+          // Update the document in Firestore with the new edited data
           await updateDoc(userDocRef, {
             name: userData.name,
             email: userData.email,
@@ -126,14 +124,14 @@ useEffect(() => {
             association: userData.association,
           });
   
-          setUserEditMode(false); // Salir del modo de edición después de guardar
+          setUserEditMode(false); // Exit edit mode after saving
         }
       }
     } catch (error) {
       console.error('Error saving user data:', error);
     }
   };
- 
+
   const handleCourseAddClick = () => {
     setCourseAddMode(true); // Cambiar al modo de edición al hacer clic en el botón "Edit"
   };

@@ -79,7 +79,9 @@ const ViewEvents = () => {
     return (
         <div className="admin-users-page">
             <h1>Admin View Events Page</h1>
-            <Link to="/AdminEvents">Add event</Link>
+            <Link to="/AdminEvents">
+            <button className="Edit-add">➕ Add Event</button>
+            </Link>
             <h2 className="admin-users-header">Events List</h2>
             <div className="users-list-container">
                 <div>

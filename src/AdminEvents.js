@@ -24,48 +24,47 @@ const AdminEvents = () => {
     setFormData((prevData) => ({ ...prevData, image: file }));
   };
 
-  const handleAddLocation = async () => {
-    if (!formData.name || !formData.date || !formData.time || !formData.location) {
-      alert('Please fill in all fields');
-      return;
+ const handleAddLocation = async () => {
+  if (!formData.name || !formData.date || !formData.time || !formData.location) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  try {
+    let imageUrl = '';
+    if (formData.image) {
+      const imageRef = ref(storage, `Events/${formData.image.name}`);
+      await uploadBytes(imageRef, formData.image);
+      imageUrl = await getDownloadURL(imageRef);
     }
 
-    try {
-      const eventCollection = collection(firestore, 'Event');
+    const newEvent = {
+      name: formData.name,
+      date: formData.date,
+      time: formData.time,
+      location: formData.location,
+      imageUrl: imageUrl,
+    };
+
+    const eventCollection = collection(firestore, 'Event');
+    await addDoc(eventCollection, newEvent);
+
+    setFormData({
+      name: '',
+      date: '',
+      time: '',
+      location: '',
+      image: '',
+    });
+
+    alert('Event added successfully');
       
-      if (formData.image) {
-        const imageRef = ref(storage, `Events/${formData.image.name}`);
-        await uploadBytes(imageRef, formData.image);
-        const imageUrl = await getDownloadURL(imageRef);
-        setFormData((prevData) => ({ ...prevData, image: imageUrl }));
-      }
 
-      const newEvent = {
-        date: formData.date,
-        imageUrl: formData.image,
-        name: formData.name,
-        time: formData.time,
-        location: formData.location,
-      };
-
-      await addDoc(eventCollection, newEvent);
-
-      setFormData({
-        name: '',
-        date: '',
-        time: '',
-        location: '',
-        image: '',
-      });
-
-      alert('Event added successfully');
-      
-    } catch (error) {
-      console.error('Error adding event to Firestore: ', error);
-      alert('Failed to add event. Please try again.');
-    }
-  };
-
+  } catch (error) {
+    console.error('Error adding event to Firestore: ', error);
+    alert('Failed to add event. Please try again.');
+  }
+};
   return (
     <div className="Account-full-admin">
       <div className="bubble-AddLocation-admin">
