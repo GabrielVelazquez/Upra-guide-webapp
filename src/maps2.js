@@ -166,9 +166,9 @@ const handleInteriorCategoryChange = (event) => {
   setSelectedInteriorCategory(newInteriorCategory);
 };
 
-const filteredInteriorMarkersCat = selectedInteriorCategory
-  ? markers.filter((marker) => marker[4] === selectedInteriorCategory)
-  : markers;
+// const filteredInteriorMarkersCat = selectedInteriorCategory
+//   ? markers.filter((marker) => marker[4] === selectedInteriorCategory)
+//   : markers;
 
   //-----------------------------------V enter en search V-----------------------------------
      const handleKeyPress = (e) => {

@@ -18,7 +18,8 @@ import LocImgPH from "../../images/location_PlaceHolder_img.png";
 
 import { useNavigate } from 'react-router-dom';
 
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Link } from 'react-router-dom';
 
 import {customMarker} from './LeafletIcons';  // marker custom
@@ -26,7 +27,7 @@ import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker 
 
 import { MapContainer, TileLayer } from "react-leaflet";
 
-import {RecenterButton, ResetButton}from './leafletui'; // Import RecenterButton 
+// import {RecenterButton, ResetButton}from './leafletui'; // Import RecenterButton 
 
 import scuffed_close_button from "../../icons/scuffed_close_button.png";
 
@@ -79,7 +80,9 @@ Modal.setAppElement('#root'); //  root para accesar el modal
 
     export default function Intro() { //manda el read request
       const defaultPosition = { lat: 18.468435565260574, lng: -66.74114959255792 }; //mapa localizado en centro de upra
-      const [centerPosition, setCenterPosition] = useState(defaultPosition);
+     
+      // const [centerPosition, setCenterPosition] = useState(defaultPosition);
+      const [ setCenterPosition] = useState(defaultPosition);
 
       const [selectedMarker, setSelectedMarker] = useState(null); //select a un marker
 
@@ -97,7 +100,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const mapRef = useRef(null); // Reference to the map instance
       const navigate = useNavigate();
 
-      const [isChecked, setIsChecked] = useState(false);
+      // const [isChecked, setIsChecked] = useState(false);
 
       const [userLoggedIn, setUserLoggedIn] = useState(false);
 
@@ -110,16 +113,16 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       };
 
 // filtra markers segun el checkbox 
-const getFilteredMarkers = () => {
-  if (showInteriorMarkers) { //interiormarkercat???????????
-return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
-  //return filteredInteriorMarkersCat;
+// const getFilteredMarkers = () => {
+//   if (showInteriorMarkers) { //interiormarkercat???????????
+// return interiorMarkers; //.filter((marker) => marker.length !== 4); // muestra interiorMarkers when checkbox is checked
+//   //return filteredInteriorMarkersCat;
 
 
-  } else {
-    return filteredMarkersCat.filter((marker) => marker.length !== 3); // display los location markers when checkbox is unchecked
-  }
-};
+//   } else {
+//     return filteredMarkersCat.filter((marker) => marker.length !== 3); // display los location markers when checkbox is unchecked
+//   }
+// };
 
 
 useEffect(() => {
@@ -287,8 +290,8 @@ const handleCheckboxChange = (event) => { //ORIGINALBOXCHANGE
    /*---CHECKBOX-----------------------------------------------------------*/
 
   return filteredMarkers.map((marker, index) => {
-    const [name, lat, lng, level, description, image, categoria] = marker;
-
+    // const [name, lat, lng, level, description, image, categoria] = marker;
+    const [name, lat, lng, categoria] = marker;
     if (categoria) { //componentes de markers para diferentes popups
       // Location Marker
       return (

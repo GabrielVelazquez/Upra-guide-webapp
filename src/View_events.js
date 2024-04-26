@@ -158,7 +158,7 @@ const ViewEvents = () => {
                                 <>
                                     {event.name}
                                     <button className="Edit" onClick={() => handleEditevent(event.id)}>Edit event</button>
-                                    <button onClick={() => handleDeleteevent(event.id)}>Delete event</button>
+                                    <button className="Discard" onClick={() => handleDeleteevent(event.id)}>Delete event</button>
                                 </>
                             )}
                         </div>

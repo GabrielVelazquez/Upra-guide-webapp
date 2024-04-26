@@ -51,7 +51,7 @@ const AdminUsersPage = () => {
       // Disable user account in Firebase Authentication
       // You can use the Firebase Admin SDK or the Firebase Authentication REST API to disable the user account.
       // Here's an example using the Firebase Admin SDK:
-      const user = await firestore.auth().getUser(userId);
+      // const user = await firestore.auth().getUser(userId);
       await firestore.auth().updateUser(userId, {
         disabled: true
       });
@@ -78,10 +78,10 @@ const AdminUsersPage = () => {
             
             <div className="listdiv" key={user.id}>
               {user.email}{" "}
-              <button onClick={() => handleToggleAdmin(user.id, user.isAdmin)}>
+              <button className="Edit" onClick={() => handleToggleAdmin(user.id, user.isAdmin)}>
                 {user.isAdmin ? "Revoke Admin" : "Make Admin"}
               </button>
-              <button onClick={() => handleDeleteUser(user.id)}>Delete User</button>
+              <button className="Discard" onClick={() => handleDeleteUser(user.id)}>Delete User</button>
             </div>
           ))}
         </div>
