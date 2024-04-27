@@ -46,17 +46,20 @@ const AdminUsersPage = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
+      const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+            if (confirmDelete) {
       const userRef = doc(firestore, "users", userId);
       await deleteDoc(userRef);
+      const updatedUsers = users.filter(user => user.id !== userId);
+      setUsers(updatedUsers);
       // Disable user account in Firebase Authentication
       // You can use the Firebase Admin SDK or the Firebase Authentication REST API to disable the user account.
       // Here's an example using the Firebase Admin SDK:
       // const user = await firestore.auth().getUser(userId);
-      await firestore.auth().updateUser(userId, {
-        disabled: true
-      });
-      const updatedUsers = users.filter(user => user.id !== userId);
-      setUsers(updatedUsers);
+      // await firestore.auth().updateUser(userId, {
+      //   disabled: true
+      // });
+    }
     } catch (error) {
       console.error("Error deleting user:", error);
     }

@@ -186,7 +186,11 @@ const ViewOutdoors = () => {
                                         accept="image/*"
                                         onChange={(e) => handleImageChange(e, outdoor.id)}
                                     />
-                                    <img src={outdoor.image} alt="Outdoor" style={{ width: "250px", height: "250px" }} />
+                                    {outdoor.image ? (
+                                        <img src={outdoor.image} alt="Outdoor" style={{ width: "250px", height: "250px" }} />
+                                    ) : (
+                                        <p>No image available</p>
+                                    )}
                                     <br />
                                     Level:
                                     <input
