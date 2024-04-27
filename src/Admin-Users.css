@@ -26,7 +26,7 @@
     text-align: left;
   }
 
-.listdiv{
+.listdivUsers{
   margin-bottom:5%;
 display: grid;
 grid-auto-flow: column;
@@ -34,6 +34,23 @@ grid-column-gap: 15vw;
 grid-template-columns: 1fr auto auto; /* Adjusted grid template columns */
 justify-content: space-between;
 align-items: center; /*vertical*/
+}
+
+
+.MakeAdmin{
+  justify-items: center;
+  background-color: #ffc107;
+  border-radius: 2px;
+  border: none;
+  width: 6vw;
+  height: 5vh;
+  font-weight:600;
+  font-size:13px;
+  cursor: pointer;
+}
+
+.RevokeAdmin {
+  background-color: rgb(4, 153, 4);
 }
 
 

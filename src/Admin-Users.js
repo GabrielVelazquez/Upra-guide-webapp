@@ -76,11 +76,11 @@ const AdminUsersPage = () => {
         </div>
           {users.map((user) => (
             
-            <div className="listdiv" key={user.id}>
+            <div className="listdivUsers" key={user.id}>
               {user.email}{" "}
-              <button className="Edit" onClick={() => handleToggleAdmin(user.id, user.isAdmin)}>
-                {user.isAdmin ? "Revoke Admin" : "Make Admin"}
-              </button>
+              <button className={`MakeAdmin ${user.isAdmin ? "RevokeAdmin" : "MakeAdmin"}`} onClick={() => handleToggleAdmin(user.id, user.isAdmin)}>
+              {user.isAdmin ? "Revoke Admin" : "Make Admin"}
+                </button>
               <button className="Discard" onClick={() => handleDeleteUser(user.id)}>Delete User</button>
             </div>
           ))}
