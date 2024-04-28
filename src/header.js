@@ -8,7 +8,7 @@ import { auth } from "./firebase.config";
 import "firebase/auth";
 
 
-const Header = () => {
+const Header = ({ setIsAdmin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -20,6 +20,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
+    setIsAdmin(false); // isAdmin se resetea
     auth
       .signOut()
       .then(() => {

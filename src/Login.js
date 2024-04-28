@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword} from "firebase/auth";
 import "./Login.css";
 import lobo_icon from "./images/lobo-upra_icon.png";
 
-const Login = () => {
+const Login = ({setIsAdmin}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -19,10 +19,15 @@ const Login = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         
-        if (userData.isAdmin) {
-          navigate("/admin-home");
+        if (userData.isAdmin) {      
+          console.log(userData.isAdmin)  
+          setIsAdmin(true); // Update isAdmin state
+          navigate("/admin-home");        
         } else {
+          console.log(userData.isAdmin)
+          setIsAdmin(false); // Update isAdmin state
           navigate("/");
+            
         }
       } else {
         // El usuario no tiene información en Firestore, podría ser un problema

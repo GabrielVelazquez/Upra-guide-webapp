@@ -1,11 +1,13 @@
 // App.js
-//import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"; //Switch es Routes en v6
+
 import "./App.css";
 import HUB from "./HUB";
 import Home from "./Home";
 import AdminHome from "./admin-home";
 import SignUp from "./SignUp";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; //Switch es Routes en v6
+//import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; //Switch es Routes en v6
 import Header from "./header";
 import Login from "./Login";
 import Map from "./map";
@@ -14,7 +16,7 @@ import About from "./About";
 import Account from "./Account";
 import Maps2 from "./maps2";
 //import Banner from "./Banner";
-import Mappedin from "./mappedin";
+//import Mappedin from "./mappedin";
 
 //---------------------Interior maps-------------------------
 import LearningCommons from "./Leaflet/LeafletJS/leafletLC";
@@ -48,10 +50,13 @@ import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
 
 
 function App() {
+  
+  const [isAdmin, setIsAdmin] = useState(false);
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header setIsAdmin={setIsAdmin}/>
 
         <Routes>
           {/* <Route exact path="/Hub" element={<HUB />} />{" "} */}
@@ -61,7 +66,7 @@ function App() {
           {/*------------Navigation---------------*/}
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/login" element={<Login setIsAdmin={setIsAdmin} />} />
           <Route exact path="/map" element={<Map />} />
           <Route exact path="/Events" element={<Events />} />
           <Route exact path="/About" element={<About />} />
@@ -69,7 +74,9 @@ function App() {
           <Route exact path="/maps2" element={<Maps2 />} />
 
            {/*------------Admin---------------*/}
-          <Route exact path="/admin-home" element={<AdminHome />} />
+           {isAdmin && (
+            <>
+          <Route exact path="/admin-home" element={<AdminHome/>} />
           <Route exact path="/Admin-outdoors" element={<AdminOutdoors/>}/>
           <Route exact path="/Admin-Users" element={<AdminUsersPage/>}/>
           <Route exact path="/AdminEvents" element={<AdminEvents/>}/>
@@ -77,7 +84,9 @@ function App() {
           <Route exact path="/View_Indoors" element={<ViewIndoors/>}/>
           <Route exact path="/View_Outdoors" element={<ViewOutdoors/>}/>
           <Route exact path="/View_Events" element={<ViewEvents/>}/>
-
+         
+          </>
+          )}
           {/*------------SALONES DE LEAFLET---------------*/}
           <Route exact path="/leafletLC" element={<LearningCommons/>} /> 
           <Route exact path="/leafletAC" element={<AC1/>} /> {/*AC nivel 1*/}
@@ -98,7 +107,7 @@ function App() {
          <Route exact path="leafletAC307" element={<AC307/>}/>
          <Route exact path="leafletAC302" element={<AC302/>}/>
           {/*----------------TESTING------------------*/}
-          <Route exact path="/mappedin" element={<Mappedin/>} />
+         {/*<Route exact path="/mappedin" element={<Mappedin/>} />*/}
           <Route exact path="/leaflet2" element={<Leaflet2/>} />
 
           {/*------------HUB---------------*/}import HUB from "./HUB";

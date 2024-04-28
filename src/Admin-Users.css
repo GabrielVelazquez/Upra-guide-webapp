@@ -39,7 +39,7 @@ align-items: center; /*vertical*/
 
 .MakeAdmin{
   justify-items: center;
-  background-color: #ffc107;
+  background-color: rgb(4, 153, 4);
   border-radius: 2px;
   border: none;
   width: 6vw;
@@ -50,7 +50,7 @@ align-items: center; /*vertical*/
 }
 
 .RevokeAdmin {
-  background-color: rgb(4, 153, 4);
+  background-color: #ffc107;
 }
 
 
