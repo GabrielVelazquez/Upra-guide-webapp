@@ -10,7 +10,6 @@ const AdminEvents = () => {
     name: '',
     date: '',
     time: '',
-    endTime: '',
     location: '',
     image: '',
   });
