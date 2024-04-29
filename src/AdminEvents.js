@@ -10,6 +10,7 @@ const AdminEvents = () => {
     name: '',
     date: '',
     time: '',
+    endTime: '',
     location: '',
     image: '',
   });
@@ -89,40 +90,38 @@ const AdminEvents = () => {
           </div>
          
           <div className="Account-info-row">
-  <p className="Account-info-text-course-admin">Date:</p>
-  <input
-    type="text"
-    name="date"
-    value={formData.date}
-    onChange={handleChange}
-    className="Account-info-input"
-    placeholder="Event date"
-  />
-</div>
+            <p className="Account-info-text-course-admin">Date:</p>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className="Account-info-input"
+            />
+          </div>
 
-<div className="Account-info-row">
-  <p className="Account-info-text-course-admin">Location:</p>
-  <input
-    type="text"
-    name="location"
-    value={formData.location}
-    onChange={handleChange}
-    className="Account-info-input"
-    placeholder="Event location"
-  />
-</div>
-<div className="Account-info-row">
-  <p className="Account-info-text-course-admin">Time:</p>
-  <input
-    type="text"
-    name="time"
-    value={formData.time}
-    onChange={handleChange}
-    className="Account-info-input"
-    placeholder="Event time"
-  />
-</div>
-
+          <div className="Account-info-row">
+            <p className="Account-info-text-course-admin">Location:</p>
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              className="Account-info-input"
+              placeholder="Event location"
+            />
+          </div>
+          <div className="Account-info-row">
+            <p className="Account-info-text-course-admin">Time:</p>
+            <input
+              type="text"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              className="Account-info-input"
+              
+            />
+          </div>
 
           <div className="Account-info-row">
             <p className="Account-info-text-course-admin">Image:</p>

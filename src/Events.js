@@ -54,7 +54,7 @@ const Events = () => {
             <img src={event.imageUrl} alt={`Event ${index + 1}`} />
           </div>
           <div className="event-details">
-            <div className="event-date">{event.date}</div>
+            <div className="event-date">{new Date(event.date).toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
             <div className="event-info">
               <p className="event-name">{event.name}</p>
               <p className="event-location">{event.location}</p>
