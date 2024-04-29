@@ -9,7 +9,11 @@ import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
 // import imageURL from '../../images/centro_de_estudiantes_piso2_crop_leaflet_PN.png';
 import {RecenterButton,ResetButton} from './leafletui'; // Import RecenterButton 
-
+import extintor from '../../images/leaflet_extintor.jpg';
+import pull from '../../images/leaflet_pullStation.png';
+import meet from '../../images/leaflet_meetingpoint.jpg';
+import exit from '../../images/icon_salida.png';
+import altexit from '../../images/icon_alt_salida.png';
 
 const CentroEstudiantes = () => {
   const bounds = [[-90, -90], [1800, 880]];
@@ -57,6 +61,38 @@ const CentroEstudiantes = () => {
     [81.345184, 101.250000]
 
   ];
+
+  const Legend = () => {
+    return (
+      <div className="legend">
+        <h3>Leyenda</h3>
+
+        <div className="legend-item">
+          <img src={exit} alt="Salida" /> {/*Salida*/}
+          Salida
+        </div>
+
+        <div className="legend-item">
+          <img src={altexit} alt="Salida alterna" /> {/*Salida alterna*/}
+          Salida alterna
+        </div>
+
+        <div className="legend-item">
+          <img src={extintor} alt="Extintor" />
+          Extintores
+        </div>
+        <div className="legend-item">
+          <img src={pull} alt="Estación de tirar" />
+          Estaciones de emergencia
+        </div>
+        <div className="legend-item">
+          <img src={meet} alt="Punto de reunión" />
+          Puntos de reunión <br />
+          (Estacionamiento Facultad 1)
+          </div>
+      </div>
+    );
+  };
 
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
@@ -303,6 +339,7 @@ const renderPolygons2 = () => {
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
   const popup = L.popup();
+  
   const MapClickHandler = () => {
     const map = useMapEvents({
       click: (e) => {
@@ -348,7 +385,7 @@ return (
                                    {/*REFERENCIA DE CENTRALIZAR^^^*/}
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Centro de Estudiantes</h1>
-
+        <Legend/>
 {/*Boton de centralizar===============================*/}
 <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />
 {/*Boton de reset===============================*/}
@@ -381,7 +418,7 @@ return (
 
 
 {/*<LayersControl position="topright"> */}
-<LayersControl position="bottomleft">  {/*por ahora solo sale en pc*/}
+<LayersControl position="bottomright">  {/*por ahora solo sale en pc*/}
   <LayersControl.Overlay name="Second level">
   <LayerGroup>
   
@@ -396,7 +433,7 @@ return (
       </text>
     </SVGOverlay>
     
-    {NivelLayer}
+    {/*{NivelLayer}*/}
     {/*{hidelevel1poly} */}
     </LayerGroup>
   </LayersControl.Overlay>
