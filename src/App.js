@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"; //Switch es Routes en v6
 
 import "./App.css";
@@ -50,13 +50,26 @@ import Leaflet2 from "./Leaflet/LeafletJS/leaflet2";
 
 
 function App() {
-  
-  const [isAdmin, setIsAdmin] = useState(false);
+  {/*const [isAdmin, setIsAdmin] = useState(false);*/}
+  const isAdminStored = localStorage.getItem('isAdmin') === 'true'; //valor local
+  const [isAdmin, setIsAdmin] = useState(isAdminStored); //valor de isAdmin lo coge del local
+
+  useEffect(() => {
+    const isAdminStored = localStorage.getItem('isAdmin') === 'true';
+    setIsAdmin(isAdminStored);
+  }, []); // ve el valor de admin actual
+
+  //Handlelogout
+  const handleLogout = () => {
+    setIsAdmin(false);
+    localStorage.setItem('isAdmin', 'false'); // valor local es falso (no es admin)
+  };
 
   return (
     <Router>
       <div className="App">
-        <Header setIsAdmin={setIsAdmin}/>
+        {/*<Header setIsAdmin={setIsAdmin}/>*/}
+        <Header setIsAdmin={setIsAdmin} handleLogout={handleLogout} isAdmin={isAdmin}/>
         
 
         <Routes>

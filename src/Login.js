@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, firestore } from "./firebase.config";
@@ -19,14 +20,28 @@ const Login = ({setIsAdmin}) => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         
+        /* ORIGINAL
         if (userData.isAdmin) {      
           console.log(userData.isAdmin)  
           setIsAdmin(true); // Update isAdmin state
           navigate("/admin-home");        
-        } else {
-          console.log(userData.isAdmin)
+        */
+
+          /*
+          {else{}
+           console.log(userData.isAdmin)
           setIsAdmin(false); // Update isAdmin state
-          navigate("/");           
+          navigate("/");   
+        }        
+          */
+        if (userData.isAdmin) {
+          setIsAdmin(true); //si es admin = true
+          localStorage.setItem('isAdmin', 'true'); //guarda el valor de bool local
+          navigate("/admin-home");
+        } else {
+          setIsAdmin(false);
+          localStorage.setItem('isAdmin', 'false');//guarda falso
+          navigate("/");
         }
       } else {
         // El usuario no tiene información en Firestore, podría ser un problema
