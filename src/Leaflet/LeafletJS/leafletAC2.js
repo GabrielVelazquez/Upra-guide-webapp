@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
 import L from 'leaflet';
+import {Link} from "react-router-dom"; 
 // import imagenmapa from '../../images/AC_100_leaflet_PN.png';
 //import waypoint from '../../images/Leaflet_marker_upra.png';
 import "../LeafletCSS/leafletMap.css";
@@ -48,6 +49,16 @@ const AC2 = () => {
     [83.440046, 826.875000],
     [83.440046, -43.593750]
   ];
+
+  const Level =()=>{
+    return (
+      <div >
+    <Link to="/leafletAC">
+    <button className="ACbutton">Level 1</button>
+  </Link>
+  </div>
+  );
+  };
 
   const Legend = () => {
     return (
@@ -413,6 +424,7 @@ return (
     <MapContainer center={[15.166345, 389.53125]} zoom={1} ref={mapRef}>
         <ImageOverlay url={imagenmapa} bounds={bounds} />
         <h1 className='title-lc'>Salones Nivel AC 200</h1>
+        <Level/>
         <Legend />
           {/*Boton de centralizar===============================*/}
           <RecenterButton handleCenterMap={handleCenterMap} center={[15.166345, 395.53125]} zoom={1} />

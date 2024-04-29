@@ -24,7 +24,32 @@ flex-direction: column;
     z-index: 9999; /* Higher z-index value to ensure it's in front */
     background-color: transparent;
     margin-top: 80px;
- 
+}
+
+.ACbutton{
+  z-index: 9999;
+  position: relative;
+  background-color: #ffffff;
+  border-color: #B1B1B1;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  height: 4vh;
+  font-weight: bold;
+  left: 47vw;
+  top:-3vh;
+  color: black;
+}
+
+@media (max-width: 767px) {
+  .ACbutton{
+    left: 40vw;
+    top:65vh;
+  }
+}
+
+.ACbutton:active {
+  background-color:#FFD703;
 }
 
 @media (max-width: 767px) {
@@ -177,6 +202,7 @@ margin-top: 80px;
     border-radius: 5px;
     z-index: 9999; /* Higher z-index value to ensure it's in front */
     opacity: 90%;
+
   }
 
   @media (max-width: 767px) {
@@ -188,14 +214,14 @@ margin-top: 80px;
 }
   
   .legend h3 {
-    margin-top: 0;
+    margin-top: 10px;
     color: black;
   }
   
   .legend-item {
     display: flex;
     align-items: center;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     color: black;
   }
   
