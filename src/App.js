@@ -79,7 +79,7 @@ function App() {
          
           {/*------------Navigation---------------*/}
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/signup" element={<SignUp setIsAdmin={setIsAdmin} />} />
           <Route exact path="/login" element={<Login setIsAdmin={setIsAdmin} />} />
           <Route exact path="/map" element={<Map />} />
           <Route exact path="/Events" element={<Events />} />
