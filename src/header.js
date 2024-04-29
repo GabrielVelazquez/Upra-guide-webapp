@@ -22,6 +22,7 @@ import "firebase/auth";
 
   const handleLogout = () => {
     setIsAdmin(false); // isAdmin se resetea
+    localStorage.setItem('isAdmin', 'false');//guarda falso
     auth
       .signOut()
       .then(() => {
