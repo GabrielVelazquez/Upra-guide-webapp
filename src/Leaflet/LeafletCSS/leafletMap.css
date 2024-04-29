@@ -182,6 +182,7 @@ margin-top: 80px;
   @media (max-width: 767px) {
     .legend {
       /*bottom: 12%;*/
+      bottom: 1vh;
       padding: .5%;
     }
 }
