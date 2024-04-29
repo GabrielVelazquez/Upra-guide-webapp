@@ -98,7 +98,6 @@ function App() {
           <Route exact path="/View_Indoors" element={<ViewIndoors/>}/>
           <Route exact path="/View_Outdoors" element={<ViewOutdoors/>}/>
           <Route exact path="/View_Events" element={<ViewEvents/>}/>
-         
           </>
           )}
           {/*------------SALONES DE LEAFLET---------------*/}
@@ -124,9 +123,12 @@ function App() {
          {/*<Route exact path="/mappedin" element={<Mappedin/>} />*/}
           <Route exact path="/leaflet2" element={<Leaflet2/>} />
 
-          {/*------------HUB---------------*/}import HUB from "./HUB";
+          {/*------------HUB---------------*/} {/*import HUB from "./HUB";*/}
+          {isAdmin && (
+            <>
           <Route exact path="/HUB" element={<HUB/>} /> 
-
+          </>
+)}
           {/* <Route exact path="/Schedule" element={<Schedule />} /> */}
         </Routes>
        {/*<Banner/> */}

@@ -116,7 +116,7 @@ import "firebase/auth";
       </Link>
 
  {/*DEVELOPING ONLY########################################################*/}
-
+ {localStorage.getItem('isAdmin') === 'true' && (
       <div >
       <Link to="/HUB">
       <button className="HUB_Button" >
@@ -124,6 +124,7 @@ import "firebase/auth";
         </button>
         </Link>
         </div>
+        )}
          {/*NEW PARA VER HUB WIP*/}
 {/*DEVELOPING ONLY########################################################*/}
 
