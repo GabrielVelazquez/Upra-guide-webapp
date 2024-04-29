@@ -99,7 +99,7 @@ const Cafeteria = () => {
       positions: [[73.083508, 339.345703],[73.083508,  719.472656],
       [48.718079, 719.472656],[48.718079,  657.421875],
       [-71.284683,  656.894531],[-71.284683, 339.521484],[73.118902, 339.521484]],
-      markerPosition: [-8.162836, 170.156250],
+      markerPosition: [9.875877, 509.062500],
     },
     {
       name: 'Multimedios',
@@ -331,7 +331,7 @@ return (
         }
 
 {/*DEV ONLY IMAGE COORDINATES*/}
-<MapClickHandler />{/*IMAGE COORDINATES*/}
+{/*<MapClickHandler /> */}  {/*IMAGE COORDINATES*/}
 {/*DEV ONLY IMAGE COORDINATES*/}
 
   </MapContainer>

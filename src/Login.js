@@ -26,8 +26,7 @@ const Login = ({setIsAdmin}) => {
         } else {
           console.log(userData.isAdmin)
           setIsAdmin(false); // Update isAdmin state
-          navigate("/");
-            
+          navigate("/");           
         }
       } else {
         // El usuario no tiene información en Firestore, podría ser un problema

@@ -33,6 +33,7 @@ const Home = () => {
       unsubscribe();
     };
   }, []);
+  
 
   const hideContainers = () => {
     const imageContainers = document.querySelectorAll(".image-container2");

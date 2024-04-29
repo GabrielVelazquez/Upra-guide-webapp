@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <h3>Upra Interactive Guide</h3>
-          <p>loh loboh papih</p>
+          <p>Guia universitario para facilitar la vida estudiantil.</p>
         </div>
         <div className="footer-center">
           <h3>Frequent Actions</h3>
@@ -17,9 +17,9 @@ const Footer = () => {
             {/*<li>Map</li>*/}
             <Link className='link' to="/leaflet2">-Map</Link>
             <li></li>
-            <Link className='link' to="/SignUp">-Sign up</Link>
-            <li> </li>
             <Link className='link' to="/Events">-Events</Link>
+            <li> </li>
+            <Link className='link' to="/About">-About</Link>
            
           </ul>
         </div>

@@ -8,7 +8,8 @@ import { auth } from "./firebase.config";
 import "firebase/auth";
 
 
-const Header = ({ setIsAdmin }) => {
+//const Header = ({ setIsAdmin }) => { //OG
+  const Header = ({isAdmin, setIsAdmin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -114,6 +115,7 @@ const Header = ({ setIsAdmin }) => {
       </Link>
 
  {/*DEVELOPING ONLY########################################################*/}
+ {isAdmin && (  //NEW PARA VER HUB WIP
       <div >
       <Link to="/HUB">
       <button className="HUB_Button" >
@@ -121,6 +123,7 @@ const Header = ({ setIsAdmin }) => {
         </button>
         </Link>
         </div>
+        )} {/*NEW PARA VER HUB WIP*/}
 {/*DEVELOPING ONLY########################################################*/}
 
       <div className={`menu ${menuOpen ? "open" : ""}`}>

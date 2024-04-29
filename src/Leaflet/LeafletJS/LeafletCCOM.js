@@ -242,7 +242,7 @@ return (
         }
 
 {/*DEV ONLY IMAGE COORDINATES*/}
-<MapClickHandler />  {/*IMAGE COORDINATES*/}
+{/*<MapClickHandler /> */}  {/*IMAGE COORDINATES*/}
 {/*DEV ONLY IMAGE COORDINATES*/}
 
   </MapContainer>
