@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <h3>Upra Interactive Guide</h3>
-          <p>Guia universitario para facilitar la vida estudiantil.</p>
+          <p>Guia universitaria para facilitar la vida estudiantil.</p>
         </div>
         <div className="footer-center">
           <h3>Frequent Actions</h3>
@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <h3>Contact Info</h3>
-          <p>Email: upraguide@yahoo.com</p>
+          <p>Email: upraguide@upr.com</p>
           <p>Phone: 787-555-2368</p> 
         </div>
       </div>

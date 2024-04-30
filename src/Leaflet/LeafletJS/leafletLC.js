@@ -1,7 +1,7 @@
 import React, { useState,useRef } from 'react';
-import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
+import { MapContainer, ImageOverlay, Polygon, Polyline,  Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
-import L from 'leaflet';
+//import L from 'leaflet';
 // import imagenmapa from '../../images/Learning_common_leaflet_PN.png';
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
@@ -94,7 +94,7 @@ const LearningCommons = () => {
   //COORDENADAS DE POLIGONOS(cuartos) y Markers (waypoint)---------------------------------------------------------------------------------
   const polygons = [
     {
-      name: 'Conference Room',
+      name: 'Salon de conferencia',
 
       positions: [[59.46165, 110.126953],[59.46165, 231.943359],
       [-66.883523, 231.943359],[-66.883523, 109.6875]],
@@ -102,7 +102,7 @@ const LearningCommons = () => {
       markerPosition: [-8.162836, 170.156250],
     },
     {
-      name: 'Study Room 1',
+      name: 'Salon de estudio 1',
       positions: [
         [-22.887863, 236.685329], [-22.887863, 357.704670],
         [-63.044315, 357.704670], [-63.044315, 236.685329],
@@ -110,7 +110,7 @@ const LearningCommons = () => {
       markerPosition: [-46.530305, 296.977518],
     },
     {
-      name: 'Study Room 2',
+      name: 'Salon de estudio 2',
       positions: [
         [-22.887863, 363.503], [-22.887863,  420.877559],
         [-63.044315, 420.701823], [-63.044315, 363.503],
@@ -118,7 +118,7 @@ const LearningCommons = () => {
       markerPosition: [-47.687390, 391.975186],
     },
     {
-      name: 'Study Room 3',
+      name: 'Salon de estudio 3',
       positions: [
         [-22.887863, 426.5678], [-22.887863,  484.623315],
         [-63.044315, 484.623315], [-63.044315, 426.5678],
@@ -126,7 +126,7 @@ const LearningCommons = () => {
       markerPosition: [-46.569907, 455.487046],
     },
     {
-      name: 'Male Bathroom',
+      name: 'Baño masculino',
       positions: [
         [-9.812769, 489.020556], [-9.812769,  547.585242],
         [-58.226966, 547.623652], [-58.226966, 520.334862],
@@ -135,7 +135,7 @@ const LearningCommons = () => {
       markerPosition: [-42.213520, 516.526615],
     },
     {
-      name: 'Female Bathroom',
+      name: 'Baño femenino',
       positions: [
         [59.583984,489.020556],[59.583984,519.259668],
         [48.320577, 519.259668],[48.320577, 547.708874],
@@ -144,7 +144,7 @@ const LearningCommons = () => {
       markerPosition: [28.749864, 516.308493],
     },
     {
-      name: 'Multimedia Room',
+      name: 'Multimedios',
       positions: [
         [32.500733,  410.293388], [32.500733, 484.623315],
         [-19.532214, 484.623315], [-19.532214, 410.293388],
@@ -152,7 +152,7 @@ const LearningCommons = () => {
       markerPosition: [7.459365, 446.816644],
     },
     {
-      name: 'Mechanical Room',
+      name: 'Cuarto de mecánica',
       positions: [
         [32.500733, 236.601563], [32.500733, 404.912109],
         [-19.532214, 404.912109], [-19.532214, 236.686472],
@@ -160,7 +160,7 @@ const LearningCommons = () => {
       markerPosition: [7.131042, 320.712891],
     },
     {
-      name: 'Cafe',
+      name: 'Educacion a distancia',
       positions: [
         [25.072865, 553.138062], [25.072865, 615.222941],
         [-38.629705, 615.222941], [-38.629705, 553.13806],
@@ -172,23 +172,23 @@ const LearningCommons = () => {
 //COORDENADAS DE RUTAS DE SALIDAS y nombre de salon (para el case)-------------------------------------------------------------------------
   const getPolylinePositions = (name) => {
     switch (name) {
-      case 'Conference Room':
+      case 'Salon de conferencia':
         return [[-8.119559, 109.198545], [-8.119559, -55.893442]];
-      case 'Study Room 1':
+      case 'Salon de estudio 1':
         return [[-63.684333, 242.392056], [-70.270980, 242.392056], [-70.270980, 92.969950], [-8.119559, 92.969950], [-8.119559, -55.893442]];
-      case 'Study Room 2':
+      case 'Salon de estudio 2':
         return [[-63.684333, 368.572083], [-70.270980, 368.572083], [-70.270980, 92.969950], [-8.119559, 92.969950], [-8.119559, -55.893442]];
-      case 'Study Room 3':
+      case 'Salon de estudio 3':
         return [[-63.684333, 471.224208], [-70.270980, 471.224208], [-70.270980, 92.969950], [-8.119559, 92.969950], [-8.119559, -55.893442]];
-      case 'Male Bathroom':
+      case 'Baño masculino':
         return [[-63.684333, 520.878210],[-63.684333, 526.786665], [-70.270980, 526.786665], [-70.270980, 92.969950], [-8.119559, 92.969950], [-8.119559, -55.893442]];
-      case 'Female Bathroom':
+      case 'Baño femenino':
         return [[58.006535, 519.607061],[58.006535, 525.755532], [69.316662, 525.755532],[69.316662, 402.883430], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
-      case 'Multimedia Room':
+      case 'Multimedios':
         return [[33.508736, 430.989916], [59.088991,430.989916], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
-      case 'Mechanical Room':
+      case 'Cuarto de mecánica':
         return [[33.508736, 288.270756], [60.634542, 289.149433], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
-      case 'Cafe':
+      case 'Educacion a distancia':
         return [[-8.119559, 615.768089], [-8.119559, 783.249629],[70.422368, 783.249629]];
 
         default:
@@ -199,23 +199,23 @@ const LearningCommons = () => {
   //COORDENADAS DE RUTAS DE SALIDAS Alternas------------------------------------------------------------------------
   const getAltPolylinePositions = (name) => {
     switch (name) {
-      case 'Conference Room':
+      case 'Salon de conferencia':
         return [[-8.076627, 92.851450], [67.843036, 92.851450], [67.843036, 358.748084],[84.145701, 358.748084],[84.145701, 625.024416]];
-        case 'Study Room 1':
+        case 'Salon de estudio 1':
           return [[-63.684333, 248.392056], [-70.270980, 248.392056], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]]; //separado del primary ers7 posiciones
-        case 'Study Room 2':
+        case 'Salon de estudio 2':
           return [[-63.684333, 375.572083], [-70.270980, 375.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Study Room 3':
+        case 'Salon de estudio 3':
           return [[-63.684333, 478.572083], [-70.270980, 478.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Male Bathroom':
+        case 'Baño masculino':
           return [[-61.684333, 520.532227],[-61.684333, 532.572083], [-70.270980, 532.572083], [-70.270980, 639.492188], [-8.119559, 639.492188],[-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Female Bathroom':
+        case 'Baño femenino':
           return [[54.232116, 520.224609],[54.232116, 534.023438],[66.245539, 533.847656],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Multimedia Room':
+        case 'Multimedios':
           return [[33.516880, 437.695313],[66.399556, 437.695313],[66.399556, 634.570313],[-8.290991, 634.570313],[-8.119559, 634.570313], [-8.119559, 783.249629],[70.422368, 783.249629]];
-        case 'Mechanical Room':
+        case 'Cuarto de mecánica':
           return  [[33.381240, 282.392578],[67.888519,282.392578], [67.843036, 92.851450],[-8.076627, 92.851450],[-8.119559, -55.893442]];
-        case 'Cafe':
+        case 'Educacion a distancia':
           return [[3.984703, 616.113281],[3.984703, 630.703125],[68.057847, 630.703125],[68.057847, 525.755532],[68.057847, 402.883430], [79.249045, 358.382453],[84.145701, 358.748084],[84.145701, 625.024416]];
 
         default:
@@ -264,6 +264,7 @@ if (polygon) {
   
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
+{/*
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
@@ -300,6 +301,7 @@ if (polygon) {
   
     return null;
   };
+*/}
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 
 return (

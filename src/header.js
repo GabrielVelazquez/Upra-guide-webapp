@@ -116,7 +116,7 @@ import "firebase/auth";
       </Link>
 
  {/*DEVELOPING ONLY########################################################*/}
- {localStorage.getItem('isAdmin') === 'true' && (
+ {localStorage.getItem('isAdmin') === 'true' && ( //falso = nothing
       <div >
       <Link to="/HUB">
       <button className="HUB_Button" >

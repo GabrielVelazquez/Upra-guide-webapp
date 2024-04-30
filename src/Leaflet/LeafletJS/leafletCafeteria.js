@@ -1,7 +1,7 @@
 import React, { useState,useRef } from 'react';
-import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip } from 'react-leaflet';
+import { MapContainer, ImageOverlay, Polygon, Polyline,  Marker, Tooltip } from 'react-leaflet';
 import {customMarker, customExtintor, customPullStation, customMeetingPoint, customInflamable} from './LeafletIcons';  // Import the custom marker icon
-import L from 'leaflet';
+//import L from 'leaflet';
 // import imagenmapa from '../../images/Cafeteria_leaflet_PN.png';
 import "leaflet/dist/leaflet.css"; //Override de css leaflet og
 import "../LeafletCSS/leafletMap.css";
@@ -249,6 +249,7 @@ if (polygon) {
   
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
+{/*
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
@@ -285,6 +286,7 @@ if (polygon) {
   
     return null;
   };
+*/}
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 
 return (

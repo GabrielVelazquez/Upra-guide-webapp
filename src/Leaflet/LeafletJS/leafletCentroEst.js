@@ -1,9 +1,9 @@
 import React, { useState, useRef} from 'react';
-import { MapContainer, ImageOverlay, Polygon, Polyline, useMapEvents, Marker, Tooltip, 
+import { MapContainer, ImageOverlay, Polygon, Polyline,  Marker, Tooltip, 
     LayersControl, LayerGroup, SVGOverlay} from 'react-leaflet'; /* Popup,Circle,FeatureGroup,Rectangle, SVGOverlay*/ 
                                                             //LAYER CONTROL -----  ^IMAGE ON IMAGE
 import {customMarker, customExtintor, customPullStation, customMeetingPoint} from './LeafletIcons';  // Import the custom marker icon
-import L from 'leaflet';
+//import L from 'leaflet';
 // import imagenmapa from '../../images/centro_de_estudiantes_leaflet_PN.png';
 import "../LeafletCSS/leafletMap.css";
 import "../LeafletCSS/ToolTipCSS.css";
@@ -338,8 +338,8 @@ const renderPolygons2 = () => {
  
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
+{/*
   const popup = L.popup();
-  
   const MapClickHandler = () => {
     const map = useMapEvents({
       click: (e) => {
@@ -375,6 +375,7 @@ const renderPolygons2 = () => {
   
     return null;
   };
+*/}
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 
 return (
