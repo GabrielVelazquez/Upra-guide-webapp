@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect , useState} from "react";
 import "./Home.css";
 //import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import {  Link } from "react-router-dom";
@@ -16,6 +16,7 @@ const Home = () => {
   document.body.style.overflow = 'visible'; //scroll siempre, evita bug saliendo del modal
   //const location = useLocation();
   //const { state } = location;
+  const [hugeImage, setHugeImage] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -27,6 +28,16 @@ const Home = () => {
         hideContainers();
       }
     });
+
+    const images = [
+      "https://www.periodicovision.com/wp-content/uploads/2023/09/UPRA.jpeg",
+      "https://bloximages.newyork1.vip.townnews.com/elvocero.com/content/tncms/assets/v3/editorial/0/1a/01afb4e6-78b0-11e8-912d-5757fd62603a/5b3145e20d790.image.jpg?resize=600%2C400.jpg",
+      /*la larga "https://scontent.fsju2-1.fna.fbcdn.net/v/t39.30808-6/291493255_556852399167251_5688320262611426894_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LqhaT-iVoSoAb49IpD-&_nc_ht=scontent.fsju2-1.fna&oh=00_AfBVvaWNMu7YedSvMifQVpQ2sjWllX1eP97s7UVjE_rAiw&oe=66363846",*/
+      "https://dialogo.upr.edu/wp-content/uploads/2015/04/a9e01df2a93701f6934ec72096282063.jpg",
+      "https://www.primerahora.com/resizer/YTbCdGggIBA22g7ioaNqHc56RXU=/930x0/smart/filters:quality(75):format(jpeg)/cloudfront-us-east-1.images.arcpublishing.com/gfrmedia/XGV6A2GNNZHVLFSBBBPDAZEISA.jpg"
+    ];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    setHugeImage(images[randomIndex]);
 
     // Para detener la escucha de cambios de autenticación cuando el componente se desmonta
     return () => {
@@ -54,13 +65,14 @@ const Home = () => {
       <div className="Huge-image-container">
         <div className="Huge-Image">
           <img
-            src="https://www.periodicovision.com/wp-content/uploads/2023/09/UPRA.jpeg"
+           // src="https://www.periodicovision.com/wp-content/uploads/2023/09/UPRA.jpeg"
+            src={hugeImage}
             alt="UPRA Recinto"
           />
         </div>
       </div>
 
-      <hr />
+      <hr/>
 
       {/* botones que los links son parte del web app (paginas internas) */}
    

@@ -22,15 +22,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 51vh; /* Set a fixed height for the image container */
+  overflow: hidden;
 }
 
 .Huge-Image {
-  max-width: 100%;
-  height: auto;
-  width: auto\9;
+  /*max-width: 100%;
+  max-height: 10vh;*/
+  max-width: 100%; /* Ensure the image does not exceed container width */
+  height: auto; 
+  width: 50%;
   overflow: hidden;
-  margin-top: 25px;
+  margin-top:4vh;
 }
+
+    /* MOBILE*/
+    @media screen and (max-width: 767px) {
+      .Huge-Image {
+        height: auto;
+        width: auto;
+      }
+    }
+
 
 .image {
   flex: 1; /* espacio entre imagenes sea el mismo */
@@ -82,5 +95,6 @@ hr {
   border: none;
   border-top: 10px solid #ffd703; /* linea que cruza */
   margin: 20px 0; /* espacio que hay entre las cosas y la linea */
-  margin-top: -4.5px;
+  margin-top: -0px;
+  z-index: 9999;
 }
