@@ -25,6 +25,16 @@
   height: 51vh; /* Set a fixed height for the image container */
   overflow: hidden;
 }
+@media screen and (max-width: 767px) {
+.Huge-image-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+}
 
 .Huge-Image {
   /*max-width: 100%;
@@ -41,6 +51,8 @@
       .Huge-Image {
         height: auto;
         width: auto;
+        margin-top: 25px;
+        margin-bottom: -4px;
       }
     }
 
