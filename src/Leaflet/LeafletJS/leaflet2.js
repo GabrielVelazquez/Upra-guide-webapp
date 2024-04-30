@@ -81,8 +81,8 @@ Modal.setAppElement('#root'); //  root para accesar el modal
     export default function Intro() { //manda el read request
       const defaultPosition = { lat: 18.468435565260574, lng: -66.74114959255792 }; //mapa localizado en centro de upra
      
-      // const [centerPosition, setCenterPosition] = useState(defaultPosition);
-      const [ setCenterPosition] = useState(defaultPosition);
+      const [centerPosition, setCenterPosition] = useState(defaultPosition);
+      // const [ setCenterPosition] = useState(defaultPosition);
 
       const [selectedMarker, setSelectedMarker] = useState(null); //select a un marker
 
