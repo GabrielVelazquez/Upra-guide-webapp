@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <h3>Contact Info</h3>
-          <p>Email: upraguide@upr.com</p>
+          <p>Email: upraguide@upr.edu</p>
           <p>Phone: 787-555-2368</p> 
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Events.css';
 import { firestore } from './firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
-
+import Footer from "./footer";
 
 
 const Events = () => {
@@ -62,7 +62,9 @@ const Events = () => {
             </div>
           </div>
         </div>
+        
       ))}
+                <Footer/>
     </div>
   );
 };

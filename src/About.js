@@ -1,12 +1,14 @@
 import React from 'react';
 import './About.css';
+import Footer from "./footer";
 
 const About = () => {
   return (
     <div className="about">
         <div className="Huge-image-container">
-        <div className="Huge-Image">
-          <img src="https://tintadigital.upra.edu/wp-content/uploads/2020/08/IMG-7740.jpg" alt="UPRA Recinto" />
+        <div className="Huge-Image"> 
+          {/*<img src="https://tintadigital.upra.edu/wp-content/uploads/2020/08/IMG-7740.jpg" alt="UPRA Recinto" />*/}
+          <img src="//upra.edu/wp-content/uploads/2022/02/WhatsApp-Image-2022-02-03-at-9.04.10-AM-2.jpeg" alt="UPRA Recinto" />
         </div>
         </div>
         <hr className='hr-about'/>
@@ -20,7 +22,7 @@ const About = () => {
        beautiful campus effortlessly with different styles to the users preference and view information about the different locations across the 
        campus. We want to make events easy to find and know their details.</p>
       
-
+ <Footer/>
     </div>
   );
 }
