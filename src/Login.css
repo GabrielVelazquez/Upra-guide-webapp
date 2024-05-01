@@ -69,7 +69,7 @@ input {
 
 .login {
   margin-top: 110px;
-  position: fixed; /* probar con position: flex */
+  /*position: fixed;*/ /* probar con position: flex */
   z-index: -1;
   left: 0px;
   right: 0px;

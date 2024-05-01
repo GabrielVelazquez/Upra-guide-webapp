@@ -95,8 +95,11 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const [interiorMarkers, setInteriorMarkers ]=useState([]);
 
       const [showInteriorSelect, setShowInteriorSelect] = useState(false); //muestra/esconde dropdown de sorting
-      const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
-      
+      //const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
+      const [showInteriorMarkers, setShowInteriorMarkers] = useState(
+        localStorage.getItem("showInteriorMarkers") === "true" || false
+      );
+
       const mapRef = useRef(null); // Reference to the map instance
       const navigate = useNavigate();
 
@@ -234,9 +237,13 @@ const filteredInteriorMarkersCat = selectedInteriorCategory
 //-----------------------------------CHECKBOX------------------------------------
 // Update handleCheckboxChange que hace toggle
 const handleCheckboxChange = (event) => {
+  
   setShowInteriorMarkers(event.target.checked);
   const checkbox =event.target;
-  const isChecked =checkbox.checked;
+  //const isChecked =checkbox.checked;
+  const isChecked = event.target.checked;
+    setShowInteriorMarkers(isChecked);
+    localStorage.setItem("showInteriorMarkers", isChecked);
 
   if (isChecked) { //si activo
     console.log('Viewing Interiors');
@@ -249,6 +256,14 @@ const handleCheckboxChange = (event) => {
   }
 
 };
+
+useEffect(() => {
+  const storedState = localStorage.getItem("showInteriorMarkers");
+  if (storedState !== null) {
+    setShowInteriorMarkers(storedState === "true");
+  }
+}, []);
+
 /*CERTIFY CHECBOX*/
 const handleCheckboxChangecert = (event, markerName) => {
   const { checked } = event.target;
@@ -486,7 +501,7 @@ const handleInteriorMarkerClick = (name) => {
 
 {/* --------------------------------ACTUAL SWITCH BOX------------------------------------*/}
 <div className="custom-checkbox">
-        <input id="status" type="checkbox" name="status" onChange={handleCheckboxChange} />
+        <input id="status" type="checkbox" name="status" onChange={handleCheckboxChange} checked={showInteriorMarkers} />
         <label htmlFor="status">
           <div className="status-switch" data-unchecked="Locations" data-checked="Interiors"></div>
         </label>
