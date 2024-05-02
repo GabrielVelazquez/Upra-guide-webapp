@@ -299,6 +299,11 @@ useEffect(() => {
     } else {
       fetchCourses();
     }
+
+    return () => {
+      sessionStorage.removeItem('courses');
+    };
+
   }, [firestoreDB]);
   
 
