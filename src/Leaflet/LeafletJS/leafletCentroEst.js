@@ -338,7 +338,7 @@ const renderPolygons2 = () => {
  
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);   //IMAGE COORDINATES   //const [mapClicked, setMapClicked]
-{/*
+/*
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
@@ -375,7 +375,7 @@ const renderPolygons2 = () => {
   
     return null;
   };
-*/}
+*/
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 
 return (

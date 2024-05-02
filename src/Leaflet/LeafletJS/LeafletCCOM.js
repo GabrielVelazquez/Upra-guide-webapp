@@ -168,7 +168,7 @@ if (polygon) {
   
   //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
   //const [mapClicked, setMapClicked] = useState(false);//IMAGE COORDINATES
-{/*
+/*
   const popup = L.popup();
   const MapClickHandler = () => {
     const map = useMapEvents({
@@ -205,7 +205,7 @@ if (polygon) {
   
     return null;
   };
-*/}
+*/
 //END CLICK PARA COORDENADAS SOLO PARA DEVELOPING/////////////////////////////////////////////////////////////////////
 return (
   
