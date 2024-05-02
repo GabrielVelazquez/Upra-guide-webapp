@@ -32,6 +32,8 @@ const Account = () => {
         console.log('Usuario autenticado:', user.uid);
        
       } else {
+        // Hacer que envie a login si no hay usuario autenticado
+        window.location.href = '/login';
         console.log('No hay usuario autenticado');
       }
     });
