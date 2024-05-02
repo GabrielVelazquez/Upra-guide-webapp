@@ -7,10 +7,14 @@ import map_icon from "./icons/Map_icon.png";
 import events_icon from "./icons/Events_icon.png";
 import account_icon from "./icons/Account_icon.png";
 import schedule_icon from "./icons/Schedule_icon.png";
-
 import upra_icon from "./icons/Upra_img.jpg";
 import portal_icon from "./icons/Portal_img.png";
 import cursos_icon from "./icons/CursosUpra_img.jpg";
+import upra1 from "./images/UPRA-home1.jpeg";
+import upra2 from "./images/UPRA-home2.png";
+import upra3 from "./images/UPRA-home3.png";
+import upra4 from "./images/UPRA-home4.png";
+import upra5 from "./images/UPRA-home5.jpeg";
 import Footer from "./footer";
 const Home = () => {
   document.body.style.overflow = 'visible'; //scroll siempre, evita bug saliendo del modal
@@ -30,13 +34,21 @@ const Home = () => {
     });
 
     const images = [
-      "https://www.periodicovision.com/wp-content/uploads/2023/09/UPRA.jpeg",
+        //Imagenes locales para que cargen mas rapido (como es por apariencia y no info importante puede ser local)
+        upra1,
+        upra2,
+        upra3,
+        upra4,
+        upra5
+    ];
+    //fotos con los link urls de otras paginas (si las borran no salen)
+    /*"https://www.periodicovision.com/wp-content/uploads/2023/09/UPRA.jpeg",
       "https://bloximages.newyork1.vip.townnews.com/elvocero.com/content/tncms/assets/v3/editorial/0/1a/01afb4e6-78b0-11e8-912d-5757fd62603a/5b3145e20d790.image.jpg?resize=600%2C400.jpg",
-      /*la larga "https://scontent.fsju2-1.fna.fbcdn.net/v/t39.30808-6/291493255_556852399167251_5688320262611426894_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LqhaT-iVoSoAb49IpD-&_nc_ht=scontent.fsju2-1.fna&oh=00_AfBVvaWNMu7YedSvMifQVpQ2sjWllX1eP97s7UVjE_rAiw&oe=66363846",*/
+      / *la larga "https://scontent.fsju2-1.fna.fbcdn.net/v/t39.30808-6/291493255_556852399167251_5688320262611426894_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LqhaT-iVoSoAb49IpD-&_nc_ht=scontent.fsju2-1.fna&oh=00_AfBVvaWNMu7YedSvMifQVpQ2sjWllX1eP97s7UVjE_rAiw&oe=66363846",* /
       "https://dialogo.upr.edu/wp-content/uploads/2015/04/a9e01df2a93701f6934ec72096282063.jpg",
       "https://www.primerahora.com/resizer/YTbCdGggIBA22g7ioaNqHc56RXU=/930x0/smart/filters:quality(75):format(jpeg)/cloudfront-us-east-1.images.arcpublishing.com/gfrmedia/XGV6A2GNNZHVLFSBBBPDAZEISA.jpg",
       "//upra.edu/wp-content/uploads/2022/02/WhatsApp-Image-2022-02-03-at-9.04.09-AM.jpeg"
-    ];
+      */
     const randomIndex = Math.floor(Math.random() * images.length);
     setHugeImage(images[randomIndex]);
 
