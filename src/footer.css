@@ -11,6 +11,12 @@
     display: flex;
     justify-content: space-between;
   }
+
+  @media screen and (max-width: 767px) {
+    .footer-content {
+padding: .5px;
+    }
+  }
   
   .footer-left,
   .footer-center,

@@ -37,6 +37,7 @@ const Events = () => {
 
 
   return (
+    <div>
     <div className="events-container">
       <div className="back-header">
         <Link to="/">
@@ -64,7 +65,9 @@ const Events = () => {
         </div>
         
       ))}
-                <Footer/>
+                
+    </div>
+    <Footer/>
     </div>
   );
 };

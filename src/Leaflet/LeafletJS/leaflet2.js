@@ -95,7 +95,7 @@ Modal.setAppElement('#root'); //  root para accesar el modal
       const [interiorMarkers, setInteriorMarkers ]=useState([]);
 
       const [showInteriorSelect, setShowInteriorSelect] = useState(false); //muestra/esconde dropdown de sorting
-      //const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // Flag to show/hide interior markers
+      //const [showInteriorMarkers, setShowInteriorMarkers] = useState(false); // muestra markers o no
       const [showInteriorMarkers, setShowInteriorMarkers] = useState(
         localStorage.getItem("showInteriorMarkers") === "true" || false
       );
@@ -330,7 +330,7 @@ const handleCheckboxChange = (event) => { //ORIGINALBOXCHANGE
           <Popup>
             <div>
               <p className="textbox_text" >{name}</p>
-              <button className="textbox_button" onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
+              <button className="see-interior-button" onClick={() => handleInteriorMarkerClick(name)}>See Interior</button>
             
            
 

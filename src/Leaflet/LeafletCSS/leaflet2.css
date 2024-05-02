@@ -143,6 +143,34 @@ top:6vh;
   margin-bottom: 10px;
 }
 
+.see-interior-button {
+  font-size: 20px;
+  color: black;
+  background-color: #ffd703;
+  margin-top: 10px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.see-interior-button:hover {
+  background: #F7CA00;
+    border-color: #F2C200;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    border: 2px solid #000000;
+}
+
+
+@media (max-width:767px){
+  .see-interior-button{
+    margin-left: 6vw;
+  }
+}
+
+
 .certify-container
 {
 
@@ -164,9 +192,6 @@ top:6vh;
 
 }
 
-.certify-checkbox{
-background-color: red;
-}
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MODAL location>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .modal-box{

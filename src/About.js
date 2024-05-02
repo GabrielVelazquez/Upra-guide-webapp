@@ -1,6 +1,7 @@
 import React from 'react';
 import './About.css';
 import Footer from "./footer";
+import aboutwolf from "./images/lobo_about.jpeg";
 
 const About = () => {
   return (
@@ -8,7 +9,8 @@ const About = () => {
         <div className="Huge-image-container">
         <div className="Huge-Image"> 
           {/*<img src="https://tintadigital.upra.edu/wp-content/uploads/2020/08/IMG-7740.jpg" alt="UPRA Recinto" />*/}
-          <img src="//upra.edu/wp-content/uploads/2022/02/WhatsApp-Image-2022-02-03-at-9.04.10-AM-2.jpeg" alt="UPRA Recinto" />
+          {/*<img src="//upra.edu/wp-content/uploads/2022/02/WhatsApp-Image-2022-02-03-at-9.04.10-AM-2.jpeg" alt="UPRA Recinto" /> */}
+          <img src={aboutwolf} alt="mascota de la UPRA" />
         </div>
         </div>
         <hr className='hr-about'/>

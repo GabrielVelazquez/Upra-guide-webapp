@@ -151,8 +151,9 @@ const ViewEvents = () => {
                                     <img src={event.imageUrl} alt="event" style={{ width: "250px", height: "250px" }} />
                                     <br />
                                    
-                                    <button onClick={handleSaveevent}>Save</button>
-                                    <button onClick={handleCancelEdit}>Cancel</button>
+                                    <button className="Save" onClick={handleSaveevent}>Save</button>
+                                    <button className="Cancel" onClick={handleCancelEdit}>Cancel</button>
+                                   
                                 </div>
                             ) : (
                                 <>
