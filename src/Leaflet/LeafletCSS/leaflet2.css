@@ -1,21 +1,20 @@
-.leaflet-container{
-  width: 100vw;
-  height: 100vh;
+.leaflet-container {
+  width: 100vw; /* Set width to 100% of viewport width */
+  height: 100vh; /* Set height to 100% of viewport height */
   z-index: 2;
   overflow: hidden;
 }
 
-/*IPHONE 15*/
-
+/* Mobile Styles */
 @media screen and (max-width: 767px) {
-  .leaflet-container  {
-    width: 100vw;  /*tratar con porciento*/
-  /*height: 100vh; */
-    /*height: 89vh; */
-  height:168vw;
-
+  .leaflet-container {
+      width: 100%; /* Set width to 100% for smaller screens */
+      height: calc(100vh - 80px); /* Subtract any fixed header/footer height */
+      /* Alternatively, you can use a percentage for height as well */
+      /* height: 80%; */
   }
 }
+
 /*SWITCH BOX-------------------------------------------------------------------*/
 .custom-checkbox{
     position: absolute; /* Posicionamiento absoluto para quedar sobre el mapa */
