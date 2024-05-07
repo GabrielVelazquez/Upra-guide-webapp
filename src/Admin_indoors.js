@@ -21,7 +21,7 @@ const AdminIndoors = () => {
 
   const handleAddLocation = async () => {
     if (!formData.name || !formData.lat || !formData.lng){ //|| !formData.level || !formData.description || !formData.leafletFile) {
-      alert('Please fill in all fields.'); // and select a Leaflet file.');
+      alert('Please fill in all fields.'); 
       return;
     }
   
