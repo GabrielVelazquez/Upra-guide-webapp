@@ -4,6 +4,7 @@ import extintor from '../../images/leaflet_extintor.jpg';
 import pull from '../../images/leaflet_pullStation.png';
 import meet from '../../images/leaflet_meetingpoint.jpg';
 import inflamable from'../../images/inflamableIcon_leaflet.png';
+import parking from '../../images/parking-sign-13348.png';
 
 const customMarker = new L.Icon({//waypoint
     iconUrl: waypoint,
@@ -12,6 +13,13 @@ const customMarker = new L.Icon({//waypoint
     popupAnchor: [0, -50],
   });
   
+  const parkingMarker = new L.Icon({//waypoint
+    iconUrl: parking,
+    iconSize: [50, 50],
+    iconAnchor: [24, 50],
+    popupAnchor: [0, -50],
+  });
+
   const customExtintor = new L.Icon({//extintor
     iconUrl: extintor,
     iconSize: [30,30],
@@ -46,4 +54,4 @@ const customMarker = new L.Icon({//waypoint
 
   
 
-  export {customMarker, customExtintor, customPullStation, customMeetingPoint, customInflamable};
+  export {customMarker, customExtintor, customPullStation, customMeetingPoint, customInflamable, parkingMarker};

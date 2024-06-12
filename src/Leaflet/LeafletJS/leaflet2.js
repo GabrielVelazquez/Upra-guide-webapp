@@ -22,7 +22,8 @@ import {Routes, Route} from 'react-router-dom';
 // import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Link } from 'react-router-dom';
 
-import {customMarker} from './LeafletIcons';  // marker custom
+import {customMarker, parkingMarker} from './LeafletIcons';  // marker custom
+// import {parkingMarker} from './LeafletIcons';  // marker custom
 import { Marker, Popup } from 'react-leaflet'; // Asegúrate de importar Marker y Popup
 
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -50,9 +51,11 @@ Modal.setAppElement('#root'); //  root para accesar el modal
             markerData.lat, //1
             markerData.lng, //2
             markerData.level, //3
-            markerData.description, //4
-            markerData.image, //5
-            markerData.categoria,//6 
+            markerData.categoria,//4
+            markerData.description, //5
+            markerData.image, //6
+            
+            
           ];
         });
 
@@ -209,7 +212,7 @@ const handleSearch = () => {
     /*console.log("filter:", newCategory.categoria);*/
   };
   const filteredMarkersCat = selectedCategory
-    ? markers.filter((marker) => marker[6] === selectedCategory)
+    ? markers.filter((marker) => marker[4] === selectedCategory)
     : markers;   
 
 
@@ -306,18 +309,23 @@ const handleCheckboxChange = (event) => { //ORIGINALBOXCHANGE
 
   return filteredMarkers.map((marker, index) => {
     // const [name, lat, lng, level, description, image, categoria] = marker;
-    const [name, lat, lng, categoria] = marker;
+    const [name, lat, lng, level, categoria] = marker;
+    console.log('categoria:', categoria);
+    console.log('name:', name);
+    
     if (categoria) { //componentes de markers para diferentes popups
       // Location Marker
+      
       return (
         <Marker
           key={index}
           position={[lat, lng]}
-          icon={customMarker}
+          icon={categoria === 'Parkings' ? parkingMarker : customMarker}
+          
           eventHandlers={{
-            click: () => {
-              handleMarkerClick(marker);
-            },
+        click: () => {
+          handleMarkerClick(marker);
+        },
           }}
         >
           <Popup>{name}</Popup>
@@ -487,7 +495,7 @@ const handleInteriorMarkerClick = (name) => {
           <select id="categoria" onChange={handleCategoryChange} value={selectedCategory}>
             
             <option value="">All Locations</option>
-            {[...new Set(markers.map((marker) => marker[6]))].map((categoria) => (
+            {[...new Set(markers.map((marker) => marker[4]))].map((categoria) => (
               <option key={categoria} value={categoria}>
                 {categoria}
               </option>
@@ -582,10 +590,10 @@ const handleInteriorMarkerClick = (name) => {
             </div>
             <img
   className="location-img"
-  src={selectedMarker[5] !== "" ? selectedMarker[5] : LocImgPH} alt={selectedMarker[5] !== "" ? selectedMarker[0] : "LocImgPH"} /> {/*Imagen*/}
+  src={selectedMarker[6] !== "" ? selectedMarker[6] : LocImgPH} alt={selectedMarker[6] !== "" ? selectedMarker[0] : "LocImgPH"} /> {/*Imagen*/}
             <hr className='hr-modal ' />
             <p className="location-info-text">{selectedMarker[3]}</p>{/*Nivel*/}
-            <p className="location-info-text">{selectedMarker[4]}</p>{/*Descripcion*/}
+            <p className="location-info-text">{selectedMarker[5]}</p>{/*Descripcion*/}
             <div className="modal-exit">
              
             </div>
